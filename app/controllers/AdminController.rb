@@ -619,7 +619,7 @@ module TSX
         env['rack.session']['_bot'] = b
       end
       # hook = 'https://a4353f89.ngrok.io/hook/'
-      hook = 'https://shmbot.herokuapp.com/hook/'
+      hook = 'https://tabik98.herokuapp.com/hook/'
       url = hook + b.token.to_s
       puts "Webhook: #{url}"
       begin
