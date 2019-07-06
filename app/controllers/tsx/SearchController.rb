@@ -12,13 +12,7 @@ module TSX
         sdel('telebot_trading')
         sdel('telebot_buying')
         unfilter
-
-        puts " *#{@tsx_bot.amo(hb_client.available_cash)}*"
-        puts " Покупок *#{hb_client.buy_trades([Trade::FINALIZED, Trade::FINISHED]).count}* на *#{@tsx_bot.amo(hb_client.buy_trades([Trade::FINALIZED, Trade::FINISHED]).sum(:price))}* #{"\nПродаж *#{hb_client.sell_trades([Trade::FINALIZED, Trade::FINISHED]).count}* на *#{@tsx_bot.amo(hb_client.sell_trades([Trade::FINALIZED, Trade::FINISHED]).sum(:price))}*" if @sh}"
-        puts " Рефералов *#{ludey(hb_client.client_referals)}*"
-        puts " Заработано *#{@tsx_bot.amo(hb_client.ref_cash)}*"
-        puts " #{"Поддержка" if !@tsx_bot.support.nil?} #{@tsx_bot.support_line if !@tsx_bot.support.nil?}"
-        reply_simple 'welcome/welcome', links: false, sh: hb_client.shop?, support_line: @tsx_bot.support_line
+        reply_logo 'mickey.jpg', 'welcome/welcome', links: false, sh: hb_client.shop?, support_line: @tsx_bot.support_line
         serp
         # play_game
         # reply_inline "welcome/referals"
