@@ -12,6 +12,7 @@ module TSX
         sdel('telebot_trading')
         sdel('telebot_buying')
         unfilter
+        puts "HBCLIENTL #{hb_client.inspect}"
         reply_simple 'welcome/welcome', links: false, sh: hb_client.shop?, support_line: @tsx_bot.support_line
         serp
         # play_game
