@@ -1,4 +1,4 @@
-DB = Sequel.connect(ENV['TAB_DATABASE'] || 'postgres://TABINC@127.0.0.1:5432/TABINC')
+DB = Sequel.connect(ENV['TAB_DATABASE'] || 'postgres://TABINC@127.0.0.1:5432/')
 DB.extension(:pagination)
 DB.extension(:string_agg)
 DB.extension(:sql_comments)
