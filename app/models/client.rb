@@ -184,7 +184,7 @@ class Client < Sequel::Model(:client)
   end
 
   def self.__referals
-    Client.find(username: '__refs')
+    Client.find(username: '__referals')
   end
 
   def self.__referals_paid
