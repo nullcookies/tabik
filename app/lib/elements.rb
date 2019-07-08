@@ -6,6 +6,10 @@ module TSX
       {text: text, callback_data: action, pay: pay}
     end
 
+    def share_button(text, message)
+      {text: text, switch_inline_query: message}
+    end
+
     def button_value(text, action)
       Hash.new({text: text, value: action})
     end

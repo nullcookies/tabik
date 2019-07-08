@@ -65,3 +65,4 @@ gem 'sinatra-captcha'
 gem 'public_suffix'
 gem 'stackprof', group: :development
 gem 'sibit'
+gem "rake-version", "~> 1.0"
