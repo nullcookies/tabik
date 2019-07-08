@@ -36,6 +36,27 @@ module TSX
       icon('no_entry_sign', "Отмена")
     end
 
+    def admin_buttons
+      [
+          [
+              "#{icon('bar_chart')} Статистика",
+              "#{icon('package')} Клады",
+          ],
+          [
+              "#{icon('1234')} Цены",
+              "#{icon('pouch')} Кошельки"
+          ],
+          [
+              "#{icon('email')} Рассылки",
+              "#{icon('family')} Команда"
+          ],
+          [
+              "#{icon('art')} Интерфейс",
+          ],
+          btn_main
+      ]
+    end
+
     def help_buttons
       but_list ||= []
       but_list <<
@@ -385,11 +406,42 @@ module TSX
       @products.each do |product|
         prices = Price.where(product: product[:prod], bot: bbb.id).distinct(:price__qnt)
         puts prices.inspect
-        lines << "#{icn(product.icon)} <b>#{product.russian}</b> <a href='/prices/#{product[:prod]}'>изменить</a> "
+        lines << "#{icn(product.icon)} *#{product.russian}*"
         prices.each do |pr|
           lines << "#{pr.qnt} #{bbb.amo(pr.price)} "
         end
-        lines << "<br/>"
+        lines << "\r\n"
+      end
+      lines
+    end
+
+    def list_admins(bot)
+      lines = ''
+      Team.where(bot: bot.id, role: Client::HB_ROLE_ADMIN).each do |team|
+        user = Client[team.client]
+        lines << "#{icon('id')} /#{user.id} *#{user.username}*\r\n"
+      end
+      lines
+    end
+
+    def list_prices_by_product(product, bot)
+      prices = Price.where(product: product.id, bot: bot.id).distinct(:price__qnt)
+      lines = ''
+      lines << "#{icon(product.icon)} *#{product.russian}* "
+      prices.each do |pr|
+        lines << "#{pr.qnt} #{bot.amo(pr.price)} "
+      end
+      lines << "\r\n"
+    end
+
+    def list_icons
+      "#{icon(@tsx_bot.icon)} #{icon(@tsx_bot.icon_geo)} #{icon(@tsx_bot.icon_back)} #{icon(@tsx_bot.icon_old)}"
+    end
+
+    def list_today_payments(list)
+      lines = ''
+      list.each do |p|
+        lines << "`#{p.code}` *#{p.amount}*\r\n"
       end
       lines
     end

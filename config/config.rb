@@ -1,4 +1,4 @@
-DB = Sequel.connect(ENV['TAB_DATABASE'] || 'postgres://TABINC@127.0.0.1:5432/')
+DB = Sequel.connect(ENV['TAB_DATABASE'] || 'postgres://postgres:ghbdtn@127.0.0.1:5432/tabiko')
 DB.extension(:pagination)
 DB.extension(:string_agg)
 DB.extension(:sql_comments)
@@ -29,6 +29,7 @@ TOKEN_SALT = "fuck you salt"
 TOKEN_ALPHABET = 'ABCDEFGHKLMNO1234567890'
 ONION_ADDRESS = '3q5jrloba3ea3pza.onion'
 OWNERS_CHAT = 'https://t.me/joinchat/GVN5xg2sFEBE5fulDp23ww'
+BOT_RENT = 200
 
 # BCHANGE = BestchangeRates.new
 # OBMENKI = BCHANGE.exchangers

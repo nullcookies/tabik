@@ -10,7 +10,7 @@ module TSX
 
     def method_missing(meth,  *args)
       puts "METHOD MISSING #{meth}".colorize(:yellow)
-      reply_message "*#{@btn.title}*\n#{@btn.body}"
+      reply_message "*#{@btn.title}*\n\r\n\r#{@btn.body}"
     end
 
     def parse_update(body)
@@ -117,6 +117,22 @@ module TSX
       res
     end
 
+    def is_user?
+      return false if (callback_query? || file? || location?)
+      begin
+        Integer(clear_text)
+        us_id = Client[clear_text]
+        puts "PAYLOAD #{@payload.text}"
+        if !us_id.nil? and @payload.text.include?('/')
+          us_id
+        else
+          false
+        end
+      rescue
+        false
+      end
+    end
+
     def has_referal?
       return false if (callback_query? || file? || location?)
       ref = clear_text
@@ -141,6 +157,12 @@ module TSX
 
     def parse_method
 
+      is_user = is_user?
+      if is_user
+        puts "This is a user page request: ##{is_user}".colorize(:blue)
+        return ['show_user', is_user.id]
+      end
+
       master = has_referal?
       tem "GOT REF #{master.inspect}"
       if master != false
@@ -163,24 +185,28 @@ module TSX
       # not in hardcoded handlers list
       # and handler is NOT set
       if !handler?
-        # tem "no message, no handler"
-        # tem "replying with error"
+        tem "no message, no handler"
+        tem "replying with error"
         return ['no_command', nil]
       else
         # not in hardcoded handlers list
         # and handler is set
-        # tem "handler is set."
+        tem "handler is set."
         if message?
-          # tem "processing message with variable"
-          # tem "cmd: #{handler?}, var: #{clear_text}"
+          tem "processing message with variable"
+          tem "cmd: #{handler?}, var: #{clear_text}"
           return [handler?, clear_text]
         end
         if callback_query?
-          # tem "processing callback_query with variable"
-          # tem "cmd: #{handler?}, var: #{clear_data}"
+          puts "processing callback_query with variable"
+          puts "cmd: #{handler?}, var: #{clear_data}"
+          if respond_to?(clear_data.to_sym)
+            return [clear_data, nil]
+          end
           return [handler?, clear_data]
         end
         if file?
+          puts "FILE!!!!!!!!!!!!"
           return [handler?, file?]
         end
       end

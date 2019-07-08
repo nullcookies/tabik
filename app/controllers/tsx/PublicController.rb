@@ -32,11 +32,7 @@ module TSX
       end
 
       def payments
-        reply_simple 'welcome/payments'
-      end
-
-      def easypaysample
-        reply_picture 'easy_sample.jpg', 'Easypay sample'
+        reply_logo 'easy_sample.jpg', 'welcome/payments'
       end
 
       def rules

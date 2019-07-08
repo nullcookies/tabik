@@ -26,9 +26,7 @@ end
 #File.read("#{ROOT}/tmp/hidden.pem")
 
 if production?
-  puts "PRODUCTION!!!"
   if Tor.available?
-    puts "TOR AVAILABLE!!!!!!!!!!!"
     require 'tor/hidden-service'
     HIDDEN_SERVICE = Tor::HiddenService.new(
         private_key: File.read("#{ROOT}/tmp/hidden.pem"),

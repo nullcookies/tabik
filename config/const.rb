@@ -5,8 +5,6 @@ HAMDLERS = {
       "Профиль": 'my_overview',
       "Настройки": 'my_settings',
       "Сделки": :escrow,
-      "Клады": 'do_my_products',
-      "Все клады": 'my_items',
       "Продукт": 'product',
       "Район": 'district',
       "О системе": 'welcome',
@@ -34,7 +32,7 @@ HAMDLERS = {
       "геопозицию": 'save_location',
       "Бухгалтерия": 'system_accounts',
       "Админ": 'admin_menu',
-      "Стата": 'botstat',
+      "Статистика": 'admin_menu',
       "Долги": 'debts',
       "Прайсы": 'prices',
       "платить?": 'payments',
@@ -60,7 +58,33 @@ HAMDLERS = {
       "Кабинет": 'panel',
       "Вывести": 'cashout',
       "Выписка": 'client_statement',
-      "Рефералы": 'client_referals'
+      "Рефералы": 'client_referals',
+      "Цены": 'admin_choose_product_for_prices',
+      "Клады": 'admin_uploads',
+      "Кошельки": 'admin_wallets',
+      "Рассылки": 'admin_spam',
+      "загрузку": 'admin_cancel_upload',
+      "admin_create_spam": 'admin_create_spam',
+      "admin_delete_spam": 'admin_delete_spam',
+      "admin_edit_spam": 'admin_edit_spam',
+      "admin_resend_spam": 'admin_resend_spam',
+      "admin_back_to_spam": 'admin_back_to_spam',
+      "рассылку": 'admin_cancel_spam',
+      "редактирование": 'admin_cancel_spam',
+      "цен": 'admin_menu',
+      "admin_choose_all_products": 'admin_choose_all_products',
+      "back_to_bot_products": 'back_to_bot_products',
+      "admin_view_next_products_page": 'admin_view_next_products_page',
+      "next_districts": 'next_districts',
+      "prev_districts": 'prev_districts',
+      "Команда": 'admin_team',
+      "admin_add_cash": 'admin_add_cash',
+      "add_to_admins": 'add_to_admins',
+      "del_from_admins": 'del_from_admins',
+      "ban": 'ban',
+      "unban": 'unban',
+      "delete_product": 'delete_product',
+      "Интерфейс": 'admin_interface'
 }
 
 CHAT_HAMDLERS = {
@@ -68,32 +92,9 @@ CHAT_HAMDLERS = {
     "remove_darkside": 'remove_darkside'
 }
 
-OVERVIEW = [
-    'Общие настроки':
-        ['support', 'title', 'avatar', 'description'],
-    'Настройки бота автопродаж':
-        ['tele', 'token', 'ref_rate', 'reserve_interval', 'retry_period']
-]
-
 LINES = [
     '#edc951', '#eb6841', '#cc2a36', '#4f372d', '#00a0b0', '#f96161', '#d0b783', '#2a334f', '#6b4423', '#0077AA'
 ]
-
-COL_OPTIONS =
-[
-      "serp_type": ['город, район, продукт', 'город, продукт, район'],
-      "underscored_name": ['без подчеркивания', 'с подчеркиванием'],
-      "web_klad": ['выключиь', 'включить']
-
-]
-
-RANKS = {
-    "Ужасно": 1,
-    "Плохо": 2,
-    "Нормально": 3,
-    "Неплохо": 4,
-    "Хорошо": 5
-}
 
 ENDPOINTS = %w(
         getUpdates setWebhook deleteWebhook getWebhookInfo getMe sendMessage

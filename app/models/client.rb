@@ -60,7 +60,7 @@ class Client < Sequel::Model(:client)
   end
 
   def banned?
-    self.status == Client::CLIENT_BANNED
+    self.banned != Client::CLIENT_BANNED
   end
 
   def disputes(st = Abuse::APPROVED)
@@ -181,6 +181,10 @@ class Client < Sequel::Model(:client)
 
   def self.__gifts
     Client.find(username: '__gifts')
+  end
+
+  def self.__rent
+    Client.find(username: '__rent')
   end
 
   def self.__referals
@@ -867,6 +871,13 @@ class Client < Sequel::Model(:client)
     credit = Ledger.dataset.
       select{Sequel.as(Sequel.expr{COALESCE(sum(:ledger__amount), 0)}, :bns)}.
       where(credit: self.id, debit: Client::__gifts.id)
+    credit.map(:bns)[0]
+  end
+
+  def rent_cash
+    credit = Ledger.dataset.
+        select{Sequel.as(Sequel.expr{COALESCE(sum(:ledger__amount), 0)}, :bns)}.
+        where(credit: self.id, debit: Client::__rent.id)
     credit.map(:bns)[0]
   end
 

@@ -33,9 +33,9 @@ class BotController < TSX::ApplicationController
       @tsx_host = request.host
       parse_update(request.body)
       setup_sessa
-      raise 'Возникла проблема при регистрации вашего никнейма. Обратитесь в поддержку.' if !hb_client
-      raise 'Бот на техобслуживании.' if @tsx_bot.inactive?
-      raise 'Вы забанены. Удачи.' if hb_client.banned?
+      raise TSX::TSXException.new("#{icon('warning')} Возникла проблема при регистрации вашего никнейма. Обратитесь в поддержку.") if !hb_client
+      raise TSX::TSXException.new("#{icon('warning')} Бот на техобслуживании.") if @tsx_bot.inactive?
+      raise TSX::TSXException.new("#{icon('warning')} Вы забанены. Удачи.") if hb_client.banned?
       show_typing
       call_handler
       log_update
@@ -44,16 +44,12 @@ class BotController < TSX::ApplicationController
       hb_client.save
       mess = re.message
       puts mess.colorize(:red)
-      # puts re.backtrace.join("\n\t")
+    rescue TSX::TSXException => ex
+      reply_message ex.message
     rescue => ex
-      puts "====================================="
-      if @tsx_bot and hb_client
-        brec(@tsx_bot, '[EXCEPTION] ===================', "#{ex.message} - #{ex.backtrace.join("\n\t")}", hb_client)
-      end
       puts ex.message.colorize(:red)
       puts ex.backtrace.join("\n\t")
       puts mess.colorize(:red)
-      puts "====================================="
     end
     [200, {}, ["----------------------- SUCCESS"]]
   end

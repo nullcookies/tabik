@@ -24,14 +24,14 @@ module TSX
     end
 
     def reply_logo(filename, view, locals = {})
-      file = Telebot::InputFile.new(fixture(filename), 'multipart/form-data')
+      # file = Telebot::InputFile.new(fixture(filename), 'multipart/form-data')
       v = render_md(view, locals)
       buts = Telegram::Bot::Types::InlineKeyboardMarkup.new(
         inline_keyboard: v.buttons
       )
       res = @bot.api.send_photo(
         chat_id: chat,
-        photo: file,
+        photo: "#{filename}",
         caption: v.body,
         parse_mode: :markdown,
         reply_markup: buts,
@@ -76,6 +76,7 @@ module TSX
         )
         set_editable(res['result']['message_id'])
       rescue => ex
+        puts ex.message.colorize(:red)
         if block_given?
           yield locals, ex
         end

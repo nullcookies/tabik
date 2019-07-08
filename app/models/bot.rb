@@ -1,3 +1,5 @@
+require 'sibit'
+
 class Bot < Sequel::Model(:bot)
   include TSX::Billing
   include TSX::Currency
@@ -35,6 +37,13 @@ class Bot < Sequel::Model(:bot)
       )
     end
   end
+
+  def debt_in_btc
+    sibit = Sibit.new
+    sibit.price
+    (BOT_RENT / sibit.price).round(5)
+  end
+
 
   def abuses
     Abuse.where(bot: self.id)
@@ -436,7 +445,6 @@ class Bot < Sequel::Model(:bot)
     puts debit.inspect.colorize(:red)
     [debit.first[:debit], credit.first[:credit]]
   end
-
 
   def income
     ben = self.beneficiary

@@ -64,3 +64,4 @@ gem 'thwait'
 gem 'sinatra-captcha'
 gem 'public_suffix'
 gem 'stackprof', group: :development
+gem 'sibit'
