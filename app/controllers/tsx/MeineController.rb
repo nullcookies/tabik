@@ -61,17 +61,10 @@ module TSX
       def enter_avatar
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('save_bot_avatar')
-        reply_message "#{icon('pencil2')} Пришлите *прямую ссылку* на аватар бота."
+        reply_message "#{icon('pencil2')} Пришлите *прямую ссылку* на аватар бота. Нужна прямая ссылка на файл с изображением. Проверьте самостоятельно предварительно в бровзере, чтобы открывалась картинка."
       end
 
       def save_bot_avatar(data = nil)
-        begin
-          image = remote_file_exists?(@payload.text)
-        rescue => ex
-          puts ex.message
-          raise TSXException.new("#{icon('warning')} Неверная ссылка на картинку.")
-        end
-        raise TSXException.new("#{icon('warning')} Нужна прямая ссылка на файл с изображением.") if !image
         @tsx_bot.update(avatar: @payload.text)
         admin_interface
       end
