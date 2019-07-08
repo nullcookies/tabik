@@ -40,10 +40,6 @@ begin
   require 'rack/timeout/base'
   use Rack::Timeout, service_timeout: 24, wait_timeout: 24, wait_overtime: 24
   use BotController
-  use TSX::AuthController
-  use TSX::AdminController
-  use TSX::WallController
-  use TSX::UserController
   run TSX::ApplicationController
 rescue => e
   puts "EXCEPTION FROM CONFIG.RU ----------------"

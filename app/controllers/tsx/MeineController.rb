@@ -57,7 +57,6 @@ module TSX
         end
       end
 
-
       def enter_avatar
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('save_bot_avatar')

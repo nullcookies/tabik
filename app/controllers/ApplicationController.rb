@@ -60,6 +60,7 @@ module TSX
     include Darkside::Role
     include Colorize
 
+    include TSX::Controllers::System
     include TSX::Controllers::Plugin
     include TSX::Controllers::Public
     include TSX::Controllers::Search
