@@ -67,7 +67,8 @@ module TSX
       def save_bot_avatar(data = nil)
         begin
           image = remote_file_exists?(@payload.text)
-        rescue
+        rescue => ex
+          puts ex.message
           raise TSXException.new("#{icon('warning')} Неверная ссылка на картинку.")
         end
         raise TSXException.new("#{icon('warning')} Нужна прямая ссылка на файл с изображением.") if !image

@@ -2,56 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/all_products.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/bot_buttons.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/choose_city.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/choose_districts.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/choose_prices.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/choose_product.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/choose_product_for_prices.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/choose_wallet.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/create_spam.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/enter_klads.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/icons.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/interface.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/klads_added.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/menu.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/product_prices.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/single_spam.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/spam.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/sure_delete.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/team.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/today_payments.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/view_button.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/admin/view_wallet.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/tsx/welcome/user_page.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tabs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tabs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ApplicationController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ApplicationController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/BotController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/BotController.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/PublicController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/PublicController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/WalletController.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/helpers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/helpers.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/tsx/payload.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/tsx/payload.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/tsx/reply.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/tsx/reply.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/view_helpers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/view_helpers.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/bot.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/bot.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/client.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/client.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/wallet.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/wallet.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/admin/admin.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/admin/botstat.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/admin/botstat.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/search/items_products.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/search/items_products.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/welcome/not_permitted.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/welcome/not_permitted.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/ngrok" beforeDir="false" afterPath="$PROJECT_DIR$/bin/ngrok" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.ru" beforeDir="false" afterPath="$PROJECT_DIR$/config.ru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/const.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/const.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,8 +92,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="320" selection-start-line="320" selection-end-line="320" />
+            <state relative-caret-position="354">
+              <caret line="70" column="25" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -151,7 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>@tsx_bot.cnts(data)</find>
       <find>Integer</find>
       <find>Интер</find>
       <find>Button.</find>
@@ -181,6 +131,7 @@
       <find>admin_choose_product_for_prices</find>
       <find>choose_product_for_prices</find>
       <find>discount</find>
+      <find>avatar</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -520,12 +471,12 @@
       <workItem from="1561939344105" duration="1236000" />
       <workItem from="1561998825273" duration="5439000" />
       <workItem from="1562371876420" duration="5142000" />
-      <workItem from="1562416648402" duration="69715000" />
+      <workItem from="1562416648402" duration="70929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="582956000" />
+    <option name="totallyTimeSpent" value="584170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -905,8 +856,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="320" selection-start-line="320" selection-end-line="320" />
+        <state relative-caret-position="354">
+          <caret line="70" column="25" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
         </state>
       </provider>
     </entry>
