@@ -30,10 +30,12 @@ class Trade < Sequel::Model(:trade)
     end
     if client.is_admin?(Bot[client.bot])
       take_free_btn = true
+      view_free_btn = true
     else
       take_free_btn = false
+      view_free_btn = false
     end
-    {balance_btn: balance_btn, take_free_btn: take_free_btn, links: true, method: method}
+    {balance_btn: balance_btn, take_free_btn: take_free_btn, links: true, method: method, view_free_btn: view_free_btn}
   end
 
   def self.expired_trades

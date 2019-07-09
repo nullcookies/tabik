@@ -83,6 +83,33 @@ module TSX
       end
     end
 
+    def reply_update_html(view, locals = {})
+      v = render_md(view, locals)
+      buts = Telegram::Bot::Types::InlineKeyboardMarkup.new(
+          inline_keyboard: v.buttons
+      )
+      begin
+        if message_id - has_editable? > 1
+          raise
+        end
+        res = @bot.api.public_send(
+            "edit_message_text",
+            chat_id: chat,
+            message_id: has_editable?,
+            text: v.body,
+            parse_mode: :html,
+            reply_markup: buts,
+            disable_web_page_preview: true
+        )
+        set_editable(res['result']['message_id'])
+      rescue => ex
+        puts ex.message.colorize(:red)
+        if block_given?
+          yield locals, ex
+        end
+      end
+    end
+
     def send_inv(trade)
       item = Item[trade.item]
       product = Product[item.product]
@@ -226,6 +253,20 @@ module TSX
           text: mess,
           disable_web_page_preview: true,
           parse_mode: :markdown
+      )
+      set_editable(res['result']['message_id'])
+    end
+
+    def reply_button (mess, locals = {})
+      buts = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
+          keyboard: locals
+      )
+      res = @bot.api.send_message(
+          chat_id: chat,
+          reply_markup: buts,
+          text: mess,
+          disable_web_page_preview: true,
+          parse_mode: :html
       )
       set_editable(res['result']['message_id'])
     end

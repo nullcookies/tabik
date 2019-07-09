@@ -32,6 +32,17 @@ module TSX
 
     def payment_option(key, meth)
       pmt = Payment.find(bot: self.id, meth: meth.id)
+      pmt[key.to_sym]
+      # if !pmt.nil?
+      #   params = JSON.parse(pmt.params)
+      #   params[key]
+      # else
+      #   false
+      # end
+    end
+
+    def payment_option2(key, meth)
+      pmt = Payment.find(bot: self.id, meth: meth.id)
       if !pmt.nil?
         params = JSON.parse(pmt.params)
         params[key]

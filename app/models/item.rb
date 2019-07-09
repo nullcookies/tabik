@@ -74,14 +74,7 @@ class Item < Sequel::Model(:item)
   def discount_price_by_method(method)
     p = Price[self.prc]
     bot = Bot[self.bot]
-    discount = bot.payment_option('discount', method)
-    puts "GOT RESPONSE: #{discount}"
-    return p.price if !discount
-    if discount.to_i > 0
-      p = p.price - (p.price.to_f * discount.to_f / 100).round.to_i
-      puts "PRICE WITH METH DISCOUNT: #{p}"
-      return p
-    elsif self.old?
+    if self.old?
       puts "OLD KLAD"
       return p.price - (p.price.to_f * bot.discount.to_f / 100).round.to_i
     else

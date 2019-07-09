@@ -29,6 +29,7 @@ HAMDLERS = {
       "Помощь": 'help',
       "запрос": 'cancel_dispute',
       "Взять": 'take_free',
+      "Посмотреть": 'view_free',
       "геопозицию": 'save_location',
       "Бухгалтерия": 'system_accounts',
       "Админ": 'admin_menu',

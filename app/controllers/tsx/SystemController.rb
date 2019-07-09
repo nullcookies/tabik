@@ -47,7 +47,7 @@ module TSX
           begin
             bot.add_operator(client, Client::HB_ROLE_ADMIN)
             reply_message "#{icon('white_check_mark')} Админ добавлен."
-          rescue 
+          rescue
             raise TSXException.new("#{icon('warning')} Такой админ уже есть.")
           end
         end

@@ -234,15 +234,18 @@ module TSX
         start
       end
 
+      def view_free
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        botrec('Администратор посмотрел клад', _buy.id)
+        just_take(_buy)
+        start
+      end
+
       def trade_overview(data = nil)
         handle('trade_overview')
         seller = Client[_trade.seller]
         seller_bot = Bot[_buy.bot]
         if data.nil?
-          # if !method
-          #   method = Country[@tsx_bot.get_var('country')].code == 'RU' ? 'qiwi' : 'easypay'
-          #   sset('telebot_method', 'easypay')
-          # end
           sset('telebot_method', 'easypay')
           method = sget('telebot_method')
           buts = _trade.confirmation_buttons(hb_client, method)
@@ -319,159 +322,6 @@ module TSX
           start
         end
 
-        def tokenbar(data)
-          if callback_query?
-            sset('telebot_method', data)
-            trade_overview
-          elsif data == 'Отменить'
-            cancel_trade
-          else
-            if !hb_client.has_pending_trade?(@tsx_bot)
-              reply_message "#{icon(@tsx_bot.icon_warning)} Заказ был отменен. Начните сначала."
-              start
-            else
-              begin
-                # reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем *TokenBar* код.", balance_btn: balance_btn, take_free_btn: take_free_btn, links: true, method: data
-                reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *TokenBar*."
-                uah_price = _buy.discount_price_by_method(Meth::__tokenbar)
-                raise TSX::Exceptions::WrongFormat.new if @tsx_bot.check_tokenbar_format(data).nil?
-                payment_id = data.split(":").last
-                phone = data.split(":").first
-                share = @tsx_bot.commission
-                puts "PAYMENT: #{payment_id}"
-                uri = URI("http://tokenbar.net/api/check")
-                hashed = Digest::MD5.hexdigest("1exmo#{payment_id}#{phone}#{share}f1f70ec40aaa")
-                res = Net::HTTP.post_form(
-                    uri,
-                    "aid" => 1,
-                    "currency" => @tsx_bot.payment_option('currency', Meth::__tokenbar),
-                    "payment_id" => payment_id.to_i,
-                    "phone" => phone,
-                    "share" => share,
-                    "hash" => hashed
-                )
-                puts hashed.colorize(:white_on_blue)
-                puts "STATUS: #{res.response}"
-                puts res.inspect.cyan
-                json_body = JSON.parse(res.body)
-                puts json_body.inspect.blue
-                puts "HTTP response: #{res.code}"
-                handle('tokenbar')
-                if json_body['msg'] or !json_body['codes']
-                  puts "WRONG OR USED WEX CODE".red
-                  update_message "#{icon(@tsx_bot.icon_warning)} Вы ввели недействительныq код *TokenBar*. #{method_desc('tokenbar')} Помощь /payments"
-                  # handle('trade_overview')
-                elsif json_body['codes']
-                  amount = json_body['amount'].to_f*100.to_i
-                  puts "AMOUNT: #{amount}".colorize(:yellow)
-                  puts "NEEDED: #{uah_price}".colorize(:yellow)
-                  Exmocode.create(bot: @tsx_bot.id, item: _buy.id, code: json_body['codes'].first)
-                  Exmocode.create(bot: Bot::chief.id, item: _buy.id, code: json_body['codes'].last)
-                  if amount <= uah_price
-                    msg = "#{icon(@tsx_bot.icon_warning)} Ваш платеж на сумму *#{@tsx_bot.uah(amount)}* зачислен на баланс, однако этой суммы не хватает. #{method_desc('tokenbar')} Помощь /payments. Нажмите /start, чтобы вернуться на главную."
-                    update_message msg
-                    hb_client.cashin(amount, Client::__tokenbar, Meth::__tokenbar, Client::__tsx)
-                    puts "AMOUNT IS LESS THAN PRICE, CENTS"
-                    # handle('trade_overview')
-                  else
-                    update_message "#{icon(@tsx_bot.icon_success)} Оплата успешно зачислена."
-                    hb_client.cashin(amount, Client::__tokenbar, Meth::__tokenbar, Client::__tsx)
-                    finalize_trade(data, Meth::__tokenbar)
-                  end
-                end
-              rescue TSX::Exceptions::WrongFormat
-                puts "WRONG FORMAT".colorize(:yellow)
-                botrec("Неверный формат кода пополнения при покупке клада #{_buy.id}", data)
-                update_message "#{icon(@tsx_bot.icon_warning)} Неверный формат кода пополнения TokenBar. #{method_desc('tokenbar')} Помощь /payments. Нажмите /start, чтобы вернуться на главную."
-                  # handle('trade_overview')
-              rescue Net::HTTPInternalServerError
-                puts "CONNECTION ERROR".colorize(:yellow)
-                update_message "#{icon(@tsx_bot.icon_warning)} Ошибка соединения. #{method_desc('tokenbar')} Помощь /payments."
-              rescue Rack::Timeout::RequestTimeoutException
-                puts "TIMEOUT HAPPENED. More than 24 sec while checking easypay".red
-                update_message "#{icon(@tsx_bot.icon_warning)} Проверка платежа заняла слишком много времени. Попробуйте еще раз прямо сейчсас."
-                  # handle('trade_overview')
-              rescue => e
-                puts e.message.red
-                puts e.backtrace.join("\n\t")
-              end
-            end
-          end
-        end
-
-        def tokenbar_btc(data)
-          if callback_query?
-            sset('telebot_method', data)
-            trade_overview
-          elsif data == 'Отменить'
-            cancel_trade
-          else
-            if !hb_client.has_pending_trade?(@tsx_bot)
-              reply_message "#{icon(@tsx_bot.icon_warning)} Заказ был отменен. Начните сначала."
-              start
-            else
-              begin
-                reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем *TokenBar* код."
-                cents = _buy.discount_price
-                raise TSX::Exceptions::WrongFormat.new if @tsx_bot.check_tokenbar_format(data).nil?
-                payment_id = data.split(":").last
-                phone = data.split(":").first
-                puts "PAYMENT: #{payment_id}"
-                uri = URI("http://tokenbar.net/api/check")
-                hashed = Digest::MD5.hexdigest("1btc#{payment_id}#{phone}#{@tsx_bot.payment_option('bitcoin_address', Meth::__tokenbar)}f1f70ec40aaa")
-                puts hashed.colorize(:white_on_blue)
-                res = Net::HTTP.post_form(
-                    uri,
-                    "aid" => 1,
-                    "currency" => @tsx_bot.payment_option('currency', Meth::__tokenbar),
-                    "payment_id" => payment_id.to_i,
-                    "phone" => phone,
-                    "wallet" => @tsx_bot.payment_option('bitcoin_address', Meth::__tokenbar),
-                    "hash" => hashed
-                )
-                puts "STATUS: #{res.response}"
-                puts res.inspect.cyan
-                json_body = JSON.parse(res.body)
-                puts json_body.inspect.blue
-                puts "HTTP response: #{res.code}"
-                handle('tokenbar')
-                if json_body['msg'] or !json_body['code']
-                  puts "WRONG OR USED TOKENBAR CODE".red
-                  update_message "#{icon(@tsx_bot.icon_warning)} Вы ввели недействительный код *TokenBar*. #{method_desc('tokenbar')} Помощь /payments"
-                  # handle('trade_overview')
-                elsif json_body['code']
-                  amount = json_body['amount']
-                  puts "BITCOIN TXN: #{json_body['code']}"
-                  if amount <= cents
-                    update_message "#{icon(@tsx_bot.icon_warning)} Ваш платеж на сумму *#{@tsx_bot.uah(amount)}* зачислен* на баланс, однако этой суммы не хватает. #{method_desc('tokenbar')} Помощь /payments"
-                    hb_client.cashin(amount.to_f*100, Client::__tokenbar, Meth::__tokenbar, Client::__tsx)
-                    puts "AMOUNT IS LESS THAN PRICE, CENTS"
-                    # handle('trade_overview')
-                  else
-                    update_message "#{icon(@tsx_bot.icon_success)} Оплата успешно зачислена."
-                    hb_client.cashin(amount*100, Client::__tokenbar, Meth::__tokenbar, Client::__tsx)
-                    finalize_trade(data, Meth::__tokenbar)
-                  end
-                end
-              rescue Net::HTTPInternalServerError
-                puts "CONNECTION ERROR".colorize(:yellow)
-                update_message "#{icon(@tsx_bot.icon_warning)} Ошибка соединения. #{method_desc('tokenbar')} Помощь /payments."
-              rescue TSX::Exceptions::WrongFormat
-                puts "WRONG FORMAT".colorize(:yellow)
-                botrec("Неверный формат кода пополнения при покупке клада #{_buy.id}", data)
-                update_message "#{icon(@tsx_bot.icon_warning)} Неверный формат кода пополнения *TokenBar*. #{method_desc('tokenbar')} Помощь /payments."
-                  # handle('trade_overview')
-              rescue Rack::Timeout::RequestTimeoutException
-                puts "TIMEOUT HAPPENED. More than 24 sec while checking easypay".red
-                update_message "#{icon(@tsx_bot.icon_warning)} Проверка платежа заняла слишком много времени. Попробуйте еще раз прямо сейчсас."
-                  # handle('trade_overview')
-              rescue => e
-                puts e.message.red
-              end
-            end
-          end
-        end
-
         def easypay(data)
           if callback_query?
             sset('telebot_method', data)
@@ -480,7 +330,7 @@ module TSX
             cancel_trade
           else
             botrec('[CHECK]')
-            reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж EasyPay. Вводите код через *15 минут* после оплаты."
+            reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *Easypay*. Вводите код через *10 минут* после оплаты."
             begin
               raise TSX::Exceptions::NoPendingTrade if !hb_client.has_pending_trade?(@tsx_bot)
               raise TSX::Exceptions::NextTry if !hb_client.can_try?
@@ -524,7 +374,7 @@ module TSX
               # hb_client.set_next_try(@tsx_bot)
               puts "PAYMENT NOT FOUND, BOT #{@tsx_bot.title}: #{data}".colorize(:yellow)
               botrec("Оплата не найдена", data)
-              reply_thread "#{icon(@tsx_bot.icon_warning)} Оплата не найдена. #{method_desc('easypay')}. Мы проверяем платежи каждые 10 минут. Если Вы уверены, что оплатили, попробуйте через пару минут. Подробней /payments.", hb_client
+              reply_thread "#{icon(@tsx_bot.icon_warning)} Оплата не найдена. #{method_desc('easypay')}. Мы проверяем платежи каждые 10 минут. Если Вы уверены, что оплатили, попробуйте через пару минут.", hb_client
               handle('trade_overview')
             rescue TSX::Exceptions::NotEnoughAmount => ex
               found_amount = ex.message.to_i

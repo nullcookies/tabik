@@ -446,6 +446,10 @@ class Bot < Sequel::Model(:bot)
     [debit.first[:debit], credit.first[:credit]]
   end
 
+  def icons_list
+    "#{self.icon_main}"
+  end
+
   def income
     ben = self.beneficiary
     Ledger.

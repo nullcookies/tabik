@@ -1,4 +1,4 @@
-*#{@button.title}*
+<b>#{@button.title}</b>
 
 #{@button.body}
 ****

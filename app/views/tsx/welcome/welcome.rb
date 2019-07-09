@@ -10,9 +10,6 @@
 ****
 [
     [
-      button("#{icon('moneybag')} Вывести заработанное", 'btc_cashout')
-    ],
-    [
-      share_button('Поделиться ботом', "Регайся по моей ссылке :) #{hb_client.make_referal_link(@tsx_bot)}")
+      share_button("#{icon('family')} Поделиться ботом", "Регайся по моей ссылке :) #{hb_client.make_referal_link(@tsx_bot)}")
     ]
 ]

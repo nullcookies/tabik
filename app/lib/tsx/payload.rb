@@ -10,7 +10,7 @@ module TSX
 
     def method_missing(meth,  *args)
       puts "METHOD MISSING #{meth}".colorize(:yellow)
-      reply_message "*#{@btn.title}*\n\r\n\r#{@btn.body}"
+      reply_button "<b>#{@btn.title}</b>\n\r\n\r#{@btn.body}"
     end
 
     def parse_update(body)

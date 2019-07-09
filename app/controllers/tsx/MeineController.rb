@@ -83,7 +83,7 @@ module TSX
       def view_button(data = nil)
         button = Button[data]
         sset('meine_button', button)
-        reply_update 'admin/view_button', button: button
+        reply_update_html 'admin/view_button', button: button
       end
 
       def delete_bot_button(data = nil)
@@ -167,11 +167,21 @@ module TSX
       end
 
       def admin_interface(data = nil)
-        reply_inline 'admin/interface'
+        if !@tsx_bot.support.nil?
+          support_string = "Поддержка #{@tsx_bot.support_line}"
+        else
+          support_string = "Поддержка #{icon('no_entry_sign')} Не установлено"
+        end
+        reply_inline 'admin/interface', support_string: support_string
       end
 
       def view_admin_interface(data = nil)
-        reply_update 'admin/interface'
+        if !@tsx_bot.support.nil?
+          support_string = "Поддержка #{@tsx_bot.support_line}"
+        else
+          support_string = "Поддержка #{icon('no_entry_sign')} Не установлено"
+        end
+        reply_update 'admin/interface', support_string: support_string
       end
 
       def enter_qnt(data = nil)

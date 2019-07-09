@@ -256,7 +256,7 @@ module TSX
               "#{method_details(method)}\n"
           if item.old?
             view_body <<
-                "Скидка `-#{@tsx_bot.discount}%` на *#{@tsx_bot.uah(item.discount_amount)}*\n"
+                "\nСкидка `-#{@tsx_bot.discount}%` на *#{@tsx_bot.uah(item.discount_amount)}*"
           end
       end
       view_body
@@ -267,7 +267,7 @@ module TSX
         when 'tokenbar'
           "Пример `380971234567:00000000`"
         when 'easypay'
-          "Пример `12:1399899`"
+          "Код должен выглядеть примерно так `12:1399899`. Подробнее /payments"
       end
     end
 
