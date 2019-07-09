@@ -421,8 +421,8 @@ module TSX
         handle('choose_product')
         city = City[data]
         sset('meine_city', city)
-        districts = District.where(city: city.id).paginate(1, 9)
-        sset('admin_districts_page', districts.current_page.to_i + 1)
+        districts = District.where(city: city.id).paginate(1, 18)
+        sset('admin_districts_page', districts.current_page.to_i)
         reply_update 'admin/choose_districts', districts: districts, city: city
       end
 
@@ -430,7 +430,7 @@ module TSX
         page = sget('admin_districts_page')
         sset('admin_districts_page', page.to_i + 1)
         city = sget('meine_city')
-        districts = District.where(city: city.id).paginate(page.to_i + 1, 9)
+        districts = District.where(city: city.id).paginate(page.to_i + 1, 18)
         reply_update 'admin/choose_districts', districts: districts, city: city
       end
 
@@ -438,7 +438,7 @@ module TSX
         page = sget('admin_districts_page')
         sset('admin_districts_page', page.to_i - 1)
         city = sget('meine_city')
-        districts = District.where(city: city.id).paginate(page.to_i - 1, 9)
+        districts = District.where(city: city.id).paginate(page.to_i - 1, 18)
         reply_update 'admin/choose_districts', districts: districts, city: city
       end
 
