@@ -60,13 +60,17 @@ module TSX
       end
 
       def register_bot(data, token)
-        botname = data
+        under = data.include?('_') ? 1 : 0
+        if data.include?('_')
+          botname = data.split('_').first
+        else
+          botname = data
+        end
         if Bot.find(tele: "#{botname}").nil?
           bene = Client.create(
               tele: '1',
               username: "__bot_#{botname}"
           )
-          under = data.include?('_') ? 1 : 0
           bot = Bot.create(
               tele: botname,
               token: token,

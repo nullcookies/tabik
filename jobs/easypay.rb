@@ -1,6 +1,8 @@
 require_relative './requires'
 require 'colorize'
 
+DB = Sequel.connect('postgres://aijsnlqeczrjde:0841bee8fe4b53474a43e815c5b19952c74b7c8b428bacc73943388d678a274d@ec2-174-129-226-232.compute-1.amazonaws.com:5432/d2i3n5oehr5m5n')
+
 logger = CronLogger.new
 # DB.logger = logger
 
