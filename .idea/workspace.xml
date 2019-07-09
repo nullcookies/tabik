@@ -4,7 +4,6 @@
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/tsx/SystemController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/SystemController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobs/easypay.rb" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/easypay.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SystemController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="418">
+              <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -98,7 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>GOT</find>
       <find>admin</find>
       <find>avail</find>
       <find>available_cash</find>
@@ -128,6 +126,7 @@
       <find>no</find>
       <find>new_bot</find>
       <find>unde</find>
+      <find>UniqueViolation</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -473,12 +472,12 @@
       <workItem from="1561939344105" duration="1236000" />
       <workItem from="1561998825273" duration="5439000" />
       <workItem from="1562371876420" duration="5142000" />
-      <workItem from="1562416648402" duration="81010000" />
+      <workItem from="1562416648402" duration="81883000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="594251000" />
+    <option name="totallyTimeSpent" value="595124000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -858,8 +857,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SystemController.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="418">
+          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
         </state>
       </provider>
     </entry>

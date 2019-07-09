@@ -41,11 +41,15 @@ module TSX
         if !data
           reply_message "#{icon('pencil2')} Введите номер клиента."
         else
-          bot = Bot[sget('meine_bot')]
+          bot = Bot.find(tele: sget('meine_bot'))
           client = Client[data]
           raise TSXException.new("#{icon('warning')} Нет такого клиента.") if client.nil?
-          bot.add_operator(client, Client::HB_ROLE_ADMIN)
-          reply_message "#{icon('white_check_mark')} Админ добавлен."
+          begin
+            bot.add_operator(client, Client::HB_ROLE_ADMIN)
+            reply_message "#{icon('white_check_mark')} Админ добавлен."
+          rescue 
+            raise TSXException.new("#{icon('warning')} Такой админ уже есть.")
+          end
         end
       end
 
