@@ -31,14 +31,8 @@ module TSX
     end
 
     def payment_option(key, meth)
-      pmt = Payment.find(bot: self.id, meth: meth.id)
+      pmt = Wallet.find(bot: self.id, active: 1)
       pmt[key.to_sym]
-      # if !pmt.nil?
-      #   params = JSON.parse(pmt.params)
-      #   params[key]
-      # else
-      #   false
-      # end
     end
 
     def payment_option2(key, meth)

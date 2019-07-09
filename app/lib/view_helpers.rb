@@ -200,7 +200,7 @@ module TSX
       case method
         when 'easypay'
           "Метод оплаты *EasyPay*\n" <<
-          "Кошелек *#{@tsx_bot.is_chief? ? @seller_bot.payment_option('keeper', Meth::__easypay) : @tsx_bot.payment_option('keeper', Meth::__easypay)}*"
+          "Кошелек *#{@seller_bot.payment_option('keeper', Meth::__easypay)}*"
         when 'qiwi'
           "Кошелек *#{@tsx_bot.is_chief? ? @seller_bot.payment_option('phone', Meth::__qiwi) : @tsx_bot.payment_option('phone', Meth::__qiwi)}*"
         when 'exmo'
