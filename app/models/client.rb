@@ -359,8 +359,7 @@ class Client < Sequel::Model(:client)
         meth: meth.nil? ? nil : meth.id,
         details: "Клад ##{it.id} оплачен. Заказ ##{trade.id}.",
         status: Ledger::ACTIVE,
-        created: Time.now,
-        operator: Client::__tsx.id
+        created: Time.now
       )
     Ledger.
       create(
@@ -370,8 +369,7 @@ class Client < Sequel::Model(:client)
         amount: calc_commission(it.price, b.commission),
         details: "Комиссионные платформы. Заказ ##{it.id},  клад ##{it.id}.",
         status: Ledger::ACTIVE,
-        created: Time.now,
-        operator: Client::__tsx.id
+        created: Time.now
       )
     # Ledger.
     #   create(
@@ -407,8 +405,7 @@ class Client < Sequel::Model(:client)
           amount: ref_amount,
           details: "Реферальные отчисления за клад ##{it.id}",
           status: Ledger::ACTIVE,
-          created: Time.now,
-          operator: Client::__tsx.id
+          created: Time.now
         )
       Ledger.
         create(
@@ -418,10 +415,8 @@ class Client < Sequel::Model(:client)
           amount: ref_amount,
           details: "Реферальные за покупку @#{self.username} на сумму ##{b.amo(pr.price)}.",
           status: Ledger::ACTIVE,
-          created: Time.now,
-          operator: Client::__tsx.id
+          created: Time.now
         )
-      rec("bot", Client::__referals, b, "Реферальные выплачены клиенту #{mst.id}", b.amo(ref_amount))
     end
   end
 
