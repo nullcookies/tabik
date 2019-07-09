@@ -87,7 +87,7 @@ class Trade < Sequel::Model(:trade)
 
     self.status = Trade::FINALIZED
     self.code = codes
-    self.meth = meth.id
+    # self.meth = meth.id
     self.closed = Time.now
     self.amount = am
     self.commission = calc_commission(am, bot.commission)
