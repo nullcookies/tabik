@@ -19,7 +19,7 @@ trades.each do |trade|
       buyer = Client[trade.buyer]
       from_bot.send_message(
         chat_id: buyer.tele,
-        text: "#{icon(tsx_bot.icon_info)} Вы не оплатили заказ. Товар выставлен на продажу.",
+        text: "#{icon('warning')} Вы *не оплатили заказ*. Товар выставлен на продажу.",
         parse_mode: :markdown,
         reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(
           keyboard: [[icon(tsx_bot.icon, 'Главная')]],

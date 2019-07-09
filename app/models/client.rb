@@ -266,7 +266,7 @@ class Client < Sequel::Model(:client)
           debit: dc.id,
           credit: self.id,
           amount: amount,
-          meth: payment_method.nil? ? nil : payment_method.id,
+          # meth: payment_method.nil? ? nil : payment_method.id,
           details: details.nil? ? "Пополнение счета #{self.username}" : details,
           status: Ledger::ACTIVE,
           created: Time.now,
