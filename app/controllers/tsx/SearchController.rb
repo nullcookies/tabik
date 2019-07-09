@@ -198,12 +198,14 @@ module TSX
             it.update(unlock: nil)
           end
         rescue PG::InvalidTextRepresentation => resc
+          puts resc.message
+          puts resc.backtrace.join("\n\t").colorize(:red)
           reply_message "#{icon(@tsx_bot.icon_info)} Невозможно создать заказ. Попробуйте еще раз, пожалуйста."
           go_back
         rescue => ex
           reply_message "#{icon(@tsx_bot.icon_info)} Невозможно создать заказ. Попробуйте еще раз."
-          # puts ex.message
-          # puts ex.backtrace.join("\n\t")
+          puts ex.message
+          puts ex.backtrace.join("\n\t").colorize(:red)
           go_back
         end
       end
