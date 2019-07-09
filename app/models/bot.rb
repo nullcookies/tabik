@@ -420,7 +420,7 @@ class Bot < Sequel::Model(:bot)
     "<a class='bold' href='https://t.me/#{self.tele}#{finish_name}'>Бот</a>"
   end
 
-  def nickname_md(trunc = 20)
+  def nickname_md(trunc = 40)
     finish_name = (self.underscored_name == 1 ? '_bot' : 'bot')
     "[#{(self.title).truncate(trunc)}](https://t.me/#{self.tele}#{finish_name})"
   end
