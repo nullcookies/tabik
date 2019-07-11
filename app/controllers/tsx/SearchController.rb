@@ -145,6 +145,7 @@ module TSX
       def create_trade(data)
         begin
           pending = hb_client.has_pending_trade?(@tsx_bot)
+          puts pending.inspect
           if pending
             trade_item = Item[pending.item]
             trade_item.status = Item::ACTIVE
