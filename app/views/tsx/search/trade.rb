@@ -5,10 +5,11 @@
 Город *#{_buy.city_string}, #{_buy.district_string}*
 #{method_helper(@method, _buy)}
 ****
-buts ||= []
-@avlbl = @seller_bot.available_payments
-buts = keyboard(@avlbl, 2) do |rec|
-    m = Meth[rec.meth]
-    button(icon(@method == m.title ? 'large_blue_circle' : 'white_circle', m.russian), m.title)
-end
-buts
+[[button(icon('large_blue_circle', 'Easypay'), 'Easypay')]]
+# buts ||= []
+# @avlbl = @seller_bot.available_payments
+# buts = keyboard(@avlbl, 2) do |rec|
+#     m = Meth[rec.meth]
+#     button(icon(@method == m.title ? 'large_blue_circle' : 'white_circle', m.russian), m.title)
+# end
+# buts

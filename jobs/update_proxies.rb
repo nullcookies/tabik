@@ -1,14 +1,19 @@
 require_relative './requires'
 logger = CronLogger.new
 
-logger.noise "Updating proxies from file ... "
-proxies = "91.188.243.81:9119:9wqyrA:FpYJB8
-138.59.205.126:9616:P5jM74:MwfMzF
-138.59.207.48:9864:P5jM74:MwfMzF
-91.188.243.163:9836:41Y8o6:oMknMN
-104.227.96.211:9584:ucwwAh:swH4ay".split("\n")
+proxies = "193.203.48.51:34870:WPKZEuwjii:9xeZbwULPU
+193.203.48.122:34870:WPKZEuwjii:9xeZbwULPU
+91.226.212.24:34870:WPKZEuwjii:9xeZbwULPU
+91.217.91.17:34870:WPKZEuwjii:9xeZbwULPU
+91.217.90.25:34870:WPKZEuwjii:9xeZbwULPU
+91.226.212.232:34870:WPKZEuwjii:9xeZbwULPU
+2.57.150.250:34870:WPKZEuwjii:9xeZbwULPU
+2.57.150.245:34870:WPKZEuwjii:9xeZbwULPU
+2.56.136.102:34870:WPKZEuwjii:9xeZbwULPU
+2.56.136.130:34870:WPKZEuwjii:9xeZbwULPU".split("\n")
 
 proxies.each do |proxy_string|
+  logger.noise "Updating proxies from file ... "
   proxy = proxy_string.split(":")
   Prox.create(host: proxy[0], port: proxy[1], status: Prox::ONLINE, login: proxy[2], password: proxy[3], provider: "proxy6")
   logger.say("Proxy #{proxy.first}:#{proxy.last} added to proxy pool")

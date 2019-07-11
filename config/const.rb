@@ -87,7 +87,8 @@ HAMDLERS = {
       "delete_product": 'delete_product',
       "Интерфейс": 'admin_interface',
       "new_bot": 'new_bot',
-      "bot_admin": 'bot_admin'
+      "bot_admin": 'bot_admin',
+      "transfer": 'transfer'
 }
 
 CHAT_HAMDLERS = {

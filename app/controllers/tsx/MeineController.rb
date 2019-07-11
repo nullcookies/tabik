@@ -9,6 +9,35 @@ module TSX
         reply_inline 'admin/botstat'
       end
 
+      def transfer(data = nil)
+        handle('transfer')
+        if !data
+          reply_message "#{icon('pencil2')} В какой бот?"
+        else
+          sset('meine_transfer_to', data)
+          ask_price
+        end
+      end
+
+      def which_price(data = nil)
+        handle('do_transfer')
+        bot = Bot[data]
+        item = sget('tsx_buying')
+        raise TSXException.new("Нет такого бота #{bot}") if bot.nil?
+        prices = Price.where(bot: bot.id)
+        reply_inline "#{icon('pencil2')} В какой прайс?", prices: prices
+      end
+
+      def do_transfer(data = nil)
+        item = sget('tsx_buying')
+        options = data.split('_')
+        bot = options[0]
+        qnt = options[1]
+        pric = Price.find(bot: bot, product: item.product, qnt: qnt)
+        TSXException.new("Нет такой фасовки в боте #{bot}") if pric.nil?
+
+      end
+
       def bot_icons(data = nil)
         reply_update 'admin/icons'
       end

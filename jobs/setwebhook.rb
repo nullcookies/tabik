@@ -8,6 +8,7 @@ bot = ARGV[1]
 puts "Bot: #{bot}"
 puts "Setting webhook ... #{hook}"
 b = Bot.find(tele: bot)
+puts b.inspect
 puts "Token: #{b.token}"
 url = hook + b.token.to_s
 puts "Webhook: #{url}"

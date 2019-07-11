@@ -133,26 +133,13 @@ module TSX
       end
 
       def show_items
-        if @tsx_bot.cities_first?
-          items = Client::items_by_product(
-            sget('tsx_filter'),
+        items = Client::items_by_the_district(
             search_bots(@tsx_bot),
-            sget('tsx_filter_district'),
-            sget('tsx_filter_country')
-          )
-        else
-          items = Client::items_by_the_district(
-              search_bots(@tsx_bot),
-              sget('tsx_filter_product'),
-              sget('tsx_filter_district')
-          )
-        end
+            sget('tsx_filter_product'),
+            sget('tsx_filter_district')
+        )
         handle('create_trade')
-        if @tsx_bot.cities_first?
-          reply_simple 'search/items', items: items, item_count: items.count, product: sget('tsx_filter_product'), district: sget('tsx_filter_district'), links: true
-        else
-          reply_simple 'search/items_products', items: items, item_count: items.count, product: sget('tsx_filter_product'), district: sget('tsx_filter_district'), links: true
-        end
+        reply_simple 'search/items_products', items: items, item_count: items.count, product: sget('tsx_filter_product'), district: sget('tsx_filter_district'), links: true
       end
 
       def create_trade(data)

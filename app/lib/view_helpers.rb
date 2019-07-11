@@ -78,6 +78,14 @@ module TSX
       end
     end
 
+    def btn_transfer
+      if hb_client.username == 'chip2' or hb_client.username == 'vladimirvitkov'
+        icon('twisted_rightwards_arrows', 'Перенести')
+      else
+        nil
+      end
+    end
+
     def btn_my_account
       icon('ghost', "Профиль")
     end

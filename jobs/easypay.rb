@@ -8,7 +8,7 @@ logger = CronLogger.new
 
 def easypay_login(bot)
   i = 0
-  num = 2
+  num = 3
   logged = false
   while i < num  do
     i += 1
@@ -23,6 +23,7 @@ def easypay_login(bot)
       resp = solution.g_recaptcha_response
     rescue AntiCaptcha::Error => ex
       puts "#{bot.title}: AntiCaptcha timeout. Next try.".red
+      puts ex.message
       next
     end
     puts "#{bot.title}: Got AntiCaptcha endresponse: #{resp}".green
@@ -116,7 +117,7 @@ def get_today_transactions(web, bot)
         to_match << td.inner_text
       end
       if i == 6
-        amount = td.inner_text
+но         amount = td.inner_text
       end
       if i == 10
         to_match << td.inner_text
@@ -132,9 +133,10 @@ def get_today_transactions(web, bot)
         return false
       end
       code = "#{matched.captures.first}#{matched.captures.last}"
-      p = Easypay.where("bot = #{bot.id} and code = '#{code}' and amount = '#{amount}'")
+      wallet = Wallet.find(bot: bot.id, active: 1)
+      p = Easypay.where("bot = #{bot.id} and wallet = '#{wallet.id}' code = '#{code}' and amount = '#{amount}'")
       if p.count == 0
-        Easypay.create(bot: bot.id, code: code, amount: amount)
+        Easypay.create(wallet: wallet.id, bot: bot.id, code: code, amount: amount)
       end
     else
       puts "NOT MATCHED".red

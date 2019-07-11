@@ -8,4 +8,4 @@ lab = "грн."
 buts = keyboard(@items, 2) do |item|
   "#{item.price_string("UAH", 'грн.')} #{item.id}"
 end
-buts << [btn_back, btn_main, btn_add_item]-[nil]
+buts << [btn_back, btn_main, btn_add_item, btn_transfer]-[nil]
