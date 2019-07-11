@@ -117,7 +117,7 @@ def get_today_transactions(web, bot)
         to_match << td.inner_text
       end
       if i == 6
-но         amount = td.inner_text
+         amount = td.inner_text
       end
       if i == 10
         to_match << td.inner_text
@@ -134,9 +134,12 @@ def get_today_transactions(web, bot)
       end
       code = "#{matched.captures.first}#{matched.captures.last}"
       wallet = Wallet.find(bot: bot.id, active: 1)
-      p = Easypay.where("bot = #{bot.id} and wallet = '#{wallet.id}' code = '#{code}' and amount = '#{amount}'")
+      p = Easypay.where("bot = #{bot.id} and wallet = '#{wallet.id}' and code = '#{code}' and amount = '#{amount}'")
       if p.count == 0
+        puts "Adding payment #{amount} with code #{code}".colorize(:blue)
         Easypay.create(wallet: wallet.id, bot: bot.id, code: code, amount: amount)
+      else
+        puts "Code #{code} already saved in database"
       end
     else
       puts "NOT MATCHED".red
