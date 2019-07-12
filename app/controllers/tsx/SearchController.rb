@@ -220,6 +220,7 @@ module TSX
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         botrec('Администратор взял клад', _buy.id)
         just_take(_buy)
+        _trade.delete
         _buy.delete
         start
       end
