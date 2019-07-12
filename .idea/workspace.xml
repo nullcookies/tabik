@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/PublicController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/PublicController.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/payments.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="30" selection-start-column="30" selection-end-column="30" />
+              <caret column="12" selection-start-column="12" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -496,12 +495,12 @@
       <workItem from="1562857895776" duration="1121000" />
       <workItem from="1562862569524" duration="14908000" />
       <workItem from="1562959925088" duration="2588000" />
-      <workItem from="1562965378649" duration="630000" />
+      <workItem from="1562965378649" duration="765000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="629411000" />
+    <option name="totallyTimeSpent" value="629546000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -866,7 +865,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/payments.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="30" selection-start-column="30" selection-end-column="30" />
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
         </state>
       </provider>
     </entry>
