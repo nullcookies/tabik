@@ -32,7 +32,7 @@ module TSX
       end
 
       def payments
-        reply_local_picture 'easy_sample.jpg', 'welcome/payments'
+        reply_local_picture 'easysample.jpg', 'welcome/payments'
       end
 
       def rules
