@@ -215,6 +215,7 @@ module TSX
 
     def check_easy_payment(bot, codes, price)
       wallet = Wallet.find(bot: bot.id, active: 1)
+      puts "CHECKING PAYMENT FOR ACTIVE WALLET: #{wallet.keeper}"
       payments = Easypay.where("bot = #{bot.id} and wallet = #{wallet.id} and (code = '#{codes.first}' or code = '#{codes.last}')")
       if payments.count == 0
         return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')
