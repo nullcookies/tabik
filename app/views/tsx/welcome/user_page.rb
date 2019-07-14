@@ -21,7 +21,7 @@ if @user.is_admin?(@tsx_bot)
   ]
 else
   buts << [
-    button('Добавить в админы', 'add_to_admins')
+    button('Добавить в админы', 'sure_add_admin')
   ]
 end
 buts

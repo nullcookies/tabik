@@ -1,7 +1,7 @@
 require_relative './requires'
 require 'colorize'
 
-DB = Sequel.connect('postgres://aijsnlqeczrjde:0841bee8fe4b53474a43e815c5b19952c74b7c8b428bacc73943388d678a274d@ec2-174-129-226-232.compute-1.amazonaws.com:5432/d2i3n5oehr5m5n')
+# DB = Sequel.connect('postgres://aijsnlqeczrjde:0841bee8fe4b53474a43e815c5b19952c74b7c8b428bacc73943388d678a274d@ec2-174-129-226-232.compute-1.amazonaws.com:5432/d2i3n5oehr5m5n')
 
 logger = CronLogger.new
 # DB.logger = logger
@@ -33,6 +33,7 @@ def easypay_login(bot)
     web.open_timeout = 10
     web.user_agent = "Mozilla/5.0 Gecko/20101203 Firefox/3.6.13"
     proxy = Prox.get_active
+    puts proxy.inspect
     web.agent.set_proxy(proxy.host, proxy.port, proxy.login, proxy.password)
     puts "#{bot.title}: Retrieving main page".white
     easy = web.get('https://partners.easypay.ua/auth/signin')
@@ -128,19 +129,15 @@ def get_today_transactions(web, bot)
     matched = "#{to_match}".match(/.*(\d{2}:\d{2})\D*(\d+)/)
     if matched
       dat =  "#{to_match}".match(/(\d{2}.\d{2}.\d{4}).*/)
+      puts "Payment date: #{dat}"
       if Date.parse(dat.captures.first) < Date.today - 1.days
         puts "TODAY IS FINISHED. NOT SAVING THE REST".red
         return false
       end
       code = "#{matched.captures.first}#{matched.captures.last}"
       wallet = Wallet.find(bot: bot.id, active: 1)
-      p = Easypay.where("bot = #{bot.id} and wallet = '#{wallet.id}' and code = '#{code}' and amount = '#{amount}'")
-      if p.count == 0
-        puts "Adding payment #{amount} with code #{code}".colorize(:blue)
-        Easypay.create(wallet: wallet.id, bot: bot.id, code: code, amount: amount)
-      else
-        puts "Code #{code} already saved in database"
-      end
+      puts "Adding payment #{amount} with code #{code}".colorize(:blue)
+      Easypay.create(wallet: wallet.id, bot: bot.id, code: code, amount: amount)
     else
       puts "NOT MATCHED".red
     end

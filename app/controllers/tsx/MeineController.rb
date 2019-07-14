@@ -636,6 +636,12 @@ module TSX
         reply_inline 'admin/debts'
       end
 
+      def sure_add_admin(data = nil)
+        client = sget('admin_edit_client')
+        reply_update 'admin/sure_add_admin', client: client
+      end
+
+
       def add_to_admins
         @tsx_bot.add_operator(sget('admin_edit_client'), Client::HB_ROLE_ADMIN)
         show_user
@@ -688,7 +694,7 @@ module TSX
         cents = @tsx_bot.cnts(data.to_i)
         cl.cashin(cents, Client::__cash, Meth::__debt, hb_client)
         reply_message "Сумма *#{data}грн.* зачилена на счет клиенту /#{cl.id}"
-        unhandle
+        # unhandle
       end
 
       def clearbot(data)
