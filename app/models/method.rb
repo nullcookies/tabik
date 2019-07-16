@@ -9,6 +9,10 @@ class Meth < Sequel::Model(:meth)
     Meth::find(title: 'easypay') || false
   end
 
+  def self.__bitobmen
+    Meth::find(title: 'bitobmen') || false
+  end
+
   def self.__btce
     Meth::find(title: 'btce') || false
   end

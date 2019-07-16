@@ -208,56 +208,14 @@ module TSX
       case method
         when 'easypay'
           "Метод оплаты *EasyPay*\n" <<
-          "Кошелек *#{@seller_bot.payment_option('keeper', Meth::__easypay)}*"
-        when 'qiwi'
-          "Кошелек *#{@tsx_bot.is_chief? ? @seller_bot.payment_option('phone', Meth::__qiwi) : @tsx_bot.payment_option('phone', Meth::__qiwi)}*"
-        when 'exmo'
-          "Метод оплаты *EXMO код*"
-        when 'lc'
-          "Метод оплаты *Livecoin код*"
-        when 'btce'
-          "Метод оплаты *код BTC-E USD*"
-        when 'wex'
-          "Метод оплаты *код WEX USD*"
-        when 'tokenbar'
-          "Метод оплаты *код TokenBar*"
-        when 'nix'
-          "Метод оплаты *NIX money*\n"+
-          "NIX кошелек *U77372932650794*"
-        when 'webmoney'
-          "Метод оплаты *Webmoney BTX*\n"+
-          "NIX кошелек *U912130716546*"
+          "Кошелек *#{@tsx_bot.payment_option('keeper', Meth::__easypay)}*"
+        when 'bitobmen'
+          "Метод оплаты *BitObmen*\n"
       end
     end
 
     def method_helper(method, item)
-      puts "METHOD: #{method.downcase}"
       case method.downcase
-        when 'tokenbar'
-          puts "PRICE, CENTS: #{item.discount_price}"
-          puts "NEEDED USD AMOUNT: #{item.discount_price / 100}"
-          puts "NEEDED UAH AMOUNT: #{@tsx_bot.uah(item.discount_price)}"
-          rats = BestchangeRates.new.rates('Exmo USD' => 'Visa/MasterCard UAH').first[:get].to_f.round(2)
-          puts "Today EXMO exchange rate: #{rats}"
-          metho = Meth.find(title: method)
-          discount = item.discount_price_by_method(metho)
-          percent = item.method_discount_rate(metho)
-          if percent > 0
-            meth_discount = item.discount_method_amount(percent)
-            view_body = "К оплате *#{@tsx_bot.uah(discount)}*\n" <<
-                "#{method_details(method)}\n" <<
-                "Курс EXMO *#{rats}*\n"
-            view_body <<
-                "Скидка *#{@tsx_bot.uah(meth_discount)}* (`#{percent}%`)\n"
-          else
-            view_body = "К оплате *#{@tsx_bot.uah(item.discount_price)}*\n" <<
-                "#{method_details(method)}\n" <<
-                "Курс EXMO *#{rats}*\n"
-            if item.old?
-              view_body <<
-                  "Скидка *#{@tsx_bot.uah(item.discount_amount)}* / `-#{@tsx_bot.discount}%`\n"
-            end
-          end
         when 'easypay'
           view_body =
               "К оплате *#{@tsx_bot.uah(item.discount_price)}*\n" <<
@@ -266,16 +224,24 @@ module TSX
             view_body <<
                 "\nСкидка `-#{@tsx_bot.discount}%` на *#{@tsx_bot.uah(item.discount_amount)}*"
           end
+      when 'bitobmen'
+        view_body =
+            "К оплате *#{@tsx_bot.uah(item.discount_price)}*\n" <<
+                "#{method_details(method)}"
+        if item.old?
+          view_body <<
+              "\nСкидка `-#{@tsx_bot.discount}%` на *#{@tsx_bot.uah(item.discount_amount)}*"
+        end
       end
       view_body
     end
 
     def method_desc(method)
       case method
-        when 'tokenbar'
-          "Пример `380971234567:00000000`"
+        when 'bitobmen'
+          "Пример `K7MYfRu8tE3Qdz`\r\nПодробнее /payments"
         when 'easypay'
-          "Код должен выглядеть примерно так `12:1399899`. Подробнее /payments"
+          "Пример `12:1399899`\r\nПодробнее /payments"
       end
     end
 

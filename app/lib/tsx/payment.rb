@@ -213,6 +213,27 @@ module TSX
       )
     end
 
+    def check_bitobmen(bot, code, price)
+      proxy = Prox.get_active
+      puts "Connecting from '#{proxy.provider}' over #{proxy.host}:#{proxy.port} ... ".colorize(:yellow)
+      @connection = Faraday.new'https://bitobmen.pro'
+      resp = @connection.post do |req|
+        req.url '/api/code-sum/'
+        req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        req.body = "code=#{code}"
+      end
+      res = JSON.parse(resp.body)
+      return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound') if !res['sum']
+      if resp.status = 200
+        if res['sum'].to_i < price.to_i
+          return ResponseEasy.new('error', 'TSX::Exceptions::NotEnoughAmount', nil, amt)
+        else
+          return ResponseEasy.new('success', nil, nil, res[:sum])
+        end
+      end
+    end
+
+
     def check_easy_payment(bot, codes, price)
       wallet = Wallet.find(bot: bot.id, active: 1)
       puts "CHECKING PAYMENT FOR ACTIVE WALLET: #{wallet.keeper}"
