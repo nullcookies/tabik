@@ -605,7 +605,11 @@ module TSX
         handle('edit_spam')
         spam = Spam[data]
         sset('admin_spam', spam)
-        reply_update 'admin/single_spam', spam: spam
+        if spam.auto == 1
+          reply_update_html 'admin/single_auto_spam', spam: spam
+        else
+          reply_update_html 'admin/single_spam', spam: spam
+        end
       end
 
       def admin_create_spam(data = nil)
@@ -621,6 +625,41 @@ module TSX
           )
           reply_simple 'admin/menu'
           admin_spam
+        end
+      end
+
+      def admin_create_auto_spam(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        if !data
+          handle('admin_create_auto_spam')
+          reply_simple 'admin/create_spam'
+        else
+          spam = Spam.create(
+              text: @payload.text,
+              status: Spam::NEW,
+              bot: @tsx_bot.id,
+              sent: Time.now,
+              auto: 1
+          )
+          sset('admin_spam_created', spam)
+          admin_ask_auto_spam_period
+        end
+      end
+
+      def admin_ask_auto_spam_period(data = nil)
+        if !data
+          handle('admin_ask_auto_spam_period')
+          reply_message "#{icon('pencil2')} Как часто отсылать, в минутах?"
+        else
+          begin
+            int = Integer(data)
+            puts "INTEGER #{int}".colorize(:yellow)
+            sget('admin_spam_created').update(period: data)
+            reply_simple 'admin/menu'
+            admin_spam
+          rescue
+            raise TSXException.new("#{icon('warning')} Пожалуйста, цифрой в минутах.")
+          end
         end
       end
 
