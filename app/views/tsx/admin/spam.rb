@@ -8,7 +8,11 @@ buts ||= []
 @spam = Spam.where(bot: @tsx_bot.id)
 buts = keyboard(@spam, 1) do |rec|
   s = Spam[rec[:id]]
-  button("#{s.status == Spam::NEW ? icon('hourglass') : icon('white_check_mark')} #{rec[:text]} #{rec[:auto] == 1 ? '[авто]' : ''}", rec[:id])
+  if s.auto == 1
+    button("🌀 #{rec[:text]}", rec[:id])
+  else
+    button("#{s.status == Spam::NEW ? icon('hourglass') : icon('white_check_mark')} #{rec[:text]}", rec[:id])
+  end
 end
 buts << [
      button('Создать одноразовую', 'admin_create_spam'),
