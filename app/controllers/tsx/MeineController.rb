@@ -746,7 +746,7 @@ module TSX
         else
           user = Client[data]
         end
-        not_permitted if user.bot != @tsx_bot.id or !user.is_admin?(@tsx_bot)
+        not_permitted if user.bot != @tsx_bot.id or !hb_client.is_admin?(@tsx_bot)
         sset('admin_edit_client', user)
         spend = user.buy_trades([Trade::FINALIZED, Trade::FINISHED, Trade::DISPUTED])
         if !data
