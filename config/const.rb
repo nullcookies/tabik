@@ -79,7 +79,7 @@ HAMDLERS = {
       "admin_view_next_products_page": 'admin_view_next_products_page',
       "next_districts": 'next_districts',
       "prev_districts": 'prev_districts',
-      "Команда": 'admin_team',
+      "Админы": 'admin_team',
       "admin_add_cash": 'admin_add_cash',
       "add_to_admins": 'add_to_admins',
       "del_from_admins": 'del_from_admins',
