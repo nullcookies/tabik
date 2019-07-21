@@ -39,21 +39,19 @@ module TSX
     def admin_buttons
       [
           [
-              "#{icon('bar_chart')} Статистика",
+              "#{icon('bar_chart')} Стата",
               "#{icon('package')} Клады",
-          ],
-          [
               "#{icon('1234')} Цены",
-              "#{icon('pouch')} Кошельки"
           ],
           [
-              "#{icon('email')} Рассылки",
-              "#{icon('family')} Команда"
+              "#{icon('pouch')} Кошельки",
+              "#{icon('email')} Спам",
+              "#{icon('family')} Админы"
           ],
           [
               "#{icon('art')} Интерфейс",
-          ],
-          btn_main
+              btn_main
+          ]
       ]
     end
 

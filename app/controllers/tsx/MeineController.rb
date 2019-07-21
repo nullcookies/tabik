@@ -9,7 +9,12 @@ module TSX
         reply_inline 'admin/botstat'
       end
 
+      def admin_plugins
+        reply_inline 'admin/plugins'
+      end
+
       def use_code(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('use_code')
         if !data
           reply_message "#{icon('pencil2')} Введите код, который нужно погасить"
@@ -33,6 +38,7 @@ module TSX
       end
 
       def transfer(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('transfer')
         if !data
           reply_message "#{icon('pencil2')} В какой бот?"
@@ -43,6 +49,7 @@ module TSX
       end
 
       def which_price(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('do_transfer')
         bot = Bot[data]
         item = sget('tsx_buying')
@@ -52,24 +59,27 @@ module TSX
       end
 
       def do_transfer(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         item = sget('tsx_buying')
         options = data.split('_')
         bot = options[0]
         qnt = options[1]
         pric = Price.find(bot: bot, product: item.product, qnt: qnt)
         TSXException.new("Нет такой фасовки в боте #{bot}") if pric.nil?
-
       end
 
       def bot_icons(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         reply_update 'admin/icons'
       end
 
       def show_bot_icons(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         reply_inline 'admin/icons'
       end
 
       def enter_icon_main(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_icon_main')
         if !data
           reply_message "#{icon('pencil2')} Введите текстовоя значение для иконки кнопки *Главная*."
@@ -80,6 +90,7 @@ module TSX
       end
 
       def enter_icon_geo(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_icon_geo')
         if !data
           reply_message "#{icon('pencil2')} Введите текстовоя значение для иконки кнопок *Городов* и *Районов*."
@@ -90,6 +101,7 @@ module TSX
       end
 
       def enter_icon_discount(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_icon_discount')
         if !data
           reply_message "#{icon('pencil2')} Введите текстовоя значение для иконки *скидок*."
@@ -100,6 +112,7 @@ module TSX
       end
 
       def enter_icon_back(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_icon_back')
         if !data
           reply_message "#{icon('pencil2')} Введите текстовоя значение для иконки кнопки *Назад*."
@@ -116,34 +129,40 @@ module TSX
       end
 
       def save_bot_avatar(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         @tsx_bot.update(avatar: @payload.text)
         admin_interface
       end
 
       def bot_buttons(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('view_button')
         buttons = Button.where(bot: @tsx_bot.id)
         reply_update 'admin/bot_buttons', buttons: buttons
       end
 
       def show_bot_buttons(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('view_button')
         buttons = Button.where(bot: @tsx_bot.id)
         reply_inline 'admin/bot_buttons', buttons: buttons
       end
 
       def view_button(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         button = Button[data]
         sset('meine_button', button)
         reply_update_html 'admin/view_button', button: button
       end
 
       def delete_bot_button(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         sget('meine_button').delete
         bot_buttons
       end
 
       def enter_bot_title(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_bot_title')
         if !data
           reply_message "#{icon('pencil2')} Введите название бота. Это название будет видно на главной."
@@ -154,6 +173,7 @@ module TSX
       end
 
       def enter_bot_support(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_bot_support')
         if !data
           reply_message "#{icon('pencil2')} Введите контакты службы поддержки через запятую *без собак и пробелов*, если их несколько. Например `support` или `support1,support2`"
@@ -164,6 +184,7 @@ module TSX
       end
 
       def enter_discount_period(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_discount_period')
         if !data
           reply_message "#{icon('pencil2')} Введите, через *сколько дней* клады продаются со скидкой. Вводите только цифру."
@@ -174,6 +195,7 @@ module TSX
       end
 
       def enter_discount_percent(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_discount_percent')
         if !data
           reply_message "#{icon('pencil2')} Введите скиду в процентах. Вводите только цифру."
@@ -184,6 +206,7 @@ module TSX
       end
 
       def enter_button_title(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_button_title')
         if !data
           reply_message "#{icon('pencil2')} Введите наименование кнопки. Можно использовать emoji. Например #{icon('family')} *Отзывы*"
@@ -194,6 +217,7 @@ module TSX
       end
 
       def enter_button_body(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_button_body')
         if !data
           reply_message "#{icon('pencil2')} Введите текст в свободной форме, который будет показан при нажатии на кнопку."
@@ -204,6 +228,7 @@ module TSX
       end
 
       def save_button(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         Button.create(
           bot: @tsx_bot.id,
           title: sget('meine_button_title'),
@@ -214,11 +239,13 @@ module TSX
       end
 
       def back_to_wallets(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('view_wallet')
         reply_update 'admin/choose_wallet'
       end
 
       def admin_interface(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         if !@tsx_bot.support.nil?
           support_string = "Поддержка #{@tsx_bot.support_line}"
         else
@@ -228,6 +255,7 @@ module TSX
       end
 
       def view_admin_interface(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         if !@tsx_bot.support.nil?
           support_string = "Поддержка #{@tsx_bot.support_line}"
         else
@@ -237,6 +265,7 @@ module TSX
       end
 
       def enter_qnt(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_qnt')
         if !data
           reply_message "#{icon('pencil2')} Введите фасовку. Например `2г`, `0.25г`, `Коробка`."
@@ -249,6 +278,7 @@ module TSX
       end
 
       def enter_qnt_price(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_qnt_price')
         if !data
           reply_message "#{icon('pencil2')} Введите цену. Цена не может быть меньше 100грн."
@@ -265,6 +295,7 @@ module TSX
       end
 
       def save_qnt
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         qnt = sget('meine_qnt')
         price = sget('meine_qnt_price')
         product = sget('meine_product')
@@ -278,6 +309,7 @@ module TSX
       end
 
       def enter_keeper(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_keeper')
         if !data
           reply_message "#{icon('pencil2')} Введите *номер кошелька*, который будут видеть покупатели."
@@ -288,6 +320,7 @@ module TSX
       end
 
       def enter_wallet(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_wallet')
         if !data
           reply_message "#{icon('pencil2')} Введите *номер внутреннего кошелька* Easypay. Пример /easypaywallet"
@@ -298,6 +331,7 @@ module TSX
       end
 
       def enter_phone(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_phone')
         if !data
           reply_message "#{icon('pencil2')} Введите *номер телефона* для входа в Easypay."
@@ -308,6 +342,7 @@ module TSX
       end
 
       def enter_password(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_password')
         if !data
           reply_message "#{icon('pencil2')} Введите *пароль* для входа в Easypay."
@@ -318,6 +353,7 @@ module TSX
       end
 
       def save_wallet(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         unhandle
         Wallet.create(
           bot: @tsx_bot.id,
@@ -331,6 +367,7 @@ module TSX
       end
 
       def activate_wallet
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         wall = sget('meine_wallet').id
         Wallet.where(bot: @tsx_bot.id).update(active: 0)
         Wallet[wall].update(active: 1)
@@ -338,34 +375,40 @@ module TSX
       end
 
       def today_payments(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         wallet = sget('meine_wallet')
         payments = Easypay.where(wallet: wallet.id).limit(20).order(Sequel.desc(:created))
         reply_update 'admin/today_payments', payments: payments, wallet: wallet
       end
 
       def admin_wallets(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('view_wallet')
         reply_inline 'admin/choose_wallet'
       end
 
       def view_wallet(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         wallet = Wallet[data]
         sset('meine_wallet', wallet)
         reply_update 'admin/view_wallet', wallet: wallet
       end
 
       def sure_delete(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         wallet = sget('meine_wallet')
         reply_update 'admin/sure_delete', wallet: wallet
       end
 
       def delete_wallet(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         wallet = sget('meine_wallet')
         sget('meine_wallet').delete
         back_to_wallets
       end
 
       def do_not_delete
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         back_to_wallets
       end
 
@@ -451,6 +494,7 @@ module TSX
       end
 
       def change_prices
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('admin_save_prices')
         product = sget('meine_product')
         reply_simple 'admin/enter_prices', product: product
@@ -479,6 +523,7 @@ module TSX
       end
 
       def next_districts(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         page = sget('admin_districts_page')
         sset('admin_districts_page', page.to_i + 1)
         city = sget('meine_city')
@@ -487,6 +532,7 @@ module TSX
       end
 
       def prev_districts(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         page = sget('admin_districts_page')
         sset('admin_districts_page', page.to_i - 1)
         city = sget('meine_city')
@@ -647,6 +693,7 @@ module TSX
       end
 
       def admin_ask_auto_spam_period(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         if !data
           handle('admin_ask_auto_spam_period')
           reply_message "#{icon('pencil2')} Как часто отсылать, в минутах?"
@@ -669,24 +716,26 @@ module TSX
 
       def debts
         not_permitted if !hb_client.is_admin?(@tsx_bot)
-        not_permitted if !@tsx_bot.is_chief?
         @list = Bot.select(:bot__id).join(:vars, :vars__bot => :bot__id).where('(vars.sales > 0)')
         handle('clearbot')
         reply_inline 'admin/debts'
       end
 
       def sure_add_admin(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         client = sget('admin_edit_client')
         reply_update 'admin/sure_add_admin', client: client
       end
 
 
       def add_to_admins
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         @tsx_bot.add_operator(sget('admin_edit_client'), Client::HB_ROLE_ADMIN)
         show_user
       end
 
       def del_from_admins
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         Team.find(client: sget('admin_edit_client').id).delete
         show_user
       end
@@ -709,12 +758,14 @@ module TSX
       end
 
       def unban
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         sget('admin_edit_client').update(banned: 0)
         sset('admin_edit_client', Client[sget('admin_edit_client').id])
         show_user
       end
 
       def ban
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
         sget('admin_edit_client').update(banned: 1)
         sset('admin_edit_client', Client[sget('admin_edit_client').id])
         show_user
