@@ -14,4 +14,9 @@
 Сегодня *#{@tsx_bot.today_bot_sales(Date.today)}* на *#{@tsx_bot.amo(@tsx_bot.today_income(Date.today))}*
 #{share_stat if @tsx_bot.has_shares?}
 ****
-[[button('Погасить долг', 'admin_pay_debt')]]
+[
+[
+     button('Продажи', 'admin_sales_stat'),
+     button('Остатки', 'stat_choose_city')
+]
+]

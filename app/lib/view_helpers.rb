@@ -505,6 +505,27 @@ module TSX
       lines
     end
 
+    def rest_string(product, city, districts)
+      line = ''
+      return 'Здесь пусто' if districts.count == 0
+      districts.each do |d|
+        dist = District[d[:entity_id]]
+        line << d[:entity_russian]
+        c = Item.where(district: dist.id, product: @product.id, bot: @tsx_bot.id)
+        line << c.count
+        c = Item.where(district: dist.id, product: @product.id, bot: @tsx_bot.id, status: Item::SOLD)
+        line << c.count
+        cnt = Rest.find(district: dist.id, product: @product.id, bot: @tsx_bot.id)
+        if !cnt
+          line << '*нет кладов*'
+        else
+          line << "*#{kladov(cnt.items)}*"
+        end
+        line << "\n"
+      end
+      line
+    end
+
     def bots_welcome
       lines = ""
       lines << "*Остальные магазины*\nТоп остальных магазинов системы. Список формируется по колиечству продаж за вчера..\n\n"

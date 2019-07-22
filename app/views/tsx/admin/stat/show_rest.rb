@@ -1,6 +1,8 @@
-Выберите город.
+Остатки в *#{@city.russian}*
+Продукт #{icon(@product.icon)} *#{@product.russian}*
+
+#{@rest}
 ****
-buts ||= []
-buts = keyboard(@cities, 4) do |rec|
-  button("#{rec[:entity_russian]}", rec[:entity_d])
-end
+[[
+  button('Другой продукт', 'stat_choose_product')
+]]

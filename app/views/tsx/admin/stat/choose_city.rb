@@ -1,9 +1,7 @@
-#{icon('beginner')} *Загрузка кладов*
-
-Чтобы загрузить клады, Вы должны будете выбрать последовательно город, район, продукт и фасовку. Начните с города.
+Выберите город.
 ****
 buts ||= []
-@avlbl = City.where(country: @tsx_bot.get_var('country'))
-buts = keyboard(@avlbl, 4) do |rec|
-  button("#{rec[:russian]}", rec[:id])
+buts = keyboard(@cities, 4) do |rec|
+  puts rec.inspect
+  button("#{rec[:entity_russian]}", "#{rec[:entity_id]}")
 end
