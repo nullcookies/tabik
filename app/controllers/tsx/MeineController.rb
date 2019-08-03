@@ -4,7 +4,7 @@ module TSX
     module Meine
 
       def admin_menu
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         reply_simple 'admin/menu'
         reply_inline 'admin/botstat'
       end
@@ -35,6 +35,11 @@ module TSX
           TSX::Invoice.create(code: "#{с_minus}", bot: @tsx_bot.id, client: hb_client.id)
           reply_message "#{icon('information_source')} Коды `#{c_original}` и `#{с_minus}` добавлены в использованные."
         end
+      end
+
+      def admin_user_trades(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        reply_update 'admin/user_trades'
       end
 
       def transfer(data = nil)
@@ -506,7 +511,7 @@ module TSX
       end
 
       def admin_uploads
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         handle('choose_district')
         cities = City.where(country: @tsx_bot.get_var('country'))
         reply_inline 'admin/choose_city', city: cities
@@ -618,7 +623,7 @@ module TSX
       end
 
       def admin_spam(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         handle('edit_spam')
         reply_inline 'admin/spam'
       end
@@ -721,16 +726,33 @@ module TSX
         reply_inline 'admin/debts'
       end
 
+      def sure_add_operator(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        client = sget('admin_edit_client')
+        reply_update 'admin/sure_add_operator', client: client
+      end
+
+      def add_to_operators
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        @tsx_bot.add_operator(sget('admin_edit_client'), Client::HB_ROLE_OPERATOR)
+        show_user
+      end
+
       def sure_add_admin(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         client = sget('admin_edit_client')
         reply_update 'admin/sure_add_admin', client: client
       end
 
-
       def add_to_admins
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         @tsx_bot.add_operator(sget('admin_edit_client'), Client::HB_ROLE_ADMIN)
+        show_user
+      end
+
+      def del_from_operators
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        Team.find(client: sget('admin_edit_client').id).delete
         show_user
       end
 

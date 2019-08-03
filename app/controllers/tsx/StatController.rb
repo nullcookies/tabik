@@ -34,6 +34,18 @@ module TSX
         reply_update 'admin/botstat'
       end
 
+      def stat_last_ten(data = nil)
+        last_items = Item.
+            where(status: [Item::SOLD], bot: @tsx_bot.id).
+            order(Sequel.desc(:item__sold)).limit(10)
+        last = last_ten(last_items)
+        reply_update 'admin/stat/last_ten', last: last
+      end
+
+      def back_to_stat(data = nil)
+        reply_update 'admin/botstat'
+      end
+
     end
   end
 end

@@ -17,9 +17,9 @@ Bot.where(listed: 1, status: 1).each do |bot|
       districts.each do |dist|
         logger.noise "    district: #{dist.russian}"
         district = District.find(russian: dist.russian)
-        products = Client::products_by_district_sold(district, bot.id)
+        products = Client::products_by_district(district, bot.id)
         products.each do |product|
-          count_active = Item.where(product: product[:entity_id], district: district.id, status: Item::ACTIVE, bot: bot.id).count
+          count_active = Item.where(product: product[:entity_id], district: district.id, status: [Item::ACTIVE, Item::RESERVED], bot: bot.id).count
           logger.noise "      #{product[:entity_russian]} count: #{count_active}"
           Rest.create(bot: bot.id, product: product[:entity_id], district: district.id, items: count_active)
         end

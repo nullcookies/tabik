@@ -165,7 +165,7 @@ module TSX
     end
 
     def btn_admin
-      if hb_client.is_admin?(@tsx_bot) or hb_client.is_beneficiary?(@tsx_bot)
+      if hb_client.is_admin?(@tsx_bot) or hb_client.is_operator?(@tsx_bot) or hb_client.is_beneficiary?(@tsx_bot)
         icon(@tsx_bot.icon_job, 'Админ')
       end
     end
@@ -371,6 +371,20 @@ module TSX
       lines
     end
 
+    def last_ten(items)
+      lines = ''
+      items.each do |item|
+        price = Price[item.prc]
+        product = Product[item.product]
+        city = City[item.city]
+        disctrict = District[item.district]
+        buyer = Client[Trade.find(item: item.id).buyer]
+        lines << "#{city.russian} / #{disctrict.russian} #{icon(product.icon)} #{product.russian} #{price.qnt} #{icon('id')} /#{buyer.id}\r\n"
+      end
+      lines
+    end
+
+
     def list_prices_web
       bbb = @tsx_bot || hb_bot
       lines = ""
@@ -389,9 +403,9 @@ module TSX
 
     def list_admins(bot)
       lines = ''
-      Team.where(bot: bot.id, role: Client::HB_ROLE_ADMIN).each do |team|
+      Team.where(bot: bot.id, role: [Client::HB_ROLE_ADMIN, Client::HB_ROLE_OPERATOR]).each do |team|
         user = Client[team.client]
-        lines << "#{icon('id')} /#{user.id} *#{user.username}*\r\n"
+        lines << "#{icon('id')} /#{user.id} *#{user.username}* `#{user.readable_role(bot)}`\r\n"
       end
       lines
     end

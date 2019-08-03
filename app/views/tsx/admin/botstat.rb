@@ -16,7 +16,7 @@
 ****
 [
 [
-     button('Продажи', 'admin_sales_stat'),
+     button('Последние', 'stat_last_ten'),
      button('Остатки', 'stat_choose_city')
 ]
 ]
