@@ -9,6 +9,16 @@ module TSX
         reply_inline 'admin/botstat'
       end
 
+      def admin_user_trades(data = nil)
+        trads = Trade.where(buyer: sget('admin_edit_client').id)
+        trades = list_user_trades(trads)
+        reply_update 'admin/user_trades', trades: trades
+      end
+
+      def back_to_user(data = nil)
+        show_user
+      end
+
       def admin_plugins
         reply_inline 'admin/plugins'
       end
@@ -35,11 +45,6 @@ module TSX
           TSX::Invoice.create(code: "#{с_minus}", bot: @tsx_bot.id, client: hb_client.id)
           reply_message "#{icon('information_source')} Коды `#{c_original}` и `#{с_minus}` добавлены в использованные."
         end
-      end
-
-      def admin_user_trades(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
-        reply_update 'admin/user_trades'
       end
 
       def transfer(data = nil)

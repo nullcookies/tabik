@@ -384,6 +384,19 @@ module TSX
       lines
     end
 
+    def list_user_trades(trads)
+      lines = ''
+      trads.each do |t|
+        item = Item[t.item]
+        price = Price[item.prc]
+        product = Product[item.product]
+        city = City[item.city]
+        disctrict = District[item.district]
+        lines << "#{human_date(trade.created)} /i#{item.id} #{city.russian} / #{disctrict.russian} #{icon(product.icon)} #{product.russian} #{price.qnt}\r\n"
+      end
+      lines
+    end
+
 
     def list_prices_web
       bbb = @tsx_bot || hb_bot
