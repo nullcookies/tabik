@@ -28,7 +28,7 @@ class Trade < Sequel::Model(:trade)
     else
       balance_btn = false
     end
-    if client.is_admin?(Bot[client.bot])
+    if client.is_admin?(Bot[client.bot]) or client.is_operator?(Bot[client.bot])
       take_free_btn = true
       view_free_btn = true
     else
