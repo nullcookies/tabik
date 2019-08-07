@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/models/trade.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/trade.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tsx/search/trade.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/search/trade.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,17 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="218" column="19" selection-start-line="218" selection-start-column="10" selection-end-line="218" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/tsx/StatController.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="279">
+              <caret line="346" column="14" selection-start-line="346" selection-start-column="14" selection-end-line="346" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -63,7 +53,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/trade.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
@@ -95,6 +85,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="4" selection-start-column="4" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/tsx/search/trade.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -171,7 +170,6 @@
         <option value="$PROJECT_DIR$/app/lib/tsx/reply.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/PublicController.rb" />
         <option value="$PROJECT_DIR$/jobs/easypay.rb" />
-        <option value="$PROJECT_DIR$/app/views/tsx/search/trade.rb" />
         <option value="$PROJECT_DIR$/app/models/method.rb" />
         <option value="$PROJECT_DIR$/app/models/client.rb" />
         <option value="$PROJECT_DIR$/app/lib/tsx/payment.rb" />
@@ -202,6 +200,7 @@
         <option value="$PROJECT_DIR$/app/lib/view_helpers.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" />
         <option value="$PROJECT_DIR$/app/models/trade.rb" />
+        <option value="$PROJECT_DIR$/app/views/tsx/search/trade.rb" />
       </list>
     </option>
   </component>
@@ -500,12 +499,12 @@
       <workItem from="1563739320857" duration="17926000" />
       <workItem from="1564252952250" duration="92000" />
       <workItem from="1564360197268" duration="4654000" />
-      <workItem from="1564864245023" duration="8696000" />
+      <workItem from="1564864245023" duration="9938000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="702970000" />
+    <option name="totallyTimeSpent" value="704212000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -557,13 +556,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.4.3/gems/faraday-0.15.4/lib/faraday.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/payments.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -861,6 +853,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/trade.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="346" column="14" selection-start-line="346" selection-start-column="14" selection-end-line="346" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tsx/search/confirm.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -868,17 +874,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/tsx/search/trade.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="218" column="19" selection-start-line="218" selection-start-column="10" selection-end-line="218" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/trade.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>

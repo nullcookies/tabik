@@ -8,7 +8,7 @@
 ****
 [[
   button(icon(@method == 'easypay' ? 'large_blue_circle' : 'white_circle', 'Easypay'), 'view_easypay_trade'),
-  button(icon(@method == 'bitobmen' ? 'large_blue_circle' : 'white_circle', 'BitObmen'), 'view_bitobmen_trade')
+  # button(icon(@method == 'bitobmen' ? 'large_blue_circle' : 'white_circle', 'BitObmen'), 'view_bitobmen_trade')
 ]]
 # buts ||= []
 # @avlbl = @seller_bot.available_payments
