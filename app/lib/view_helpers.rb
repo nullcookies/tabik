@@ -378,8 +378,20 @@ module TSX
         product = Product[item.product]
         city = City[item.city]
         disctrict = District[item.district]
-        buyer = Client[Trade.find(item: item.id).buyer]
-        lines << "#{city.russian} / #{disctrict.russian} #{icon(product.icon)} #{product.russian} #{price.qnt} #{icon('id')} /#{buyer.id}\r\n"
+        t = Trade.find(item: item.id)
+        buyer = Client[t.buyer]
+        lines << "`#{human_date(t.closed)}` #{city.russian} / #{disctrict.russian}\n#{icon(product.icon)} #{product.russian} #{price.qnt} *#{@tsx_bot.amo(price.price)}* /#{buyer.id}\r\n"
+      end
+      lines
+    end
+
+    def list_codes(codes)
+      lines = ''
+      codes.each do |it|
+        t = Client[it[:client]]
+        lines << "`#{it.code}` #{human_date(it.used)} "
+        lines << "/#{t.id}" if !t.nil?
+        lines << "\n"
       end
       lines
     end
@@ -392,7 +404,7 @@ module TSX
         product = Product[item.product]
         city = City[item.city]
         disctrict = District[item.district]
-        lines << "#{human_date(trade.created)} /i#{item.id} #{city.russian} / #{disctrict.russian} #{icon(product.icon)} #{product.russian} #{price.qnt}\r\n"
+        lines << "`#{human_date(t.created)}` /i#{item.id} #{city.russian} / #{disctrict.russian}\n#{icon(product.icon)} #{product.russian} #{price.qnt} за #{@tsx_bot.amo(price.price)}\r\n"
       end
       lines
     end

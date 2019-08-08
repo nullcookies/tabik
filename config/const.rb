@@ -90,7 +90,8 @@ HAMDLERS = {
       "new_bot": 'new_bot',
       "bot_admin": 'bot_admin',
       "transfer": 'transfer',
-      "use_code": 'use_code'
+      "use_code": 'use_code',
+      "check_code": 'check_code'
 }
 
 CHAT_HAMDLERS = {
