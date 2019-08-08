@@ -14,9 +14,12 @@ module TSX
         unfilter
         filename = @tsx_bot.avatar.nil? ? "http://pixelartmaker.com/art/ba207b21069c838.png" : @tsx_bot.avatar
         reply_logo filename, 'welcome/welcome', links: false, sh: hb_client.shop?, support_line: @tsx_bot.support_line
+        an = Announce.find(bot: @tsx_bot.id)
+        if !an.nil?
+          reply_button an.text
+        end
         serp
         # play_game
-        # reply_inline "welcome/referals"
       end
 
       def serp

@@ -73,6 +73,22 @@ module TSX
       set_editable(res['result']['message_id'])
     end
 
+    def reply_inline_html(view, locals = {})
+      v = render_md(view, locals)
+      buts = Telegram::Bot::Types::InlineKeyboardMarkup.new(
+          inline_keyboard: v.buttons
+      )
+      res = @bot.api.send_message(
+          chat_id: chat,
+          text: v.body,
+          parse_mode: :html,
+          reply_markup: buts,
+          disable_web_page_preview: true
+      )
+      set_editable(res['result']['message_id'])
+    end
+
+
     def reply_update(view, locals = {})
       v = render_md(view, locals)
       buts = Telegram::Bot::Types::InlineKeyboardMarkup.new(
@@ -125,25 +141,6 @@ module TSX
           yield locals, ex
         end
       end
-    end
-
-    def send_inv(trade)
-      item = Item[trade.item]
-      product = Product[item.product]
-      p1 = Array.new
-      p1 << {amount: 50000, label: 'Оплата TSC кода'}
-      puts p1.inspect
-      ff = @bot.api.send_invoice(
-        chat_id: chat,
-        title: product.russian,
-        description: 'деск',
-        start_parameter: '3didus',
-        payload: Time.now.to_i.to_s,
-        provider_token: '361519591:TEST:1204c3405c08bf7f66683ce0b697b758',
-        currency: 'UAH',
-        prices: p1
-      )
-      puts ff.inspect
     end
 
     def update_message(mess)

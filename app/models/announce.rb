@@ -1,2 +1,2 @@
-class Exmocode < Sequel::Model(:exmo)
+class Announce < Sequel::Model(:announce)
 end

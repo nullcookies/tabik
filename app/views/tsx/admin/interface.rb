@@ -17,5 +17,6 @@
   [
       button('Иконки', 'bot_icons'),
       button('Кнопки', 'bot_buttons'),
+      button('Объява', 'bot_announce')
   ]
 ]

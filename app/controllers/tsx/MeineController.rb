@@ -683,6 +683,35 @@ module TSX
         end
       end
 
+      def delete_announce(data = nil)
+        Announce.find(bot: @tsx_bot.id).delete
+        admin_interface
+      end
+
+      def bot_announce(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        an = Announce.find(bot: @tsx_bot.id)
+        if an.nil?
+          enter_announce
+        else
+          reply_update_html 'admin/announce', an: an.text
+        end
+      end
+
+      def enter_announce(data = nil)
+        if !data
+          handle('enter_announce')
+          reply_message "#{icon('pencil2')} Введите текст объявления. Это объявление будет показано каждому клиенту при старте бота."
+        else
+          an = Announce.create(
+              bot: @tsx_bot.id,
+              text: @payload.text,
+              status: 1
+          )
+          reply_inline_html 'admin/announce', an: an.text
+        end
+      end
+
       def admin_create_spam(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         if !data
@@ -690,9 +719,9 @@ module TSX
           reply_simple 'admin/create_spam'
         else
           Spam.create(
-            text: @payload.text,
-            status: Spam::NEW,
-            bot: @tsx_bot.id
+              text: @payload.text,
+              status: Spam::NEW,
+              bot: @tsx_bot.id
           )
           reply_simple 'admin/menu'
           admin_spam
