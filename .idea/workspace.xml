@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tsx/admin/botstat.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/admin/botstat.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -99,7 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>klads</find>
       <find>choose_city</find>
       <find>btn_admin</find>
       <find>statement</find>
@@ -129,6 +127,7 @@
       <find>html</find>
       <find>reply_inlin</find>
       <find>botstat</find>
+      <find>deb</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -489,12 +488,12 @@
       <workItem from="1564360197268" duration="4654000" />
       <workItem from="1564864245023" duration="10584000" />
       <workItem from="1565278446895" duration="6056000" />
-      <workItem from="1565299444834" duration="3364000" />
+      <workItem from="1565299444834" duration="3530000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="714278000" />
+    <option name="totallyTimeSpent" value="714444000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
