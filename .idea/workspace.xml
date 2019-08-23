@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tsx/admin/today_payments.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/admin/today_payments.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/tsx/admin/today_payments.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state>
+              <caret column="34" selection-start-column="34" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -508,12 +506,12 @@
       <workItem from="1566500502271" duration="1612000" />
       <workItem from="1566509310673" duration="9000" />
       <workItem from="1566523630246" duration="1133000" />
-      <workItem from="1566529954773" duration="3176000" />
+      <workItem from="1566529954773" duration="3288000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="726849000" />
+    <option name="totallyTimeSpent" value="726961000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -888,8 +886,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tsx/admin/today_payments.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state>
+          <caret column="34" selection-start-column="34" selection-end-column="34" />
         </state>
       </provider>
     </entry>

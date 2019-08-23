@@ -1,4 +1,4 @@
-#{icon('euro')} *Сегодняшние платежи*
+#{icon('euro')} *Последние платежи*
 
 #{list_today_payments(@payments)}
 ****
