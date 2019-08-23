@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +17,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="249">
-              <caret line="404" column="60" selection-start-line="404" selection-start-column="60" selection-end-line="404" selection-end-column="60" />
+              <caret line="404" column="79" lean-forward="true" selection-start-line="404" selection-start-column="79" selection-end-line="404" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -505,12 +506,12 @@
       <workItem from="1566486027708" duration="383000" />
       <workItem from="1566500502271" duration="1612000" />
       <workItem from="1566509310673" duration="9000" />
-      <workItem from="1566523630246" duration="354000" />
+      <workItem from="1566523630246" duration="462000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="722894000" />
+    <option name="totallyTimeSpent" value="723002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -886,7 +887,7 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
-          <caret line="404" column="60" selection-start-line="404" selection-start-column="60" selection-end-line="404" selection-end-column="60" />
+          <caret line="404" column="79" lean-forward="true" selection-start-line="404" selection-start-column="79" selection-end-line="404" selection-end-column="79" />
         </state>
       </provider>
     </entry>

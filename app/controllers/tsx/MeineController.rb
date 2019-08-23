@@ -402,7 +402,7 @@ module TSX
       def today_payments(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         wallet = sget('meine_wallet')
-        payments = Easypay.where(wallet: wallet.id).limit(15).order(Sequel.desc(:code))
+        payments = Easypay.where(wallet: wallet.id).limit(15).order(Sequel.asc(:code))
         reply_update 'admin/today_payments', payments: payments, wallet: wallet
       end
 
