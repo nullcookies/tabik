@@ -306,7 +306,7 @@ module TSX
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('enter_qnt_price')
         if !data
-          reply_message "#{icon('pencil2')} Введите цену. Цена не может быть меньше 100грн."
+          reply_message "#{icon('pencil2')} Введите цену фасовки в *#{@tsx_bot.get_var('currency_label')}*."
         else
           begin
             Integer(data)

@@ -6,6 +6,6 @@
 cur = @tsx_bot.get_var('currency')
 lab = "грн."
 buts = keyboard(@items, 2) do |item|
-  "#{item.price_string("UAH", 'грн.')} #{item.id}"
+  "#{item.price_string(@tsx_bot.get_var('currency'), @tsx_bot.get_var('currency_label'))} #{item.id}"
 end
 buts << [btn_back, btn_main, btn_add_item, btn_transfer]-[nil]
