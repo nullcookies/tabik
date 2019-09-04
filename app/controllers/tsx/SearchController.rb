@@ -9,16 +9,20 @@ module TSX
       include TSX::Controllers::Plugin
 
       def start
-        sdel('telebot_trading')
-        sdel('telebot_buying')
-        unfilter
-        filename = @tsx_bot.avatar.nil? ? "http://pixelartmaker.com/art/ba207b21069c838.png" : @tsx_bot.avatar
-        reply_logo filename, 'welcome/welcome', links: false, sh: hb_client.shop?, support_line: @tsx_bot.support_line
-        an = Announce.find(bot: @tsx_bot.id)
-        if !an.nil?
-          reply_button an.text
+        if @tsx_bot.tele == 'Zalivator'
+          start_hosting
+        else
+          sdel('telebot_trading')
+          sdel('telebot_buying')
+          unfilter
+          filename = @tsx_bot.avatar.nil? ? "http://pixelartmaker.com/art/ba207b21069c838.png" : @tsx_bot.avatar
+          reply_logo filename, 'welcome/welcome', links: false, sh: hb_client.shop?, support_line: @tsx_bot.support_line
+          an = Announce.find(bot: @tsx_bot.id)
+          if !an.nil?
+            reply_button an.text
+          end
+          serp
         end
-        serp
         # play_game
       end
 
@@ -178,7 +182,8 @@ module TSX
               status: Trade::PENDING,
               escrow: seller.escrow,
               amount: p.price,
-              commission: (p.price.to_f * @tsx_bot.commission.to_f/100)
+              commission: (p.price.to_f * @tsx_bot.commission.to_f/100),
+              random: rand(100000..900000).to_s
             )
             sbuy(it)
             strade(tr)
@@ -242,6 +247,13 @@ module TSX
         answer_callback "Выбран Easypay как средство платежа."
       end
 
+      def view_qiwi_trade
+        sset('telebot_method', 'qiwi')
+        handle('process_payment')
+        reply_update 'search/trade', trade: _trade, item: _buy, method: 'qiwi'
+        answer_callback "Выбран Qiwi как средство платежа."
+      end
+
       def view_bitobmen_trade
         sset('telebot_method', 'bitobmen')
         handle('process_payment')
@@ -251,12 +263,20 @@ module TSX
 
       def trade_overview(data = nil)
         handle('process_payment')
-        sset('telebot_method', 'easypay')
+        if @tsx_bot.get_var('country') == 2
+          sset('telebot_method', 'easypay')
+        else
+          sset('telebot_method', 'qiwi')
+        end
         method = sget('telebot_method')
         buts = _trade.confirmation_buttons(hb_client, method)
         puts buts.inspect.colorize(:yellow)
         reply_inline 'search/trade', trade: _trade, item: _buy, method: method
-        reply_simple 'search/confirm', buts: buts
+        if method != 'qiwi'
+          reply_simple 'search/confirm', buts: buts
+        else
+          reply_simple 'search/confirm_qiwi', buts: buts
+        end
       end
 
       def process_payment(data)
@@ -371,7 +391,7 @@ module TSX
           rescue TSX::Exceptions::NotEnoughAmount => ex
             found_amount = ex.message.to_i
             puts "PAYMENT: NOT EMOUGH AMOUNT. FOUND JUST #{ex.message}".colorize(:red)
-            reply_thread "#{icon(@tsx_bot.icon_warning)} Суммы не хватает, однако #{@tsx_bot.amo(@tsx_bot.cnts(found_amount))} зачислено Вам на баланс. #{method_desc('easypay')}", hb_client
+            reply_thread "#{icon(@tsx_bot.icon_warning)} Суммы не хватает, однако *#{@tsx_bot.amo(@tsx_bot.cnts(found_amount))}* зачислено Вам на баланс. Пополните бот необходимой суммой и нажмите *#{icon('dollar')} Оплатить с баланса* при покупке клада.", hb_client
             hb_client.cashin(@tsx_bot.cnts(found_amount.to_i), Client::__easypay, Meth::__easypay, Client::__tsx)
           rescue TSX::Exceptions::UsedCode => e
             hb_client.set_next_try(@tsx_bot)
@@ -412,6 +432,49 @@ module TSX
           reply_message "#{icon(@tsx_bot.icon_success)} Оплачено."
         else
           reply_message "#{icon(@tsx_bot.icon_success)} Вы не можете купить с баланса. У Вас мало денег."
+        end
+      end
+
+      def qiwi(data)
+        if callback_query?
+          sset('telebot_method', data)
+          trade_overview
+        elsif data == 'Отменить'
+          cancel_trade
+        else
+          if !hb_client.has_pending_trade?(@tsx_bot)
+            reply_message "#{icon(@tsx_bot.icon_warning)} Заказ был отменен. Начните сначала."
+            start
+          else
+            begin
+              handle('bitobmen')
+              uah_price = @tsx_bot.amo_pure(_buy.discount_price_by_method(Meth::__easypay))
+              reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *BitObmen*."
+              @amount = @tsx_bot.check_bitobmen(@tsx_bot, data, uah_price)
+              rsp = eval(@amount.respond.inspect)
+              if rsp[:result] == 'error'
+                puts "PAYMENT: #{rsp}"
+                ex = eval("#{rsp[:exception]}.new(#{rsp[:amount].to_s})")
+                raise ex
+              else
+                if hb_client.cashin(@tsx_bot.cnts(rsp[:amount].to_i), Client::__easypay, Meth::__bitobmen, Client::__tsx)
+                  puts "PAYMENT ACCEPTED: #{data}".colorize(:blue)
+                  botrec("Оплата клада #{_buy.id} зачислена. Коды пополнения: ", "#{code1.code}, #{code2.code}")
+                  reply_thread "#{icon(@tsx_bot.icon_success)} Оплата успешно зачислена.", hb_client
+                  finalize_trade(data, Meth::__easypay)
+                  # hb_client.allow_try
+                end
+              end
+            rescue TSX::Exceptions::PaymentNotFound
+              puts "PAYMENT NOT FOUND, BOT #{@tsx_bot.title}: #{data}".colorize(:yellow)
+              reply_thread "#{icon(@tsx_bot.icon_warning)} Оплата *не найдена*. #{method_desc('bitobmen')}.", hb_client
+            rescue TSX::Exceptions::NotEnoughAmount => ex
+              found_amount = ex.message.to_i
+              puts "PAYMENT: NOT EMOUGH AMOUNT. FOUND JUST #{ex.message}".colorize(:red)
+              reply_thread "#{icon(@tsx_bot.icon_warning)} Суммы не хватает, однако #{@tsx_bot.amo(@tsx_bot.cnts(found_amount))} зачислено Вам на баланс. #{method_desc('easypay')} Помощь /payments.", hb_client
+              hb_client.cashin(@tsx_bot.cnts(found_amount.to_i), Client::__easypay, Meth::__easypay, Client::__tsx)
+            end
+          end
         end
       end
 

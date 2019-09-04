@@ -55,6 +55,30 @@ module TSX
       ]
     end
 
+    def hosting_buttons_not_registered
+      [
+          [
+              "#{icon('cog')} Регистрация"
+          ]
+      ]
+    end
+
+    def hosting_buttons
+      [
+          [
+              "#{icon('bar_chart')} Расчеты"
+          ],
+          [
+              "#{icon('package')} Залить ссылками",
+              "#{icon('1234')} Залить картинкой",
+          ],
+          [
+              "#{icon('pouch')} Правила",
+              "#{icon('1234')} Тарифы"
+          ]
+      ]
+    end
+
     def help_buttons
       but_list ||= []
       but_list <<
@@ -202,17 +226,21 @@ module TSX
       Product[item.product].russian
     end
 
-    def method_details(method)
+    def method_details(method, trade = nil)
       case method
         when 'easypay'
           "Метод оплаты *EasyPay*\n" <<
           "Кошелек *#{@tsx_bot.payment_option('keeper', Meth::__easypay)}*"
+        when 'qiwi'
+          "Метод оплаты *Qiwi*\n" <<
+          "Кошелек *#{@tsx_bot.payment_option('keeper', Meth::__qiwi)}*\n" <<
+          "Коментарий *#{trade.random}*\n"
         when 'bitobmen'
           "Метод оплаты *BitObmen*\n"
       end
     end
 
-    def method_helper(method, item)
+    def method_helper(method, item, trade)
       case method.downcase
         when 'easypay'
           view_body =
@@ -230,6 +258,14 @@ module TSX
           view_body <<
               "\nСкидка `-#{@tsx_bot.discount}%` на *#{@tsx_bot.uah(item.discount_amount)}*"
         end
+      when 'qiwi'
+        view_body =
+            "К оплате *#{@tsx_bot.amo(item.discount_price)}*\n" <<
+                "#{method_details(method, trade)}"
+        if item.old?
+          view_body <<
+              "\nСкидка `-#{@tsx_bot.discount}%` на *#{@tsx_bot.amo(item.discount_amount)}*"
+        end
       end
       view_body
     end
@@ -240,6 +276,8 @@ module TSX
           "Пример `K7MYfRu8tE3Qdz`\r\nПодробнее /payments"
         when 'easypay'
           "Пример `12:1399899`\r\nПодробнее /payments"
+        when 'qiwi'
+          "Пример `1234567`\r\nПодробнее /payments"
       end
     end
 
@@ -351,6 +389,17 @@ module TSX
             lines << bot.title << " .. нет владельца" << "\n"
           end
         end
+      end
+      lines
+    end
+
+    def list_tarrifs
+      tarrifs = Tarrif.where(client: hb_client.id)
+      lines = ''
+      tarrifs.each do |t|
+        price = Price[t.price]
+        product = Product[price.product]
+        lines << icon(product.icon) << "\t" << product.russian << "\t" << "*#{price.qnt}*" << "\t" << @tsx_bot.amo(t.tarrif) << "\n"
       end
       lines
     end

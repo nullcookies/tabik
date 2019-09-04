@@ -1,6 +1,6 @@
-#{icon('pencil2')} Введите *код подтверждения* платежа.
+#{icon('information_source')} Нажмите кнопку *Проверить платеж*, как только оплатите заказ в любом терминале *Qiwi*.
 ****
-btns = []
+btns = [["#{icon('calling')} Проверить платеж"]]
 more_buts = []
 more_buts << icon('dollar', 'Оплатить с баланса') if @buts[:balance_btn]
 more_buts << icon('hand', 'Взять') if @buts[:take_free_btn]

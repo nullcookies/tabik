@@ -1,12 +1,12 @@
-*Заливатор*
-`v#{Version.current}`
+#{icon('clipboard')} *Правила для кладов*
 
-Кладмен #{icon('id')} *#{hb_client.id}*
-Бот #{icon('b')} *#{hb_client[:master]}*
-Баланс *#{@tsx_bot.amo(hb_client.available_cash)}*
-Кладов *#{hb_client.buy_trades([Trade::FINALIZED, Trade::FINISHED]).count}* на *#{@tsx_bot.amo(hb_client.buy_trades([Trade::FINALIZED, Trade::FINISHED]).sum(:price))}* #{"\nПродаж *#{hb_client.sell_trades([Trade::FINALIZED, Trade::FINISHED]).count}* на *#{@tsx_bot.amo(hb_client.sell_trades([Trade::FINALIZED, Trade::FINISHED]).sum(:price))}*" if @sh}
-Рефералов *#{ludey(hb_client.client_referals)}*
-Заработано *#{@tsx_bot.amo(hb_client.ref_cash)}*
-#{"Поддержка" if !@tsx_bot.support.nil?} #{@tsx_bot.support_line if !@tsx_bot.support.nil?}
+Пожалуйста, придерживайтесь этих правил, когда работаете. Во избежание ненаходов и претензий со стороны покупателей, просим внимательно ознакомиться и действовать по этой инструкции.
+
+#{icon('large_blue_diamond')} Только *одно фото* с расстояния двух метров.
+#{icon('large_blue_diamond')} На нем надпись с адресом, а *не координаты*.
+#{icon('large_blue_diamond')} На нем надпись с уточнением где и как лежит, например `под подоконником`, `под камнем`.
+#{icon('large_blue_diamond')} Прикопы *не делать*.
+#{icon('large_blue_diamond')} На фото должна стоять *метка яркого цвета*, где именно лежит клад. Просто точка на фото.
+#{icon('large_blue_diamond')} Клад на уровне лица, чтоб люди не наклонялись.
 ****
 hosting_buttons

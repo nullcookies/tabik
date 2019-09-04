@@ -1,2 +1,2 @@
-class Exmocode < Sequel::Model(:exmo)
+class Tarrif < Sequel::Model(:tarrif)
 end

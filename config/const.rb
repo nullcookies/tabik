@@ -11,7 +11,6 @@ HAMDLERS = {
       "Заказы": 'my_trades',
       "Заказ": 'pending_trade',
       "Назад": 'go_back',
-      "Правила": 'rules',
       "Платежи": 'payments',
       "payments": 'payments',
       "rules": 'rules',
@@ -91,7 +90,13 @@ HAMDLERS = {
       "bot_admin": 'bot_admin',
       "transfer": 'transfer',
       "use_code": 'use_code',
-      "check_code": 'check_code'
+      "check_code": 'check_code',
+      "Правила": 'hosting_rules',
+      "Тарифы": 'hosting_tarrifs',
+      "add_kladman": 'hosting_add_kladman',
+      "Расчеты": 'start_hosting',
+      "ссылками": 'hosting_uploads',
+      "работу": 'start_hosting'
 }
 
 CHAT_HAMDLERS = {
