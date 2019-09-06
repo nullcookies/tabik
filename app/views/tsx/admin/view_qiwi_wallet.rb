@@ -1,32 +1,30 @@
-Номер кошелька *#{@wallet.keeper}*
-Номер внутреннего кошелька *#{@wallet.wallet}*
 Номер телефона *#{@wallet.phone}*
-Пароль *#{@wallet.password}*
+Токен *#{@wallet.token}*
 Статус *#{@wallet.active == 1 ? icon('large_blue_circle') : icon('white_circle') } #{@wallet.active == 1 ? 'Активен' : 'Неактивен'}*
 ****
 if @wallet.active == 0
   [
     [
-      button('Сегодняшние платежи', 'today_payments')
+      button('Сегодняшние платежи', 'today_qiwi_payments')
     ],
     [
-      button('Активировать', 'activate_wallet'),
+      button('Активировать', 'activate_qiwi_wallet'),
       button('Удалить', 'sure_delete')
     ],
     [
-      button("Назад к кошелькам", 'back_to_wallets')
+      button("Назад к кошелькам", 'back_to_qiwi_wallets')
     ]
   ]
 else
   [
       [
-          button('Сегодняшние платежи', 'today_payments')
+          button('Сегодняшние платежи', 'today_qiwi_payments')
       ],
       [
           button('Удалить', 'sure_delete')
       ],
       [
-          button("Назад к кошелькам", 'back_to_wallets')
+          button("Назад к кошелькам", 'back_to_qiwi_wallets')
       ]
   ]
 end

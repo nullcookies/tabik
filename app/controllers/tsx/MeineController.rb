@@ -269,6 +269,12 @@ module TSX
         reply_update 'admin/choose_wallet'
       end
 
+      def back_to_qiwi_wallets(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        handle('view_qiwi_wallet')
+        reply_update 'admin/choose_qiwi_wallet'
+      end
+
       def admin_interface(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         if !@tsx_bot.support.nil?
@@ -331,6 +337,40 @@ module TSX
           bot: @tsx_bot.id
         )
         admin_view_product_prices(product.id)
+      end
+
+      def enter_qiwi_phone(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        handle('enter_qiwi_phone')
+        if !data
+          reply_message "#{icon('pencil2')} Введите *номер телефона кошелька*, который будут видеть покупатели."
+        else
+          sset('meine_qiwi_phone', data)
+          enter_qiwi_token
+        end
+      end
+
+      def enter_qiwi_token(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        handle('enter_qiwi_token')
+        if !data
+          reply_message "#{icon('pencil2')} Введите *токен* Qiwi."
+        else
+          sset('meine_qiwi_token', data)
+          save_qiwi_wallet
+        end
+      end
+
+      def save_qiwi_wallet(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        unhandle
+        Qiwi.create(
+          bot: @tsx_bot.id,
+          active: 0,
+          phone: sget('meine_qiwi_phone'),
+          token: sget('meine_qiwi_token')
+        )
+        admin_wallets
       end
 
       def enter_keeper(data = nil)
@@ -399,6 +439,14 @@ module TSX
         view_wallet(wall)
       end
 
+      def activate_qiwi_wallet
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        wall = sget('meine_wallet').id
+        Qiwi.where(bot: @tsx_bot.id).update(active: 0)
+        Qiwi[wall].update(active: 1)
+        view_qiwi_wallet(wall)
+      end
+
       def today_payments(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         wallet = sget('meine_wallet')
@@ -406,10 +454,22 @@ module TSX
         reply_update 'admin/today_payments', payments: payments, wallet: wallet
       end
 
+      def today_qiwi_payments(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        wallet = sget('meine_wallet')
+        payments = Easypay.where(wallet: wallet.id).order(Sequel.desc(:created))
+        reply_update 'admin/today_qiwi_payments', payments: payments, wallet: wallet
+      end
+
       def admin_wallets(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
-        handle('view_wallet')
-        reply_inline 'admin/choose_wallet'
+        if @tsx_bot.get_var('country') == 2
+          handle('view_wallet')
+          reply_inline 'admin/choose_wallet'
+        else
+          handle('view_qiwi_wallet')
+          reply_inline 'admin/choose_qiwi_wallet'
+        end
       end
 
       def view_wallet(data = nil)
@@ -417,6 +477,13 @@ module TSX
         wallet = Wallet[data]
         sset('meine_wallet', wallet)
         reply_update 'admin/view_wallet', wallet: wallet
+      end
+
+      def view_qiwi_wallet(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        wallet = Qiwi[data]
+        sset('meine_wallet', wallet)
+        reply_update 'admin/view_qiwi_wallet', wallet: wallet
       end
 
       def sure_delete(data = nil)

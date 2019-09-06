@@ -35,6 +35,16 @@ module TSX
       pmt[key.to_sym]
     end
 
+    def payment_wallet(meth)
+      if meth.title == 'easypay'
+        pmt = Wallet.find(bot: self.id, active: 1)
+        pmt.keeper
+      else
+        pmt = Qiwi.find(bot: self.id, active: 1)
+        "+#{pmt.phone}"
+      end
+    end
+
     def payment_option2(key, meth)
       pmt = Payment.find(bot: self.id, meth: meth.id)
       if !pmt.nil?
@@ -142,6 +152,16 @@ module TSX
       raise TSX::Exceptions::WrongFormat
     end
 
+    def used_qiwi_code?(code, bot_id)
+      used_code = Invoice.
+          join(:client, :client__id => :invoice__client).
+          join(:bot, :bot__id => :client__bot).
+          where("(invoice.code = '#{code}') and (bot.id = #{bot_id})")
+      if used_code.count > 0
+        raise TSX::Exceptions::UsedCode
+      end
+    end
+
     def still_checking?(code, bot_id)
       payment_time = code[0..4]
       rest_of_code = code[5..-1]
@@ -238,6 +258,25 @@ module TSX
       wallet = Wallet.find(bot: bot.id, active: 1)
       puts "CHECKING PAYMENT FOR ACTIVE WALLET: #{wallet.keeper}"
       payments = Easypay.where("bot = #{bot.id} and wallet = #{wallet.id} and (code = '#{codes.first}' or code = '#{codes.last}')")
+      if payments.count == 0
+        return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')
+      else
+        amm = payments.first.amount
+        puts "AMOUNT FOUND #{amm}"
+        puts "PRICE #{price}"
+        amt = amm.to_f.round.to_i
+        if amt.to_i < price.to_i
+          return ResponseEasy.new('error', 'TSX::Exceptions::NotEnoughAmount', nil, amt)
+        else
+          return ResponseEasy.new('success', nil, nil, amt)
+        end
+      end
+    end
+
+    def check_qiwi_payment(bot, code, price)
+      wallet = Qiwi.find(bot: bot.id, active: 1)
+      puts "CHECKING PAYMENT FOR ACTIVE WALLET: #{wallet.phone}"
+      payments = Easypay.where("bot = #{bot.id} and wallet = #{wallet.id} and code = '#{code}'")
       if payments.count == 0
         return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')
       else

@@ -230,11 +230,12 @@ module TSX
       case method
         when 'easypay'
           "Метод оплаты *EasyPay*\n" <<
-          "Кошелек *#{@tsx_bot.payment_option('keeper', Meth::__easypay)}*"
+          "Кошелек *#{@tsx_bot.payment_wallet(Meth::__easypay)}*"
         when 'qiwi'
           "Метод оплаты *Qiwi*\n" <<
-          "Кошелек *#{@tsx_bot.payment_option('keeper', Meth::__qiwi)}*\n" <<
-          "Коментарий *#{trade.random}*\n"
+          "Кошелек *#{@tsx_bot.payment_wallet(Meth::__qiwi)}*\n" <<
+          "Коментарий *#{trade.random}*\n" <<
+          "Подробнее /payments"
         when 'bitobmen'
           "Метод оплаты *BitObmen*\n"
       end
@@ -276,8 +277,6 @@ module TSX
           "Пример `K7MYfRu8tE3Qdz`\r\nПодробнее /payments"
         when 'easypay'
           "Пример `12:1399899`\r\nПодробнее /payments"
-        when 'qiwi'
-          "Пример `1234567`\r\nПодробнее /payments"
       end
     end
 
@@ -499,6 +498,14 @@ module TSX
     end
 
     def list_today_payments(list)
+      lines = ''
+      list.each do |p|
+        lines << "`#{p.code}` *#{p.amount}*\r\n"
+      end
+      lines
+    end
+
+    def list_today_qiwi_payments(list)
       lines = ''
       list.each do |p|
         lines << "`#{p.code}` *#{p.amount}*\r\n"

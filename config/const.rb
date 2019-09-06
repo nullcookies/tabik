@@ -96,7 +96,8 @@ HAMDLERS = {
       "add_kladman": 'hosting_add_kladman',
       "Расчеты": 'start_hosting',
       "ссылками": 'hosting_uploads',
-      "работу": 'start_hosting'
+      "работу": 'start_hosting',
+      "платеж": 'qiwi'
 }
 
 CHAT_HAMDLERS = {

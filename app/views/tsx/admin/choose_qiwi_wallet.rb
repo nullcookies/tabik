@@ -1,15 +1,15 @@
-#{icon('pouch')} *Кошельки*
+#{icon('pouch')} *Кошельки Qiwi*
 
-Добавляйте сколько угодно Easypay кошельков. Активный может быть один. Нажмите на любой из кошельков, чтобы упралять им или посмотреть сегодняшние платежи.
+Добавляйте сколько угодно Qiwi кошельков. Активный может быть один. Нажмите на любой из кошельков, чтобы упралять им или посмотреть сегодняшние платежи.
 ****
 buts ||= []
-wallets = Wallet.where(bot: @tsx_bot.id).order(:id)
+wallets = Qiwi.where(bot: @tsx_bot.id).order(:id)
 buts = keyboard(wallets, 3) do |rec|
-  wallet = Wallet[rec[:id]]
-  button("#{wallet.active == 1 ? icon('large_blue_circle') : icon('white_circle')} #{rec[:keeper]}", rec[:id])
+  wallet = Qiwi[rec[:id]]
+  button("#{wallet.active == 1 ? icon('large_blue_circle') : icon('white_circle')} #{rec[:phone]}", rec[:id])
 end
 buts <<
   [
-    button("Добавить кошелек", 'enter_keeper'),
+    button("Добавить кошелек", 'enter_qiwi_phone'),
   ]
 

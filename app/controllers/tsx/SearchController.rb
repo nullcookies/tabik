@@ -435,7 +435,7 @@ module TSX
         end
       end
 
-      def qiwi(data)
+      def qiwi(data = nil)
         if callback_query?
           sset('telebot_method', data)
           trade_overview
@@ -447,10 +447,11 @@ module TSX
             start
           else
             begin
-              handle('bitobmen')
+              handle('qiwi')
+              @tsx_bot.used_qiwi_code?(_trade.random, @tsx_bot.id)
               uah_price = @tsx_bot.amo_pure(_buy.discount_price_by_method(Meth::__easypay))
-              reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *BitObmen*."
-              @amount = @tsx_bot.check_bitobmen(@tsx_bot, data, uah_price)
+              reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *Qiwi*."
+              @amount = @tsx_bot.check_qiwi_payment(@tsx_bot, _trade.random, uah_price)
               rsp = eval(@amount.respond.inspect)
               if rsp[:result] == 'error'
                 puts "PAYMENT: #{rsp}"
@@ -459,19 +460,24 @@ module TSX
               else
                 if hb_client.cashin(@tsx_bot.cnts(rsp[:amount].to_i), Client::__easypay, Meth::__bitobmen, Client::__tsx)
                   puts "PAYMENT ACCEPTED: #{data}".colorize(:blue)
-                  botrec("Оплата клада #{_buy.id} зачислена. Коды пополнения: ", "#{code1.code}, #{code2.code}")
+                  Invoice.create(code: _trade.random, client: hb_client.id)
                   reply_thread "#{icon(@tsx_bot.icon_success)} Оплата успешно зачислена.", hb_client
-                  finalize_trade(data, Meth::__easypay)
+                  finalize_trade(_trade.random, Meth::__easypay)
                   # hb_client.allow_try
                 end
               end
+            rescue TSX::Exceptions::UsedCode => e
+              reply_thread "#{icon(@tsx_bot.icon_warning)} Этот заказ уже закрыт. Если Вы уверены, что это ошибка, задайте вопрос службе поддержки.", hb_client
+              puts "USED CODE".colorize(:yellow)
             rescue TSX::Exceptions::PaymentNotFound
               puts "PAYMENT NOT FOUND, BOT #{@tsx_bot.title}: #{data}".colorize(:yellow)
-              reply_thread "#{icon(@tsx_bot.icon_warning)} Оплата *не найдена*. #{method_desc('bitobmen')}.", hb_client
+              reply_thread "#{icon(@tsx_bot.icon_warning)} Оплата *не найдена*. Подробнее /payments.", hb_client
             rescue TSX::Exceptions::NotEnoughAmount => ex
               found_amount = ex.message.to_i
               puts "PAYMENT: NOT EMOUGH AMOUNT. FOUND JUST #{ex.message}".colorize(:red)
-              reply_thread "#{icon(@tsx_bot.icon_warning)} Суммы не хватает, однако #{@tsx_bot.amo(@tsx_bot.cnts(found_amount))} зачислено Вам на баланс. #{method_desc('easypay')} Помощь /payments.", hb_client
+              Invoice.create(code: _trade.random, client: hb_client.id)
+              _trade.update(random: rand(100000..900000))
+              reply_thread "#{icon(@tsx_bot.icon_warning)} Суммы не хватает, однако *#{@tsx_bot.amo(@tsx_bot.cnts(found_amount))}* зачислено Вам на баланс. Пополните бот необходимой суммой и нажмите *#{icon('dollar')} Оплатить с баланса* при покупке клада.", hb_client
               hb_client.cashin(@tsx_bot.cnts(found_amount.to_i), Client::__easypay, Meth::__easypay, Client::__tsx)
             end
           end
