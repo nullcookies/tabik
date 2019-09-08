@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/HostingController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/HostingController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/view_helpers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/view_helpers.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/client.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/client.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ledger.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ledger.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/admin/all_products.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/admin/all_products.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/hosting/enter_klads.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/hosting/enter_klads.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/hosting/menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/hosting/menu.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/const.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/const.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobs/qiwi.rb" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/qiwi.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tsx/search/serp.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/search/serp.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,19 +13,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/client.rb">
+        <entry file="file://$PROJECT_DIR$/app/lib/view_helpers.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13155">
-              <caret line="877" column="5" selection-start-line="877" selection-start-column="5" selection-end-line="877" selection-end-column="5" />
+            <state relative-caret-position="177">
+              <caret line="194" column="24" selection-start-line="194" selection-start-column="8" selection-end-line="194" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tsx/hosting/not_registered.rb">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/tsx/search/serp.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+            <state relative-caret-position="405">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -98,7 +89,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/tsx/admin/all_products.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
@@ -111,8 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Метод опл</find>
-      <find>Приме</find>
       <find>Коментарий</find>
       <find>Пример</find>
       <find>суммы</find>
@@ -141,6 +130,8 @@
       <find>kladman_de</find>
       <find>choose_pro</find>
       <find>Выберите продукт из</find>
+      <find>Рекомендуем</find>
+      <find>btn_bots_welcome</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -159,7 +150,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/app/views/tsx/admin/sure_add_admin.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/admin/sure_add_operator.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/welcome/user_page.rb" />
@@ -210,6 +200,7 @@
         <option value="$PROJECT_DIR$/app/models/client.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/hosting/menu.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/admin/all_products.rb" />
+        <option value="$PROJECT_DIR$/app/views/tsx/search/serp.rb" />
       </list>
     </option>
   </component>
@@ -521,12 +512,12 @@
       <workItem from="1567625635726" duration="316000" />
       <workItem from="1567626023061" duration="11003000" />
       <workItem from="1567711329585" duration="15556000" />
-      <workItem from="1567909957616" duration="79000" />
+      <workItem from="1567909957616" duration="1986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="808080000" />
+    <option name="totallyTimeSpent" value="809987000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -578,9 +569,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/exmo.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/tarrif.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -804,13 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/view_helpers.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="71" column="43" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/HostingController.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2415">
@@ -888,6 +869,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/view_helpers.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="194" column="24" selection-start-line="194" selection-start-column="8" selection-end-line="194" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tsx/search/serp.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
