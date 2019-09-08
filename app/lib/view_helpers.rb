@@ -609,7 +609,7 @@ module TSX
         c = Item.where(district: dist.id, product: @product.id, bot: @tsx_bot.id, status: Item::SOLD)
         line << c.count
         cnt = Rest.find(district: dist.id, product: @product.id, bot: @tsx_bot.id)
-        if !cnt
+        if cnt.nil?
           line << '*нет кладов*'
         else
           line << "*#{kladov(cnt.items)}*"
