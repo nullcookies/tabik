@@ -199,6 +199,10 @@ class Client < Sequel::Model(:client)
     Client.find(username: '__kladmans')
   end
 
+  def self.__fine
+    Client.find(username: '__fine')
+  end
+
   def self.__other
     Client.find(username: '__other')
   end
@@ -856,6 +860,35 @@ class Client < Sequel::Model(:client)
     credit = Ledger.dataset.
         select{Sequel.as(Sequel.expr{COALESCE(sum(:ledger__amount), 0)}, :bns)}.
         where(credit: self.id, debit: Client::__referals.id)
+    credit.map(:bns)[0]
+  end
+
+  def kladman_debt
+    credit = Ledger.dataset.
+        select{Sequel.as(Sequel.expr{COALESCE(sum(:ledger__amount), 0)}, :bns)}.
+        where(credit: self.id, debit: Client::__salary.id, status: Ledger::PENDING)
+    credit.map(:bns)[0]
+  end
+
+  def klads_uploaded
+    12
+  end
+
+  def klads_not_found
+    2
+  end
+
+  def kladman_paid
+    credit = Ledger.dataset.
+        select{Sequel.as(Sequel.expr{COALESCE(sum(:ledger__amount), 0)}, :bns)}.
+        where(credit: self.id, debit: Client::__salary.id, status: Ledger::CLEARED)
+    credit.map(:bns)[0]
+  end
+
+  def kladman_fines
+    credit = Ledger.dataset.
+        select{Sequel.as(Sequel.expr{COALESCE(sum(:ledger__amount), 0)}, :bns)}.
+        where(credit: self.id, debit: Client::__fine.id, status: Ledger::CLEARED)
     credit.map(:bns)[0]
   end
 

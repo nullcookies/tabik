@@ -1,7 +1,7 @@
 Выберите продукт из общего списка.
 ****
 buts ||= []
-buts = keyboard(@products, 3) do |rec|
+buts = keyboard(@products, 2) do |rec|
   button("#{icon(rec[:icon])} #{rec[:russian]}", rec[:id])
 end
 if @products.current_page == 1

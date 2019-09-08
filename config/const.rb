@@ -95,9 +95,10 @@ HAMDLERS = {
       "Тарифы": 'hosting_tarrifs',
       "add_kladman": 'hosting_add_kladman',
       "Расчеты": 'start_hosting',
-      "ссылками": 'hosting_uploads',
+      "Загрузить": 'hosting_uploads',
       "работу": 'start_hosting',
-      "платеж": 'qiwi'
+      "платеж": 'qiwi',
+      "загружать": 'hosting_cancel_upload'
 }
 
 CHAT_HAMDLERS = {

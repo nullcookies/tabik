@@ -103,7 +103,7 @@ module TSX
       end
 
       def hosting_enter_klads(data = nil)
-        handle('save_klads')
+        handle('hosting_save_klads')
         price = Price[data]
         sset('meine_price', price)
         city = sget('meine_city')
@@ -112,17 +112,17 @@ module TSX
         reply_simple 'hosting/enter_klads', price: price, city: city, district: district, product: product
       end
 
-      def admin_cancel_upload
+      def hosting_cancel_upload
         sdel('meine_price')
         sdel('meine_product')
         sdel('meine_district')
         sdel('meine_city')
         unhandle
-        admin_menu
+        start_hosting
       end
 
-      def save_klads(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+      def hosting_save_klads(data = nil)
+        bot = Bot[hb_client[:master]]
         pics = @payload.text.split("\n")
         puts "uploading FILES 1"
         city = sget('meine_city')
@@ -144,20 +144,29 @@ module TSX
                 city: city.id,
                 district: district.id,
                 client: hb_client.id,
-                bot: @tsx_bot.id,
+                bot: bot.id,
                 created: Time.now,
                 status: Item::ACTIVE
             )
+            Ledger.create(
+              debit: Client::__salary.id,
+              credit: hb_client.id,
+              amount: price.salary,
+              details: "Зарплата за клад ##{it.id}: #{price.salary}",
+              status: Ledger::PENDING,
+              created: Time.now
+            )
             puts "uploading FILES #{it.id}"
             lines = lines + "#{icon('large_orange_diamond')} Клад *##{it.id}* добавлен.\n\r"
-          rescue
+          rescue => e
+            puts e.message.colorize(:red)
             puts "duplicate item"
             lines = lines + "#{icon('no_entry_sign')} Клад не добавлен. Дубликат.\n\r"
           end
         end
         puts lines
         reply_message "#{icon('white_check_mark')} *Готово*\n\r\n\rОбратите внимание, что в систему невозможно добавить дубликат клада. Все ссылки должны быть уникальными. Ниже отчет о загрузке кладов.\n\r\n\r#{lines}"
-        admin_cancel_upload
+        hosting_cancel_upload
       end
 
       def hosting_not_permitted
