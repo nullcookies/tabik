@@ -613,7 +613,7 @@ module TSX
         cnt = Rest.find(district: dist.id, product: product.id, bot: @tsx_bot.id)
         puts "COUNT: #{cnt.items}"
         if cnt.nil?
-          line << ' .. *нет кладов*'
+          line << " .. *нет кладов*"
         else
           line << " .. *#{kladov(cnt.items)}*"
         end
