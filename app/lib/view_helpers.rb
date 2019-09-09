@@ -611,7 +611,6 @@ module TSX
         # puts c.inspect
         # line << " / " << c.count
         cnt = Rest.find(district: dist.id, product: product.id, bot: @tsx_bot.id)
-        puts "COUNT: #{cnt.items}"
         if cnt.nil?
           line << " .. *нет кладов*"
         else
