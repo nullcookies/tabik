@@ -26,8 +26,8 @@ module TSX
         @product = Product[data]
         @city = sget('stat_city')
         @districts = Client::districts_by_city_and_product(@product, @tsx_bot.id, @city)
-        rest = rest_string(@product, @city, @districts)
-        reply_update 'admin/stat/show_rest', rest: rest
+        rest = rest_string(@product, @districts)
+        reply_update 'admin/stat/show_rest', rest: rest, product: @product, city: @city
       end
 
       def back_to_products(data = nil)

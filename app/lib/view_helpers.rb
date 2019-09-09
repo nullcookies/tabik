@@ -598,17 +598,20 @@ module TSX
       lines
     end
 
-    def rest_string(product, city, districts)
+    def rest_string(product, districts)
       line = ''
       return 'Здесь пусто' if districts.count == 0
       districts.each do |d|
         dist = District[d[:entity_id]]
         line << d[:entity_russian]
-        c = Item.where(district: dist.id, product: @product.id, bot: @tsx_bot.id)
-        line << c.count
-        c = Item.where(district: dist.id, product: @product.id, bot: @tsx_bot.id, status: Item::SOLD)
-        line << c.count
-        cnt = Rest.find(district: dist.id, product: @product.id, bot: @tsx_bot.id)
+        c = Item.where(district: dist.id, product: product.id, bot: @tsx_bot.id)
+        puts c.inspect
+        line << " / " << c.count
+        c = Item.where(district: dist.id, product: product.id, bot: @tsx_bot.id, status: Item::SOLD)
+        puts c.inspect
+        line << " / " << c.count
+        cnt = Rest.find(district: dist.id, product: product.id, bot: @tsx_bot.id)
+        puts "COUNT: #{cnt.items}"
         if cnt.nil?
           line << '*нет кладов*'
         else
