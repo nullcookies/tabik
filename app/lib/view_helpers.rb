@@ -604,12 +604,12 @@ module TSX
       districts.each do |d|
         dist = District[d[:entity_id]]
         line << d[:entity_russian]
-        c = Item.where(district: dist.id, product: product.id, bot: @tsx_bot.id)
-        puts c.inspect
-        line << " / " << c.count
-        c = Item.where(district: dist.id, product: product.id, bot: @tsx_bot.id, status: Item::SOLD)
-        puts c.inspect
-        line << " / " << c.count
+        # c = Item.where(district: dist.id, product: product.id, bot: @tsx_bot.id)
+        # puts c.inspect
+        # line << " / " << c.count
+        # c = Item.where(district: dist.id, product: product.id, bot: @tsx_bot.id, status: Item::SOLD)
+        # puts c.inspect
+        # line << " / " << c.count
         cnt = Rest.find(district: dist.id, product: product.id, bot: @tsx_bot.id)
         puts "COUNT: #{cnt.items}"
         if cnt.nil?

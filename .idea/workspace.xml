@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/StatController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/StatController.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/view_helpers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/view_helpers.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/lib/view_helpers.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="600" column="8" selection-start-line="600" selection-start-column="8" selection-end-line="600" selection-end-column="8" />
+            <state relative-caret-position="349">
+              <caret line="611" selection-start-line="611" selection-end-line="611" />
             </state>
           </provider>
         </entry>
@@ -197,8 +195,8 @@
         <option value="$PROJECT_DIR$/app/views/tsx/hosting/menu.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/admin/all_products.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/search/serp.rb" />
-        <option value="$PROJECT_DIR$/app/lib/view_helpers.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/StatController.rb" />
+        <option value="$PROJECT_DIR$/app/lib/view_helpers.rb" />
       </list>
     </option>
   </component>
@@ -519,12 +517,12 @@
       <workItem from="1567625635726" duration="316000" />
       <workItem from="1567626023061" duration="11003000" />
       <workItem from="1567711329585" duration="15556000" />
-      <workItem from="1567909957616" duration="5529000" />
+      <workItem from="1567909957616" duration="5686000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="813530000" />
+    <option name="totallyTimeSpent" value="813687000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -884,8 +882,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/view_helpers.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="600" column="8" selection-start-line="600" selection-start-column="8" selection-end-line="600" selection-end-column="8" />
+        <state relative-caret-position="349">
+          <caret line="611" selection-start-line="611" selection-end-line="611" />
         </state>
       </provider>
     </entry>
