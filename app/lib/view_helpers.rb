@@ -610,7 +610,10 @@ module TSX
         # c = Item.where(district: dist.id, product: product.id, bot: @tsx_bot.id, status: Item::SOLD)
         # puts c.inspect
         # line << " / " << c.count
+        puts product.id
+        puts dist.id
         cnt = Rest.find(district: dist.id, product: product.id, bot: @tsx_bot.id)
+        puts cnt.inspect.colirize(:yellow)
         if cnt.nil?
           line << " .. *нет кладов*"
         else
