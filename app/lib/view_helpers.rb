@@ -613,7 +613,7 @@ module TSX
         puts product.id
         puts dist.id
         cnt = Rest.find(district: dist.id, product: product.id, bot: @tsx_bot.id)
-        puts cnt.inspect.colirize(:yellow)
+        puts cnt.inspect.colorize(:yellow)
         if cnt.nil?
           line << " .. *нет кладов*"
         else
