@@ -178,7 +178,7 @@ module TSX
 
     def check_easypay_format(code)
       if !"#{code}".match(/(\d{2}:\d{2})(\d{5})\z/) and !"#{code}".match(/(\d{2}:\d{2})(\d{6})\z/)
-        return false
+        return nil
       end
       true
     end

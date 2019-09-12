@@ -26,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="129">
-              <caret line="353" column="70" lean-forward="true" selection-start-line="353" selection-start-column="70" selection-end-line="353" selection-end-column="70" />
+              <caret line="353" column="68" selection-start-line="353" selection-start-column="68" selection-end-line="353" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -520,12 +520,12 @@
       <workItem from="1567711329585" duration="15556000" />
       <workItem from="1567909957616" duration="6389000" />
       <workItem from="1568229533316" duration="605000" />
-      <workItem from="1568319608360" duration="70000" />
+      <workItem from="1568319608360" duration="537000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="815065000" />
+    <option name="totallyTimeSpent" value="815532000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -879,7 +879,7 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
-          <caret line="353" column="70" lean-forward="true" selection-start-line="353" selection-start-column="70" selection-end-line="353" selection-end-column="70" />
+          <caret line="353" column="68" selection-start-line="353" selection-start-column="68" selection-end-line="353" selection-end-column="68" />
         </state>
       </provider>
     </entry>
