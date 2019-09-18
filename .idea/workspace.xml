@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/jobs/easypay_online.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/tsx/payment.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/tsx/payment.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobs/easypay.rb" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/easypay.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +12,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/lib/tsx/payment.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
               <caret line="179" selection-start-line="179" selection-end-line="179" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/payments.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -85,15 +89,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
               <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tsx/admin/choose_product.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -186,7 +181,6 @@
         <option value="$PROJECT_DIR$/app/views/tsx/hosting/choose_product.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/hosting/choose_prices.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/search/trade.rb" />
-        <option value="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" />
         <option value="$PROJECT_DIR$/jobs/qiwiresp.json" />
         <option value="$PROJECT_DIR$/app/models/qiwi.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/search/confirm_qiwi.rb" />
@@ -210,6 +204,7 @@
         <option value="$PROJECT_DIR$/jobs/easypay_online.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" />
         <option value="$PROJECT_DIR$/app/lib/tsx/payment.rb" />
+        <option value="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" />
       </list>
     </option>
   </component>
@@ -541,12 +536,12 @@
       <workItem from="1567909957616" duration="6389000" />
       <workItem from="1568229533316" duration="605000" />
       <workItem from="1568319608360" duration="1759000" />
-      <workItem from="1568761065647" duration="6545000" />
+      <workItem from="1568761065647" duration="6960000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="823299000" />
+    <option name="totallyTimeSpent" value="823714000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -664,13 +659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" selection-start-line="1" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/payments.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
@@ -908,6 +896,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="179" selection-start-line="179" selection-end-line="179" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/payments.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
