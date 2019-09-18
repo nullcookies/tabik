@@ -128,12 +128,17 @@ def get_today_transactions(web, bot)
     puts to_match.red
     matched = "#{to_match}".match(/.*(\d{2}:\d{2})\D*(\d+)/)
     if matched
-      dat = "#{to_match}".match(/(\d{2}.\d{2}.\d{4}).*/)
+      dat =  "#{to_match}".match(/(\d{2}.\d{2}.\d{4}).*/)
       if Date.parse(dat.captures.first) < Date.today - 1.days
         puts "TODAY IS FINISHED. NOT SAVING THE REST".red
         return false
       end
-      code = "#{matched.captures.first}#{matched.captures.last}"
+      if !amount.include?(',00')
+        am_in_code = amount.tr(',', '')
+        code = "#{matched.captures.first}#{am_in_code}"
+      else
+        code = "#{matched.captures.first}#{matched.captures.last}"
+      end
       wallet = Wallet.find(bot: bot.id, active: 1)
       p = Easypay.where("bot = #{bot.id} and wallet = '#{wallet.id}' and  code = '#{code}' and amount = '#{amount}'")
       if p.count == 0
@@ -149,7 +154,7 @@ def get_today_transactions(web, bot)
 end
 
 threads = []
-Bot.where(listed: 1, status: 1).each do |bot|
+Bot.where(checkeasy: 1).each do |bot|
   threads << Thread.new {
     begin
       puts "BOT: #{bot.title}".blue

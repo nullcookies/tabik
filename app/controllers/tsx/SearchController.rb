@@ -270,7 +270,6 @@ module TSX
         end
         method = sget('telebot_method')
         buts = _trade.confirmation_buttons(hb_client, method)
-        puts buts.inspect.colorize(:yellow)
         reply_inline 'search/trade', trade: _trade, item: _buy, method: method
         if method != 'qiwi'
           reply_simple 'search/confirm', buts: buts

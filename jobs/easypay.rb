@@ -128,7 +128,7 @@ def get_today_transactions(web, bot)
     puts to_match.red
     matched = "#{to_match}".match(/.*(\d{2}:\d{2})\D*(\d+)/)
     if matched
-      dat =  "#{to_match}".match(/(\d{2}.\d{2}.\d{4}).*/)
+      dat = "#{to_match}".match(/(\d{2}.\d{2}.\d{4}).*/)
       if Date.parse(dat.captures.first) < Date.today - 1.days
         puts "TODAY IS FINISHED. NOT SAVING THE REST".red
         return false
