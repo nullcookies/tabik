@@ -77,7 +77,11 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/tsx/search/confirm.rb">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="59" selection-start-column="59" selection-end-column="59" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -532,12 +536,12 @@
       <workItem from="1567909957616" duration="6389000" />
       <workItem from="1568229533316" duration="605000" />
       <workItem from="1568319608360" duration="1759000" />
-      <workItem from="1568761065647" duration="7917000" />
+      <workItem from="1568761065647" duration="8043000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="824671000" />
+    <option name="totallyTimeSpent" value="824797000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -896,7 +900,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tsx/search/confirm.rb">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="59" selection-start-column="59" selection-end-column="59" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
