@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +21,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/payments.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
@@ -75,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/tsx/search/confirm.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="103" selection-start-column="103" selection-end-column="103" />
+              <caret column="121" selection-start-column="121" selection-end-column="121" />
             </state>
           </provider>
         </entry>
@@ -106,7 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>суммы</find>
       <find>79279008910</find>
       <find>1078ab17</find>
       <find>txnId</find>
@@ -136,6 +135,7 @@
       <find>btn_bots_welcome</find>
       <find>Неверный</find>
       <find>код подтвер</find>
+      <find>Если плат</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -199,12 +199,12 @@
         <option value="$PROJECT_DIR$/app/views/tsx/search/serp.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/StatController.rb" />
         <option value="$PROJECT_DIR$/app/lib/view_helpers.rb" />
-        <option value="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" />
         <option value="$PROJECT_DIR$/jobs/easypay.rb" />
         <option value="$PROJECT_DIR$/jobs/easypay_online.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" />
         <option value="$PROJECT_DIR$/app/lib/tsx/payment.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" />
+        <option value="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" />
       </list>
     </option>
   </component>
@@ -536,12 +536,12 @@
       <workItem from="1567909957616" duration="6389000" />
       <workItem from="1568229533316" duration="605000" />
       <workItem from="1568319608360" duration="1759000" />
-      <workItem from="1568761065647" duration="6960000" />
+      <workItem from="1568761065647" duration="7656000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="823714000" />
+    <option name="totallyTimeSpent" value="824410000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -843,13 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tsx/search/confirm.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="103" selection-start-column="103" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tsx/search/trade.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -903,6 +896,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tsx/search/confirm.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="121" selection-start-column="121" selection-end-column="121" />
         </state>
       </provider>
     </entry>
