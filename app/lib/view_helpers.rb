@@ -77,6 +77,18 @@ module TSX
       ]
     end
 
+    def hosting_admin_buttons
+      [
+          [
+              "#{icon('bar_chart')} Выплатить",
+              "#{icon('package')} Ненаход"
+          ],
+          [
+              "#{icon('pouch')} Стата"
+          ]
+      ]
+    end
+
     def help_buttons
       but_list ||= []
       but_list <<
@@ -386,6 +398,19 @@ module TSX
             lines << bot.title << " .. нет владельца" << "\n"
           end
         end
+      end
+      lines
+    end
+
+    def list_debts
+      bots = Bot.where(status: 1)
+      lines = ''
+      bots.each do |b|
+        puts "#{b.tele}"
+        puts "#{Time.today}"
+        puts "#{b.paid}"
+        puts "#{(Time.today - b.paid)/1.day}\n\r"
+        lines << "*#{b.tele}* .. #{dney(((Time.today - b.paid)/1.day).round)} назад\r\n"
       end
       lines
     end

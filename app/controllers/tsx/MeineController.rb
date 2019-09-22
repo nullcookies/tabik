@@ -3,6 +3,11 @@ module TSX
   module Controllers
     module Meine
 
+      def bot_debts
+        debts = list_debts
+        reply_simple 'admin/bot_debts', debts: debts
+      end
+
       def admin_menu
         not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         reply_simple 'admin/menu'
@@ -513,7 +518,7 @@ module TSX
           discount_string = "Скидки *не установлены*"
         end
         products = Product.available_by_bot(@tsx_bot)
-        reply_inline 'admin/choose_product_for_prices', products: products, discount_string: discount_string
+          reply_inline 'admin/choose_product_for_prices', products: products, discount_string: discount_string
       end
 
       def back_to_bot_products(data = nil)

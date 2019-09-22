@@ -871,11 +871,11 @@ class Client < Sequel::Model(:client)
   end
 
   def klads_uploaded
-    12
+    Item.where(client: self.id).count
   end
 
   def klads_not_found
-    2
+    Item.where(client: self.id, not_found: 1).count
   end
 
   def kladman_paid

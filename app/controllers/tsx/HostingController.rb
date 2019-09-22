@@ -5,7 +5,14 @@ module TSX
 
       def start_hosting
         hosting_not_permitted if hb_client[:master].nil?
-        reply_simple 'hosting/menu'
+        bot = Bot[hb_client[:master]]
+        puts bot.inspect
+        puts hb_client.is_admin?(bot)
+        if hb_client.is_admin?(bot)
+          reply_simple 'hosting/menu_admin'
+        else
+          reply_simple 'hosting/menu'
+        end
       end
 
       def hosting_rules

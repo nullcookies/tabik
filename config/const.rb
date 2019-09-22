@@ -88,6 +88,7 @@ HAMDLERS = {
       "Интерфейс": 'admin_interface',
       "new_bot": 'new_bot',
       "bot_admin": 'bot_admin',
+      "bot_debts": 'bot_debts',
       "transfer": 'transfer',
       "use_code": 'use_code',
       "check_code": 'check_code',

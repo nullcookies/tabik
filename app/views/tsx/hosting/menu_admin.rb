@@ -1,11 +1,10 @@
 🏬 *Склад Бот*
 `v#{Version.current}`
 
-Кладмен #{icon('id')} *#{hb_client.id}*
-Загружено *#{kladov(hb_client.klads_uploaded)}*
-Не найдено *#{kladov(hb_client.klads_not_found)}*
-Штрафов *#{@tsx_bot.amo(hb_client.kladman_fines)}*
-Выплачено *#{@tsx_bot.amo(hb_client.kladman_paid)}*
-К выплате *#{@tsx_bot.amo(hb_client.kladman_debt)}*
+Админ #{icon('id')} *#{hb_client.id}*
+Сотрудников *#{kladov(hb_client.klads_uploaded)}*
+Всего кладов *134*
+Общий долг *#{kladov(hb_client.klads_not_found)}*
+Всего выплачено *#{@tsx_bot.amo(hb_client.kladman_debt)}*
 ****
-hosting_buttons
+hosting_admin_buttons
