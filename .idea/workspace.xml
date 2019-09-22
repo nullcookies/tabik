@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/view_helpers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/view_helpers.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +16,7 @@
         <entry file="file://$PROJECT_DIR$/app/lib/view_helpers.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="358">
-              <caret line="408" selection-start-line="408" selection-end-line="408" />
+              <caret line="408" column="62" selection-start-line="408" selection-start-column="62" selection-end-line="408" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -525,12 +524,12 @@
       <workItem from="1567909957616" duration="6389000" />
       <workItem from="1568229533316" duration="605000" />
       <workItem from="1568319608360" duration="1759000" />
-      <workItem from="1568761065647" duration="17464000" />
+      <workItem from="1568761065647" duration="17612000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="834218000" />
+    <option name="totallyTimeSpent" value="834366000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -891,7 +890,7 @@
     <entry file="file://$PROJECT_DIR$/app/lib/view_helpers.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
-          <caret line="408" selection-start-line="408" selection-end-line="408" />
+          <caret line="408" column="62" selection-start-line="408" selection-start-column="62" selection-end-line="408" selection-end-column="62" />
         </state>
       </provider>
     </entry>

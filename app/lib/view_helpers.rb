@@ -406,7 +406,7 @@ module TSX
       bots = Bot.where(status: 1)
       lines = ''
       bots.each do |b|
-        lines << "*#{b.tele}* .. #{human_date(b.paid)}\r\n"
+        lines << "*#{b.tele}* .. #{human_date(b.paid + 1.month)}\r\n"
       end
       lines
     end
