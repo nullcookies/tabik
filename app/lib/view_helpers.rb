@@ -406,11 +406,7 @@ module TSX
       bots = Bot.where(status: 1)
       lines = ''
       bots.each do |b|
-        puts "#{b.tele}"
-        puts "#{Time.today}"
-        puts "#{b.paid}"
-        puts "#{(Time.today - b.paid)/1.day}\n\r"
-        lines << "*#{b.tele}* .. #{dney(((Time.today - b.paid)/1.day).round)} назад\r\n"
+        lines << "*#{b.tele}* .. #{human_date(b.paid)}\r\n"
       end
       lines
     end
