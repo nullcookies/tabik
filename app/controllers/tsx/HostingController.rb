@@ -20,6 +20,7 @@ module TSX
 
       def kladman_card(data = nil)
         client = Client[data]
+        puts "KLADMANS: #{client.inspect}".colorize(:red)
         sset('hosting_kladman', client)
         reply_update 'hosting/card', kladman: client
       end
