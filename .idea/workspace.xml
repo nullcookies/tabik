@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/HostingController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/HostingController.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tsx/hosting/card.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/hosting/card.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/HostingController.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/tsx/hosting/card.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -197,11 +197,11 @@
         <option value="$PROJECT_DIR$/app/models/Staff.rb" />
         <option value="$PROJECT_DIR$/config/config.rb" />
         <option value="$PROJECT_DIR$/app/models/client.rb" />
-        <option value="$PROJECT_DIR$/app/views/tsx/hosting/card.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/hosting/menu.rb" />
         <option value="$PROJECT_DIR$/config/const.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/HostingController.rb" />
+        <option value="$PROJECT_DIR$/app/views/tsx/hosting/card.rb" />
       </list>
     </option>
   </component>
@@ -536,12 +536,12 @@
       <workItem from="1568761065647" duration="18646000" />
       <workItem from="1569370470835" duration="10857000" />
       <workItem from="1569460539782" duration="602000" />
-      <workItem from="1569530009696" duration="7731000" />
+      <workItem from="1569530009696" duration="8958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="854590000" />
+    <option name="totallyTimeSpent" value="855817000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -886,17 +886,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tsx/hosting/card.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/HostingController.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tsx/hosting/card.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
