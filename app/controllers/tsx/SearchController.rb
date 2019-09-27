@@ -9,7 +9,7 @@ module TSX
       include TSX::Controllers::Plugin
 
       def start
-        if @tsx_bot.tele == 'Zalivator'
+        if @tsx_bot.tele == 'AutoHosting'
           start_hosting
         else
           sdel('telebot_trading')

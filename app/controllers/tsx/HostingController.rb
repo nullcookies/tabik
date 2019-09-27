@@ -9,10 +9,48 @@ module TSX
         puts bot.inspect
         puts hb_client.is_admin?(bot)
         if hb_client.is_admin?(bot)
-          reply_simple 'hosting/menu_admin'
+          hosting_admin_menu
+          kladmans = bot.kladmans
+          handle('kladman_card')
+          reply_inline 'hosting/menu_admin', master: bot, kladmans: kladmans
         else
           reply_simple 'hosting/menu'
         end
+      end
+
+      def kladman_card(data = nil)
+        client = Client[data]
+        sset('hosting_kladman', client)
+        reply_update 'hosting/card', kladman: client
+      end
+
+      def show_kladman_card(data)
+        sset('hosting_kladman', data)
+        reply_inline 'hosting/card', kladman: data
+      end
+
+      def klad_not_found(data = nil)
+        Ledger.create(
+            debit: sget('hosting_kladman').id,
+            credit: Client::__fine.id,
+            amount: FINE,
+            details: "Штраф за ненаход",
+            status: Ledger::CLEARED,
+            created: Time.now
+        )
+        answer_callback "Штраф начислен."
+        kladman_card(sget('hosting_kladman').id)
+      end
+
+      def back_to_kladmans
+        handle('kladman_card')
+        bot = Bot[hb_client[:master]]
+        kladmans = bot.kladmans
+        reply_update 'hosting/menu_admin', master: bot, kladmans: kladmans
+      end
+
+      def hosting_admin_menu
+        reply_simple 'hosting/admin_buttons'
       end
 
       def hosting_rules
@@ -24,15 +62,87 @@ module TSX
         reply_simple 'hosting/tarrifs'
       end
 
+      def kladman_pay_out(data = nil)
+        handle('kladman_pay_out')
+        if !data
+          reply_message "#{icon('pencil2')} Сколько выплатить?"
+        else
+          kladman = sget('hosting_kladman')
+          Ledger.create(
+              debit: kladman.id,
+              credit: Client::__salarypaid.id,
+              amount: @tsx_bot.cnts(data.to_i),
+              details: "Выплата кладчику ##{kladman.id}",
+              status: Ledger::CLEARED,
+              created: Time.now
+          )
+          answer_callback "Выплачено."
+          show_kladman_card(sget('hosting_kladman'))
+        end
+      end
+
+      def kladman_send_opt(data = nil)
+        handle('kladman_send_opt')
+        if !data
+          reply_message "#{icon('pencil2')} Сколько кладов выдано?"
+        else
+          kladman = sget('hosting_kladman')
+          rst = Staff.find(client: kladman.id)
+          Staff.find(client: kladman.id).update(rest: rst.rest + data.to_i)
+          reply_message "Выдано *#{data} кладов*."
+          show_kladman_card(kladman)
+        end
+      end
+
       def hosting_add_kladman(data = nil)
         handle('hosting_add_kladman')
         if !data
           reply_message "#{icon('pencil2')} Введите номер клиента нового сотрудника."
         else
-          client = Client[data]
-          raise TSXException.new("Нет такого клиента `#{data}`") if client.nil?
-          sset('hosting_new_kladman', client)
-          hosting_kladman_bot
+          begin
+            Integer(data)
+            client = Client[data]
+            raise TSXException.new("#{icon('warning')} Нет такого клиента") if client.nil?
+            sset('hosting_new_kladman', client)
+            hosting_kladman_bot
+          rescue
+            raise TSXException.new("#{icon('warning')} Номер клиента может быть только цифрой")
+          end
+        end
+      end
+
+      def hosting_add_owner(data = nil)
+        handle('hosting_add_owner')
+        if !data
+          reply_message "#{icon('pencil2')} Введите номер клиента владельца бота."
+        else
+          begin
+            Integer(data)
+            client = Client[data]
+            raise TSXException.new("#{icon('warning')} Нет такого клиента") if client.nil?
+            sset('hosting_new_kladman', client)
+            hosting_owner_bot
+          rescue
+            raise TSXException.new("#{icon('warning')} Номер клиента может быть только цифрой")
+          end
+        end
+      end
+
+      def hosting_owner_bot(data = nil)
+        handle('hosting_owner_bot')
+        if !data
+          reply_message "#{icon('pencil2')} Введите номер бота, в котором он будет владельцем."
+        else
+          bot = Bot[data]
+          puts "HELLOOOO".colorize(:yellow)
+          puts bot.inspect
+          kladman = sget('hosting_new_kladman')
+          puts kladman.inspect
+          raise TSXException.new("Нет такого бота `#{data}`") if bot.nil?
+          kladman.update(master: bot.id)
+          Staff.create(client: kladman.id)
+          bot.add_operator(kladman, Client::HB_ROLE_ADMIN)
+          reply_message "Владелец бота #{icon('id')} *#{kladman.id}* добавлен в бот *#{bot.id}*"
         end
       end
 
@@ -48,6 +158,7 @@ module TSX
           puts kladman.inspect
           raise TSXException.new("Нет такого бота `#{data}`") if bot.nil?
           kladman.update(master: bot.id)
+          Staff.create(client: kladman.id)
           bot.add_operator(kladman, Client::HB_ROLE_KLADMAN)
           reply_message "Кладман #{icon('id')} *#{kladman.id}* добавлен в бот *#{bot.id}*"
         end

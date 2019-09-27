@@ -30,6 +30,7 @@ TOKEN_ALPHABET = 'ABCDEFGHKLMNO1234567890'
 ONION_ADDRESS = '3q5jrloba3ea3pza.onion'
 OWNERS_CHAT = 'https://t.me/joinchat/GVN5xg2sFEBE5fulDp23ww'
 BOT_RENT = 200
+FINE = 370
 
 # BCHANGE = BestchangeRates.new
 # OBMENKI = BCHANGE.exchangers

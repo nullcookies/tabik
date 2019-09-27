@@ -80,11 +80,10 @@ module TSX
     def hosting_admin_buttons
       [
           [
-              "#{icon('bar_chart')} Выплатить",
-              "#{icon('package')} Ненаход"
+              "#{icon('construction_worker')} Добавить сотрудника",
           ],
           [
-              "#{icon('pouch')} Стата"
+              "#{icon('family')} Сотрудники"
           ]
       ]
     end

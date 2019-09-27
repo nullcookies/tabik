@@ -95,11 +95,14 @@ HAMDLERS = {
       "Правила": 'hosting_rules',
       "Тарифы": 'hosting_tarrifs',
       "add_kladman": 'hosting_add_kladman',
+      "add_owner": 'hosting_add_owner',
       "Расчеты": 'start_hosting',
       "Загрузить": 'hosting_uploads',
       "работу": 'start_hosting',
       "платеж": 'qiwi',
-      "загружать": 'hosting_cancel_upload'
+      "загружать": 'hosting_cancel_upload',
+      "Сотрудники": 'start_hosting',
+      "сотрудника": 'hosting_add_kladman'
 }
 
 CHAT_HAMDLERS = {

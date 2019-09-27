@@ -76,6 +76,10 @@ class Client < Sequel::Model(:client)
     !Vote.find(username: self.tele, bot: self.bot).nil?
   end
 
+  def rest
+    Staff.find(client: self.id).rest
+  end
+
   def has_bet?(game)
     !Bet.find(client: self.id, game: game.id).nil?
   end
@@ -165,6 +169,10 @@ class Client < Sequel::Model(:client)
 
   def self.__refunds
     Client.find(username: '__refunds')
+  end
+
+  def self.__salarypaid
+    Client.find(username: '__salarypaid')
   end
 
   def self.__debt
@@ -881,14 +889,14 @@ class Client < Sequel::Model(:client)
   def kladman_paid
     credit = Ledger.dataset.
         select{Sequel.as(Sequel.expr{COALESCE(sum(:ledger__amount), 0)}, :bns)}.
-        where(credit: self.id, debit: Client::__salary.id, status: Ledger::CLEARED)
+        where(credit: Client::__salarypaid.id, debit: self.id, status: Ledger::CLEARED)
     credit.map(:bns)[0]
   end
 
   def kladman_fines
     credit = Ledger.dataset.
         select{Sequel.as(Sequel.expr{COALESCE(sum(:ledger__amount), 0)}, :bns)}.
-        where(credit: self.id, debit: Client::__fine.id, status: Ledger::CLEARED)
+        where(credit: Client::__fine.id, debit: self.id, status: Ledger::CLEARED)
     credit.map(:bns)[0]
   end
 

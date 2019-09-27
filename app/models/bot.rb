@@ -464,6 +464,10 @@ class Bot < Sequel::Model(:bot)
     Item.where(bot: self.id).exclude(status: [Item::ESCROW_INACTIVE, Item::ESCROW_ACTIVE, Item::ESCROW_PAUSED]).count(:id)
   end
 
+  def kladmans
+    Client.select(:client__id, :client__username).join(:team, :team__client => :client__id).where(:team__bot => self.id, :team__role => Client::HB_ROLE_KLADMAN)
+  end
+
   def escrows(status = nil)
     if status.nil?
       Escrow.where('seller = ? or buyer = ?', hb_operator.id, hb_operator.id)
