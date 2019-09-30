@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ApplicationController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ApplicationController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/RouletteController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/RouletteController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/tsx/payload.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/tsx/payload.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/view_helpers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/view_helpers.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/voucher.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/voucher.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/admin/vouchers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/admin/vouchers.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/roulette/welcome.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/roulette/welcome.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/const.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/const.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +21,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="434">
@@ -91,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/lib/tsx/payload.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="171" column="8" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="8" />
+            <state relative-caret-position="349">
+              <caret line="137" selection-start-line="137" selection-end-line="137" />
             </state>
           </provider>
         </entry>
@@ -201,8 +191,8 @@
         <option value="$PROJECT_DIR$/app/models/voucher.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/admin/vouchers.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" />
-        <option value="$PROJECT_DIR$/app/lib/tsx/payload.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" />
+        <option value="$PROJECT_DIR$/app/lib/tsx/payload.rb" />
       </list>
     </option>
   </component>
@@ -521,12 +511,12 @@
       <workItem from="1569370470835" duration="10857000" />
       <workItem from="1569460539782" duration="602000" />
       <workItem from="1569530009696" duration="10459000" />
-      <workItem from="1569770282801" duration="7967000" />
+      <workItem from="1569770282801" duration="8590000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="865285000" />
+    <option name="totallyTimeSpent" value="865908000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -861,17 +851,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/tsx/payload.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="171" column="8" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
           <caret line="548" column="39" selection-start-line="548" selection-start-column="39" selection-end-line="548" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/tsx/payload.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
         </state>
       </provider>
     </entry>

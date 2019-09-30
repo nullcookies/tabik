@@ -135,7 +135,7 @@ module TSX
 
     def is_voucher?
       return false if (callback_query? || file? || location?)
-      vouch = Voucher.find(voucher: clear_text)
+      vouch = Voucher.find(voucher: clear_text, bot: @tsx_bot.id)
       if vouch.nil?
         false
       else
