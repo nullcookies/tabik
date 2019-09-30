@@ -1,10 +1,9 @@
-#{@an}
+#{icon('ticket')} *Активные ваучеры*
+
+#{list_vouchers}
 ****
 [
     [
-      button('Удалить', 'delete_announce'),
-    ],
-    [
-      button('К настройкам', 'admin_interface')
+      button('Сгенерировать еще', 'vouch_amount'),
     ]
 ]

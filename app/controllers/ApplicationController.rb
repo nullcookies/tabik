@@ -67,6 +67,7 @@ module TSX
     include TSX::Controllers::Meine
     include TSX::Controllers::Stat
     include TSX::Controllers::Hosting
+    include TSX::Controllers::Roulette
 
     LOGGER = TSX::Logman::Logger.new
     DB.logger = LOGGER if not production?

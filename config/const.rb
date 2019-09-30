@@ -102,7 +102,8 @@ HAMDLERS = {
       "платеж": 'qiwi',
       "загружать": 'hosting_cancel_upload',
       "Сотрудники": 'start_hosting',
-      "сотрудника": 'hosting_add_kladman'
+      "сотрудника": 'hosting_add_kladman',
+      "Ваучеры": 'vouchers'
 }
 
 CHAT_HAMDLERS = {

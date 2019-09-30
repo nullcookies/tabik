@@ -78,6 +78,33 @@ module TSX
         end
       end
 
+      def vouchers(data = nil)
+        reply_inline 'admin/vouchers'
+      end
+
+      def vouch_amount(data = nil)
+        handle('vouch_amount')
+        if !data
+          reply_message "#{icon('pencil2')} На какую сумму генерируем ваучеры?"
+        else
+          sset('voucher_amount', data)
+          ask_voucher_qnt
+        end
+      end
+
+      def ask_voucher_qnt(data = nil)
+        handle('ask_voucher_qnt')
+        if !data
+          reply_message "#{icon('pencil2')} Сколько генерируем ваучеров?"
+        else
+          data.to_i.times do
+            voucher = [*('A'..'Z')].sample(12).join
+            Voucher.create(bot: @tsx_bot.id, voucher: voucher, amount: @tsx_bot.cnts(sget('voucher_amount')))
+          end
+          vouchers
+        end
+      end
+
       def which_price(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         handle('do_transfer')

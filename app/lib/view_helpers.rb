@@ -50,6 +50,7 @@ module TSX
           ],
           [
               "#{icon('art')} Интерфейс",
+              "#{icon('ticket')} Ваучеры",
               btn_main
           ]
       ]
@@ -399,6 +400,16 @@ module TSX
         end
       end
       lines
+    end
+
+    def list_vouchers
+      vouchers = Voucher.where(bot: @tsx_bot.id)
+      lines = ''
+      vouchers.each do |v|
+        lines << "*#{v.voucher}* .. #{@tsx_bot.amo(v.amount)}\r\n"
+      end
+      lines
+
     end
 
     def list_debts

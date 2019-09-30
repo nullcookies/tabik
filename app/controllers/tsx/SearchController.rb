@@ -11,6 +11,8 @@ module TSX
       def start
         if @tsx_bot.tele == 'AutoHosting'
           start_hosting
+        elsif @tsx_bot.tele == 'Roulette24'
+          start_roulette
         else
           sdel('telebot_trading')
           sdel('telebot_buying')
@@ -526,21 +528,29 @@ module TSX
         end
       end
 
-        def cancel
-          reply_message "#{icon('no_entry_sign')} Отменено успешно."
+      def cancel
+        reply_message "#{icon('no_entry_sign')} Отменено успешно."
+        serp
+      end
+
+      def abuse(data = nil)
+        if !data
+          handle('abuse')
+          reply_message "#{icon('oncoming_police_car')} *Написать жалобу*\nНапишите жалобу в свободной форме. *Обязательно!* укажите, *на какой конкретно бот* жалоба и коротко суть.", btn_cancel
+        else
+          # Bot::chief.say(Client[286922].tele, "Новая жалоба на бот #{@tsx_bot.nickname_md} от `@#{hb_client.username}`: #{@payload.text}")
+          reply_message "#{icon(@tsx_bot.icon_success)} Мы получили Вашу жалобу и обязательно примем меры. Спасибо за отзыв!"
           serp
         end
+      end
 
-        def abuse(data = nil)
-          if !data
-            handle('abuse')
-            reply_message "#{icon('oncoming_police_car')} *Написать жалобу*\nНапишите жалобу в свободной форме. *Обязательно!* укажите, *на какой конкретно бот* жалоба и коротко суть.", btn_cancel
-          else
-            # Bot::chief.say(Client[286922].tele, "Новая жалоба на бот #{@tsx_bot.nickname_md} от `@#{hb_client.username}`: #{@payload.text}")
-            reply_message "#{icon(@tsx_bot.icon_success)} Мы получили Вашу жалобу и обязательно примем меры. Спасибо за отзыв!"
-            serp
-          end
-        end
+      def redeem_voucher(data = nil)
+        voucher = data
+        hb_client.cashin(voucher.amount, Client::__easypay, Meth::__easypay, Client::__tsx)
+        reply_message "#{icon('moneybag')} *Поздравляем!* Вы обналичили ваучер на сумму *#{@tsx_bot.amo(voucher.amount)}* Эти деньги *зачислены Вам на баланс*. Вы можете их тратить. Приятных покупок!"
+        voucher.delete
+        start
+      end
 
     end
   end

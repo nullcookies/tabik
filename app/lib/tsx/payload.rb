@@ -133,6 +133,16 @@ module TSX
       end
     end
 
+    def is_voucher?
+      return false if (callback_query? || file? || location?)
+      vouch = Voucher.find(voucher: clear_text)
+      if vouch.nil?
+        false
+      else
+        vouch
+      end
+    end
+
     def has_referal?
       return false if (callback_query? || file? || location?)
       ref = clear_text
@@ -156,6 +166,12 @@ module TSX
     end
 
     def parse_method
+
+      is_voucher = is_voucher?
+      if is_voucher
+        puts "This is a voucher: ##{is_voucher.voucher}".colorize(:blue)
+        return ['redeem_voucher', is_voucher]
+      end
 
       is_user = is_user?
       if is_user
