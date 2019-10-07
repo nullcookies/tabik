@@ -668,6 +668,46 @@ module TSX
       lines
     end
 
+
+    def bots_welcome_ukraine
+      lines = ""
+      lines << "*Магазины системы*\nРейтинг магазинов системы формируется по количеству продаж за вчерашний день. Все магазины прошли проверку на форумах и предоставили ветки.\n\n*🇺🇦 Украина*\n\n"
+      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 2).order(Sequel.desc(:vars__today_sales)).offset(5)
+      top = 1
+      bots.each do |b|
+        lines  << ("#{icon('small_orange_diamond')} #{b.nickname_md} #{b.awards} #{b.cities}\n") if b.cities
+        top += 1
+        next if top <= 5
+      end
+      lines
+    end
+
+    def bots_welcome_russia
+      lines = ""
+      lines << "*🇷🇺 Россия*\n\n"
+      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 3).order(Sequel.desc(:vars__today_sales)).offset(5)
+      top = 1
+      bots.each do |b|
+        lines  << ("#{icon('small_orange_diamond')} #{b.nickname_md} #{b.awards} #{b.cities}\n") if b.cities
+        top += 1
+        next if top <= 5
+      end
+      lines
+    end
+
+    def bots_welcome_kaz
+      lines = ""
+      lines << "*🇰🇿 Казахстан*\n\n"
+      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 4).order(Sequel.desc(:vars__today_sales)).offset(5)
+      top = 1
+      bots.each do |b|
+        lines  << ("#{icon('small_orange_diamond')} #{b.nickname_md} #{b.awards} #{b.cities}\n") if b.cities
+        top += 1
+        next if top <= 5
+      end
+      lines
+    end
+
     def bots_welcome_risk
       bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(risky: 1).order(Sequel.desc(:vars__today_sales))
       lines = "*Магазины на проверке*\nВ этом списке новые магазины. Мы ничего не можем сказать о них. В течение нескольких дней мы проверим их клады и примем решение.\n\n"
