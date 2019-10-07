@@ -671,8 +671,8 @@ module TSX
 
     def bots_welcome_ukraine
       lines = ""
-      lines << "*Магазины системы*\nРейтинг магазинов системы формируется по количеству продаж за вчерашний день. Все магазины прошли проверку на форумах и предоставили ветки.\n\n*🇺🇦 Украина*\n\n"
-      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 2).order(Sequel.desc(:vars__today_sales)).offset(5)
+      lines << "*Магазины системы*\nРейтинг магазинов системы формируется по количеству продаж за вчерашний день. Все магазины прошли проверку на форумах и предоставили ветки.\n\n*🇺🇦 Украина*\nРейтинг формируется по количеству продаж.\n"
+      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 2).order(Sequel.desc(:vars__today_sales))
       top = 1
       bots.each do |b|
         lines  << ("#{icon('small_orange_diamond')} #{b.nickname_md} #{b.awards} #{b.cities}\n") if b.cities
@@ -684,8 +684,8 @@ module TSX
 
     def bots_welcome_russia
       lines = ""
-      lines << "*🇷🇺 Россия*\n\n"
-      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 3).order(Sequel.desc(:vars__today_sales)).offset(5)
+      lines << "*🇷🇺 Россия*\nРейтинг формируется по количеству продаж.\n\n"
+      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 3).order(Sequel.desc(:vars__today_sales))
       top = 1
       bots.each do |b|
         lines  << ("#{icon('small_orange_diamond')} #{b.nickname_md} #{b.awards} #{b.cities}\n") if b.cities
@@ -697,8 +697,8 @@ module TSX
 
     def bots_welcome_kaz
       lines = ""
-      lines << "*🇰🇿 Казахстан*\n\n"
-      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 4).order(Sequel.desc(:vars__today_sales)).offset(5)
+      lines << "*🇰🇿 Казахстан*\nРейтинг формируется по количеству продаж.\n\n"
+      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 4).order(Sequel.desc(:vars__today_sales))
       top = 1
       bots.each do |b|
         lines  << ("#{icon('small_orange_diamond')} #{b.nickname_md} #{b.awards} #{b.cities}\n") if b.cities
