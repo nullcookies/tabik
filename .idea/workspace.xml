@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/app/views/tsx/welcome/bots_kaz.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/welcome/bots_kaz.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/welcome/bots_moldova.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/welcome/bots_moldova.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/welcome/bots_russia.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/welcome/bots_russia.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/bots_kaz.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="4" selection-start-column="4" selection-end-column="4" />
+            <state relative-caret-position="30">
+              <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -59,7 +57,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/bots_moldova.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -201,8 +199,8 @@
         <option value="$PROJECT_DIR$/app/views/tsx/welcome/bots.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/PublicController.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/welcome/bots_russia.rb" />
-        <option value="$PROJECT_DIR$/app/views/tsx/welcome/bots_kaz.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/welcome/bots_moldova.rb" />
+        <option value="$PROJECT_DIR$/app/views/tsx/welcome/bots_kaz.rb" />
       </list>
     </option>
   </component>
@@ -542,12 +540,12 @@
       <workItem from="1570300060619" duration="2739000" />
       <workItem from="1570489522966" duration="2537000" />
       <workItem from="1570551709212" duration="70000" />
-      <workItem from="1570563397654" duration="2050000" />
+      <workItem from="1570563397654" duration="2191000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="873954000" />
+    <option name="totallyTimeSpent" value="874095000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -890,13 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/bots_kaz.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/bots_russia.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -908,6 +899,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tsx/welcome/bots_kaz.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
         </state>
       </provider>
     </entry>
