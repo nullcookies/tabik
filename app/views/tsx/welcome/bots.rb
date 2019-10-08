@@ -5,12 +5,12 @@
 ****
 [
     [
-      button('Украина', 'bots_ukraine')
+      button('🇺🇦 Украина', 'bots_ukraine')
     ],
     [
-        button('Россия', 'bots_russia'),
+        button('🇷🇺 Россия', 'bots_russia'),
     ],
     [
-        button('Казахстан', 'bots_kaz'),
+        button('🇰🇿 Казахстан', 'bots_kaz'),
     ]
 ]
