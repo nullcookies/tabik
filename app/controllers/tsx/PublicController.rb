@@ -47,19 +47,19 @@ module TSX
         reply_inline 'welcome/bots'
       end
 
-      def bot_ukraine
+      def bot_ukraine(data = nil)
         reply_update 'welcome/bots'
       end
 
-      def bot_russia
+      def bot_russia(data = nil)
         reply_update 'welcome/bots_russia'
       end
 
-      def bot_kaz
+      def bot_kaz(data = nil)
         reply_update 'welcome/bots_kaz'
       end
 
-      def bot_moldova
+      def bot_moldova(data = nil)
         reply_update 'welcome/bots_moldova'
       end
 
