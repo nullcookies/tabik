@@ -684,7 +684,18 @@ module TSX
 
     def bots_welcome_russia
       lines = ""
-      lines << "*🇷🇺 Россия*\n\n"
+      bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 3).order(Sequel.desc(:vars__today_sales))
+      top = 1
+      bots.each do |b|
+        lines  << ("#{icon('small_orange_diamond')} #{b.nickname_md} #{b.awards} #{b.cities}\n") if b.cities
+        top += 1
+        next if top <= 5
+      end
+      lines
+    end
+
+    def bots_welcome_moldova
+      lines = ""
       bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 3).order(Sequel.desc(:vars__today_sales))
       top = 1
       bots.each do |b|
@@ -697,7 +708,6 @@ module TSX
 
     def bots_welcome_kaz
       lines = ""
-      lines << "*🇰🇿 Казахстан*\n\n"
       bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 4).order(Sequel.desc(:vars__today_sales))
       top = 1
       bots.each do |b|

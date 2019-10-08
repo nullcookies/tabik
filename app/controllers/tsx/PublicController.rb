@@ -47,6 +47,22 @@ module TSX
         reply_inline 'welcome/bots'
       end
 
+      def bot_ukraine
+        reply_update 'welcome/bots'
+      end
+
+      def bot_russia
+        reply_update 'welcome/bots_russia'
+      end
+
+      def bot_kaz
+        reply_update 'welcome/bots_kaz'
+      end
+
+      def bot_moldova
+        reply_update 'welcome/bots_moldova'
+      end
+
       def cashout
         reply_simple 'welcome/cashout'
       end
