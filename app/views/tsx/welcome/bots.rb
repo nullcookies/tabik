@@ -4,7 +4,7 @@
 ****
 [
     [
-        button('🇺🇦 Украина', 'bots_ukraine'),
-        button('🇷🇺 Россия', 'bots_russia')
+        # button('🇺🇦 Украина', 'bots_ukraine'),
+        # button('🇷🇺 Россия', 'bots_russia')
     ]
 ]
