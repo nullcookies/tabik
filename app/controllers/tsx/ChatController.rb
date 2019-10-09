@@ -1,10 +1,9 @@
-require 'geocoder'
 module TSX
   module Controllers
-    module Roulette
+    module Chat
 
-      def start_roulette
-        reply_inline "roulette/welcome"
+      def start_chat
+        reply_inline "chat/welcome"
       end
 
     end

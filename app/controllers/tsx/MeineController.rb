@@ -797,6 +797,17 @@ module TSX
         end
       end
 
+      def bot_cashback(data = nil)
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        handle('bot_cashback')
+        if !data
+          reply_message "#{icon('pencil2')} Сколько возвращать на баланс покупателю после покупки, *в процентах*. Вводите только цифру."
+        else
+          @tsx_bot.update(cashback: data)
+          admin_interface
+        end
+      end
+
       def enter_announce(data = nil)
         if !data
           handle('enter_announce')

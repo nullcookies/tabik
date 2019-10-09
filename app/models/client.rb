@@ -235,6 +235,10 @@ class Client < Sequel::Model(:client)
     Client.find(username: '__commission')
   end
 
+  def self.__cashback
+    Client.find(username: '__cashback')
+  end
+
   def self.__easypay
     Client.find(username: '__easypay')
   end
@@ -377,6 +381,21 @@ class Client < Sequel::Model(:client)
         status: Ledger::ACTIVE,
         created: Time.now
       )
+    if !b.cashback.nil? and b.cashback > 0
+      cashback = calc_commission(it.price, b.cashback)
+      Ledger.
+          create(
+              debit: Client::__cashback.id,
+              credit: self.id,
+              trade: trade.id,
+              amount: cashback,
+              details: "Кешбек за заказ ##{it.id},  клад ##{it.id}.",
+              status: Ledger::ACTIVE,
+              created: Time.now
+          )
+      b.say(self.tele, "🤑 Вы получили кешбек *#{b.amo(cashback)}* за заказ!")
+    end
+
     Ledger.
       create(
         debit: ben.id,

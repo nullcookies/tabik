@@ -49,7 +49,7 @@ module TSX
               "#{icon('family')} Админы"
           ],
           [
-              "#{icon('art')} Интерфейс",
+              "#{icon('art')} Настройки",
               "#{icon('ticket')} Ваучеры",
               btn_main
           ]

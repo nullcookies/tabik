@@ -16,6 +16,7 @@ module TSX
     end
 
     def setup_sessa
+      puts @tsx_bot.inspect
       @hb_sessa = Sess.find_or_create(sid: "#{chat}:#{@tsx_bot.tele}", bot: @tsx_bot.id)
     end
 
