@@ -457,7 +457,7 @@ module TSX
         disctrict = District[item.district]
         t = Trade.find(item: item.id)
         buyer = Client[t.buyer]
-        lines << "#{city.russian} / #{disctrict.russian} #{icon(product.icon)} #{price.qnt} *#{@tsx_bot.amo(price.price)}* /#{buyer.id} `#{t.code}`\r\n"
+        lines << "#{city.russian} / #{disctrict.russian} #{icon(product.icon)} #{price.qnt} *#{@tsx_bot.amo(price.price)}* /#{buyer.id} *#{buyer.username}* `#{t.code}`\r\n"
       end
       lines
     end
