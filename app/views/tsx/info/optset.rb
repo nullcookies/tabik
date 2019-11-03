@@ -1,14 +1,11 @@
-ℹ️ *Информационный бот*
-
-Друзья, приводим список активных ботов разных систем, работающих на территории Украины и России. Это актуальные ссылки на сегодняшний день.
-
-#{active_bots}
-[Cartel Bot](https://t.me/cartelshopbot) `@cartelshopbot`
-[Pirat Automat](https://t.me/salim_pirat3) `@salim_pirat3 @salim_pirat2`
-
-Если Вы знаете о каком то боте, которого нет в списке, напишите в поддержку @TSXClients и мы добавим его в мониторинг. Создано и поддерживается системой @TheAutobot.
+Дорогие друзья, Вашему вниманию инфобот Розничной Сети #1. В случае бана одного из наших контактов, в этом боте всегда актуальные ссылки.
 ****
 [
     [
+        url_button('Актуальный бот', @link_to_bot),
+        url_button('Ссылка на лигу', 'http://tinyurl.com/optset'),
+        url_button('Оператор', 'http://t.me/optsetsupport'),
+        url_button('Оптовые заказы', 'http://t.me/optsetsupport'),
+        url_button('Чат с рулетками', 'http://t.me/optsetsupport')
     ]
 ]

@@ -26,6 +26,7 @@ module TSX
         @product = Product[data]
         @city = sget('stat_city')
         @districts = Client::districts_by_city_and_product(@product, @tsx_bot.id, @city)
+        puts @districts.inspect.colorize(:yellow)
         rest = rest_string(@product, @districts)
         reply_update 'admin/stat/show_rest', rest: rest, product: @product, city: @city
       end

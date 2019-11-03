@@ -9,7 +9,9 @@ module TSX
       include TSX::Controllers::Plugin
 
       def start
-        if @tsx_bot.tele == 'AutoHosting'
+        if @tsx_bot.tele == 'OptInfo'
+          start_optset
+        elsif @tsx_bot.tele == 'AutoHosting'
           start_hosting
         elsif @tsx_bot.tele == 'Roulette24'
           start_roulette

@@ -425,6 +425,10 @@ class Bot < Sequel::Model(:bot)
     "[#{(self.title).truncate(trunc)}](https://t.me/#{self.tele}#{finish_name})"
   end
 
+  def nickname_link
+    finish_name = (self.underscored_name == 1 ? '_bot' : 'bot')
+    "https://t.me/#{self.tele}#{finish_name}"
+  end
 
   def statement
     ben = self.beneficiary

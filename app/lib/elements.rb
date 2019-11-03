@@ -10,6 +10,10 @@ module TSX
       {text: text, switch_inline_query: message}
     end
 
+    def url_button(text, url)
+      {text: text, url: url}
+    end
+
     def button_value(text, action)
       Hash.new({text: text, value: action})
     end
