@@ -2,6 +2,7 @@
 `v#{Version.current}`
 
 Кладмен #{icon('id')} *#{hb_client.id}*
+За один клад *#{@tsx_bot.amo(@staff.salary)}*
 Остатки *#{kladov(hb_client.rest - hb_client.klads_uploaded)}*
 Загружено *#{kladov(hb_client.klads_uploaded)}*
 Штрафов *#{@tsx_bot.amo(hb_client.kladman_fines)}*

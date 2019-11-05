@@ -11,7 +11,7 @@ module TSX
       def start
         if @tsx_bot.tele == 'OptInfo'
           start_optset
-        elsif @tsx_bot.tele == 'AutoHosting'
+        elsif @tsx_bot.tele == 'AutoHosting' or @tsx_bot.tele == 'Ahost1'
           start_hosting
         elsif @tsx_bot.tele == 'Roulette24'
           start_roulette
