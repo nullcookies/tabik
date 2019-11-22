@@ -47,6 +47,15 @@ module TSX
         reply_simple 'welcome/bots'
       end
 
+      def bots_roznica(data = nil)
+        reply_update 'welcome/bots'
+      end
+
+      def bots_opt(data = nil)
+        reply_update 'welcome/bots_opt'
+      end
+
+
       def bots_ukraine(data = nil)
         reply_update 'welcome/bots'
       end
