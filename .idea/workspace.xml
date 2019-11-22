@@ -87,8 +87,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/BotController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="405">
+              <caret line="27" selection-start-line="25" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -528,12 +528,12 @@
       <workItem from="1572977906328" duration="2289000" />
       <workItem from="1572980768031" duration="1212000" />
       <workItem from="1574366389679" duration="1630000" />
-      <workItem from="1574433094370" duration="593000" />
+      <workItem from="1574433094370" duration="811000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="904622000" />
+    <option name="totallyTimeSpent" value="904840000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -910,8 +910,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/BotController.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="25" selection-end-line="27" />
         </state>
       </provider>
     </entry>
