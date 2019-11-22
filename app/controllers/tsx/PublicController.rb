@@ -44,7 +44,7 @@ module TSX
       end
 
       def welcome_bots
-        reply_simple 'welcome/bots'
+        reply_inline 'welcome/bots'
       end
 
       def bots_roznica(data = nil)
