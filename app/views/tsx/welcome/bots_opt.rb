@@ -14,7 +14,7 @@
     [
         button("#{icon('green_book')} Клады", 'bots_roznica'),
         button("#{icon('books')} Опт", 'bots_opt'),
-        button("#{icon('eur')} Финансы", 'bots_fin')
+        button("#{icon('euro')} Финансы", 'bots_fin')
 
     ]
 ]
