@@ -1,18 +1,14 @@
-#{icon('books')} *Оптовые поставщики*
-В списке проверенные оптовые поставщики. Во избежание недоразумений, *пользуйтесь гарантом сделок* @pndsupport
+#{icon('books')} *Финансовые сервисы*
+Во избежание недоразумений, *пользуйтесь гарантом сделок* @pndsupport
 
-@optbosssetb Альфа, амф и шишки.
-@helpforobot Лучшие кристаллы в украине!
-[@macdrugs_supp](http://t.me/macdrugs_supp) опт и розница фен, шиш, A-PVP, мет, кокс
-@Optpapa опт и розница шишки
-[@Ramzes_labs_shop](http://t.me/Ramzes_labs_shop) опт и розница A-PVP, фен и шишки
-@ZPbizZP A-PVP, фен, шишки опт и розница
+[@Bank_ua77](http://t.me/Bank_ua77) Магазин продаж Дроп-Карт Укр Банков, Аренда Онлайн Банка, Обнал
 
 #{icon('grey_exclamation')} Присоединяйтесь в [чат оптовых продаж](https://t.me/joinchat/OcmDBFSMrpIAEBCJzW1Mww). Размещайте там объявления один раз в день бесплатно.
 ****
 [
     [
         button("#{icon('green_book')} Клады", 'bots_roznica'),
-        button("#{icon('books')} Опт", 'bots_opt')
+        button("#{icon('books')} Опт", 'bots_opt'),
+        button("#{icon('eur')} Финансы", 'bots_fin')
     ]
 ]

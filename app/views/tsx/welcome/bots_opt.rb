@@ -1,5 +1,5 @@
 #{icon('books')} *Оптовые поставщики*
-В списке проверенные оптовые поставщики. Во избежание недоразумений, *пользуйтесь гарантом сделок* @pndsupport
+Во избежание недоразумений, *пользуйтесь гарантом сделок* @pndsupport
 
 @optbosssetb Альфа, амф и шишки.
 @helpforobot Лучшие кристаллы в украине!
@@ -13,6 +13,8 @@
 [
     [
         button("#{icon('green_book')} Клады", 'bots_roznica'),
-        button("#{icon('books')} Опт", 'bots_opt')
+        button("#{icon('books')} Опт", 'bots_opt'),
+        button("#{icon('eur')} Финансы", 'bots_fin')
+
     ]
 ]

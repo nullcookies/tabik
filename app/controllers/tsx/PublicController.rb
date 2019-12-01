@@ -55,6 +55,9 @@ module TSX
         reply_update 'welcome/bots_opt'
       end
 
+      def bots_fin(data = nil)
+        reply_update 'welcome/bots_fin'
+      end
 
       def bots_ukraine(data = nil)
         reply_update 'welcome/bots'
