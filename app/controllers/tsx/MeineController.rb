@@ -583,8 +583,24 @@ module TSX
         handle('enter_new_price')
         product = Product[data]
         prices = Price.where(product: product.id, bot: @tsx_bot.id).distinct(:price__qnt)
+        if prices.count == 0 or prices.first.picture.nil?
+          picture = "#{icon('no_entry_sign')} *Нет картинки*"
+        else
+          picture = "*#{prices.first.picture}*"
+        end
         sset('meine_product', product)
-        reply_update 'admin/product_prices', product: product, prices: prices
+        reply_update 'admin/product_prices', product: product, prices: prices, picture: picture
+      end
+
+      def admin_ask_product_picture(data = nil)
+        handle('admin_ask_product_picture')
+        if !data
+          reply_message "#{icon('pencil2')} Введите прямую ссылку на картинку. Откройте ссылку с картинкой в бровзере, нажмите на нее правой кнопкой мыши и кликните `Скопировать адрес картинки`"
+        else
+          product = sget('meine_product')
+          Price.where(bot: @tsx_bot.id, product: product.id).update(picture: @payload.text)
+          admin_view_product_prices(product.id)
+        end
       end
 
       def admin_view_product_prices(data = nil)
@@ -592,8 +608,13 @@ module TSX
         handle('enter_new_price')
         product = Product[data]
         prices = Price.where(product: product.id, bot: @tsx_bot.id).distinct(:price__qnt)
+        if prices.count == 0 or prices.first.picture.nil?
+          picture = "#{icon('no_entry_sign')} *Нет картинки*"
+        else
+          picture = "*#{prices.first.picture}*"
+        end
         sset('meine_product', product)
-        reply_inline 'admin/product_prices', product: product, prices: prices
+        reply_inline 'admin/product_prices', product: product, prices: prices, picture: picture
       end
 
       def enter_new_price(data = nil)

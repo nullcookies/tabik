@@ -189,6 +189,7 @@ module TSX
               commission: (p.price.to_f * @tsx_bot.commission.to_f/100),
               random: rand(100000..900000).to_s
             )
+            sset('buying_price', p)
             sbuy(it)
             strade(tr)
             botrec('Бронирование клада', it.id)
@@ -274,7 +275,12 @@ module TSX
         end
         method = sget('telebot_method')
         buts = _trade.confirmation_buttons(hb_client, method)
-        reply_inline 'search/trade', trade: _trade, item: _buy, method: method
+        price = sget('buying_price')
+        if price.picture.nil?
+          reply_inline 'search/trade', trade: _trade, item: _buy, method: method
+        else
+          reply_logo price.picture, 'search/trade', trade: _trade, item: _buy, method: method
+        end
         if method != 'qiwi'
           reply_simple 'search/confirm', buts: buts
         else

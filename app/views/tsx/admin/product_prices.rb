@@ -1,5 +1,7 @@
 #{icon(@product.icon)} *#{@product.russian}*
 
+Ссылка на картнику #{@picture}
+
 #{icon('grey_exclamation')} Обратите внимение, что удалить цены невозможно, так как они привязаны к существующим кладам. Цены можно *только изменить*.
 ****
 buts ||= []
@@ -9,7 +11,7 @@ buts = keyboard(@prices, 2) do |rec|
 end
 buts <<
     [
-      button('Загрузить картинку', 'upload_product_photo'),
+      button('Загрузить картинку', 'admin_ask_product_picture'),
       button('Добавить фасовку', 'enter_qnt'),
     ] <<
     [
