@@ -102,7 +102,8 @@ HAMDLERS = {
       "загружать": 'hosting_cancel_upload',
       "Сотрудники": 'start_hosting',
       "сотрудника": 'hosting_add_kladman',
-      "Ваучеры": 'vouchers'
+      "Ваучеры": 'vouchers',
+      "show_item": 'admin_show_item'
 }
 
 CHAT_HAMDLERS = {
