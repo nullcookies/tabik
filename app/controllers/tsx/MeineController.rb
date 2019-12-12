@@ -996,7 +996,7 @@ module TSX
         b.clear
       end
 
-      def show_item(data = nil)
+      def admin_show_item(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         if !data
           handle('show_item')
