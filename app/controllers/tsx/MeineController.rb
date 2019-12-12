@@ -1003,8 +1003,12 @@ module TSX
           reply_message "#{icon('pencil2')} Введите номер клада"
         else
           i = Item[data.to_i]
-          not_permitted if i.bot != @tsx_bot.id
-          reply_message i.photo
+          if i.nil?
+            reply_message "#{icon('no_entry_sign')} Такого клада не существует"
+          else
+            not_permitted if i.bot != @tsx_bot.id
+            reply_message i.photo
+          end
         end
 
       end
