@@ -999,7 +999,7 @@ module TSX
       def admin_show_item(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         if !data
-          handle('show_item')
+          handle('admin_show_item')
           reply_message "#{icon('pencil2')} Введите номер клада"
         else
           i = Item[data.to_i]
