@@ -134,6 +134,7 @@ def get_today_transactions(web, bot)
         return false
       end
       if !amount.include?(',00')
+        puts 'ONLINE TRANSFER'.colorize(:yellow)
         am_in_code = amount.tr(',', '')
         code = "#{matched.captures.first}#{am_in_code}"
       else
@@ -154,6 +155,7 @@ def get_today_transactions(web, bot)
 end
 
 threads = []
+
 Bot.where(checkeasy: 1).each do |bot|
   threads << Thread.new {
     begin
@@ -170,6 +172,7 @@ Bot.where(checkeasy: 1).each do |bot|
     end
   }
 end
+
 ThreadsWait.all_waits(threads) do |t|
   STDERR.puts "Thread #{t} has terminated."
 end

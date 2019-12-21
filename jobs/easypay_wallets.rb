@@ -4,7 +4,7 @@ require 'colorize'
 logger = CronLogger.new
 # DB.logger = logger
 
-def easypay_login(bot)
+def easypay_login(bot, login, password)
   i = 0
   num = 4
   logged = false
@@ -34,8 +34,6 @@ def easypay_login(bot)
     web.agent.set_proxy(proxy.host, proxy.port, proxy.login, proxy.password)
     puts "#{bot.title}: Retrieving main page".white
     easy = web.get('https://partners.easypay.ua/auth/signin')
-    login = bot.payment_option('phone', Meth::__easypay)
-    password = bot.payment_option('password', Meth::__easypay)
     puts "Trying with proxy #{proxy.host}:#{proxy.host} #{proxy.login}/#{proxy.password}"
     puts "#{bot.title}: Trying to login with #{login}/#{password}".white
     begin
@@ -62,48 +60,9 @@ def easypay_login(bot)
   false if !logged
 end
 
-def easypay_login_nocaptcha(bot)
-  i = 0
-  num = 5
-  logged = false
-  web = Mechanize.new
-  web.keep_alive = false
-  web.read_timeout = 10
-  web.open_timeout = 10
-  web.user_agent = "Mozilla/5.0 Gecko/20101203 Firefox/3.6.13"
-  proxy = Prox.get_active
-  web.agent.set_proxy(proxy.host, proxy.port, proxy.login, proxy.password)
-  puts "#{bot.title}: Retrieving main page".white
-  easy = web.get('https://partners.easypay.ua/auth/signin')
-  login = bot.payment_option('phone', Meth::__easypay)
-  password = bot.payment_option('password', Meth::__easypay)
-  puts "Trying with proxy #{proxy.host}:#{proxy.host} #{proxy.login}/#{proxy.password}"
-  puts "#{bot.title}: Trying to login with #{login}/#{password}".white
-  begin
-    # exit
-    logged = easy.form do |f|
-      f.login = login.to_s
-      f.password = password.to_s
-      # f.gresponse = resp
-    end.submit
-  rescue => e
-    puts "#{bot.title}: Not logged to Easypay.".colorize(:red)
-    return false
-  end
-  if logged.title != "EasyPay - Вход в систему"
-    puts "#{bot.title}: Logged to Easypay.".colorize(:green)
-    logged = true
-    return web
-  else
-    puts "#{bot.title}: Not logged with response. Next try.".colorize(:red)
-  end
-  false if !logged
-end
-
-def get_today_transactions(web, bot)
+def get_today_transactions(web, bot, wallet)
   puts "#{bot.title}: Checking all payments for the current day".white
-  wallet = bot.payment_option('wallet', Meth::__easypay)
-  st = web.get("https://partners.easypay.ua/wallets/buildreport?walletId=#{wallet}&month=#{Date.today.month}&year=#{Date.today.year}")
+  st = web.get("https://partners.easypay.ua/wallets/buildreport?walletId=#{wallet.wallet}&month=#{Date.today.month}&year=#{Date.today.year}")
   puts st.inspect
   tab = st.search(".//table[@class='table-layout']").children
   puts "#{bot.title}: TAB COUNT: #{tab.count}"
@@ -140,7 +99,6 @@ def get_today_transactions(web, bot)
       else
         code = "#{matched.captures.first}#{matched.captures.last}"
       end
-      wallet = Wallet.find(bot: bot.id, active: 1)
       p = Easypay.where("bot = #{bot.id} and wallet = '#{wallet.id}' and  code = '#{code}' and amount = '#{amount}'")
       if p.count == 0
         puts "Adding payment #{amount} with code #{code}".colorize(:blue)
@@ -155,25 +113,20 @@ def get_today_transactions(web, bot)
 end
 
 threads = []
-Wallet.where(active: 1).where(secondary: 1) do |wallet|
-  bot = Bot[wallet.bot]
-  easypay_login_wallet(bot, wallet)
-  get_today_transactions
-end
+DB.fetch('select * from wallet where active = 1 or secondary = 1') do |wallet|
 
-Bot.where(checkeasy: 1).each do |bot|
   threads << Thread.new {
     begin
-      puts "BOT: #{bot.title}".blue
-      web = easypay_login(bot)
+      bot = Bot[wallet[:bot]]
+      puts "Processing bot:  #{bot.title} / wallet: #{wallet[:wallet]}".colorize(:blue)
+      web = easypay_login(bot, wallet[:phone], wallet[:password])
       if !web
         puts "Was not logged #{bot.title}".colorize(:red)
       else
-        get_today_transactions(web, bot)
+        get_today_transactions(web, bot, Wallet[wallet[:id]])
       end
     rescue => e
       puts e.message
-      puts e.backtrace.join("\t\n")
     end
   }
 end

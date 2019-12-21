@@ -37,8 +37,11 @@ module TSX
 
     def payment_wallet(meth)
       if meth.title == 'easypay'
-        pmt = Wallet.find(bot: self.id, active: 1)
-        pmt.keeper
+        pmt = DB.fetch('select * from wallet where bot = ? and (active = 1 or secondary = 1) order by random() limit 1', self.id)
+        puts "COUNT: #{pmt.count}"
+        puts pmt.inspect
+        puts "KEERER: #{pmt.first[:keeper]}"
+        pmt.first[:keeper]
       else
         pmt = Qiwi.find(bot: self.id, active: 1)
         "+#{pmt.phone}"

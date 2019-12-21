@@ -471,6 +471,20 @@ module TSX
         view_wallet(wall)
       end
 
+      def set_secondary
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        wall = sget('meine_wallet').id
+        Wallet[wall].update(secondary: 1)
+        view_wallet(wall)
+      end
+
+      def remove_from_secondary
+        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        wall = sget('meine_wallet').id
+        Wallet[wall].update(secondary: 0)
+        view_wallet(wall)
+      end
+
       def activate_qiwi_wallet
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         wall = sget('meine_wallet').id
