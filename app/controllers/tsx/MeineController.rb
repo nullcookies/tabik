@@ -15,7 +15,7 @@ module TSX
       end
 
       def admin_user_trades(data = nil)
-        trads = Trade.where(buyer: sget('admin_edit_client').id)
+        trads = Trade.where(buyer: sget('admin_edit_client').id, status: Trade::FINALIZED)
         trades = list_user_trades(trads)
         reply_update 'admin/user_trades', trades: trades
       end
