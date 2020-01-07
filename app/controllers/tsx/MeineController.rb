@@ -672,7 +672,7 @@ module TSX
       end
 
       def choose_district(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) && !hb_client.is_operator?(@tsx_bot)
         handle('choose_product')
         city = City[data]
         sset('meine_city', city)
@@ -682,7 +682,7 @@ module TSX
       end
 
       def next_districts(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) && !hb_client.is_operator?(@tsx_bot)
         page = sget('admin_districts_page')
         sset('admin_districts_page', page.to_i + 1)
         city = sget('meine_city')
@@ -691,7 +691,7 @@ module TSX
       end
 
       def prev_districts(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) && !hb_client.is_operator?(@tsx_bot)
         page = sget('admin_districts_page')
         sset('admin_districts_page', page.to_i - 1)
         city = sget('meine_city')
@@ -700,7 +700,7 @@ module TSX
       end
 
       def choose_product(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) && !hb_client.is_operator?(@tsx_bot)
         handle('choose_prices')
         district = District[data]
         sset('meine_district', district)
@@ -709,7 +709,7 @@ module TSX
       end
 
       def choose_prices(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) && !hb_client.is_operator?(@tsx_bot)
         handle('enter_klads')
         ps = Product[data]
         sset('meine_product', ps)
@@ -718,7 +718,7 @@ module TSX
       end
 
       def enter_klads(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) && !hb_client.is_operator?(@tsx_bot)
         handle('save_klads')
         price = Price[data]
         sset('meine_price', price)
