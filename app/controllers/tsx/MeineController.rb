@@ -783,30 +783,30 @@ module TSX
       end
 
       def admin_back_to_spam(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         sdel('admin_spam')
         admin_spam
       end
 
       def admin_resend_spam(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         sget('admin_spam').update(status: Spam::NEW)
         admin_back_to_spam
       end
 
       def admin_delete_spam(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         sget('admin_spam').delete
         admin_back_to_spam
       end
 
       def admin_edit_spam(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         edit_spam(sget('admin_spam').id)
       end
 
       def edit_spam(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         handle('edit_spam')
         spam = Spam[data]
         sset('admin_spam', spam)
@@ -858,7 +858,7 @@ module TSX
       end
 
       def admin_create_spam(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         if !data
           handle('admin_create_spam')
           reply_simple 'admin/create_spam'
@@ -874,7 +874,7 @@ module TSX
       end
 
       def admin_create_auto_spam(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         if !data
           handle('admin_create_auto_spam')
           reply_simple 'admin/create_spam'
@@ -892,7 +892,7 @@ module TSX
       end
 
       def admin_ask_auto_spam_period(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         if !data
           handle('admin_ask_auto_spam_period')
           reply_message "#{icon('pencil2')} Как часто отсылать, в минутах?"

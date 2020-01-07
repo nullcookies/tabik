@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="651" selection-start-line="651" selection-end-line="651" />
+            <state relative-caret-position="165">
+              <caret line="659" selection-start-line="659" selection-end-line="659" />
             </state>
           </provider>
         </entry>
@@ -231,6 +231,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -342,7 +343,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -575,18 +575,18 @@
       <workItem from="1577116542349" duration="1245000" />
       <workItem from="1578219039952" duration="2047000" />
       <workItem from="1578227176292" duration="699000" />
-      <workItem from="1578415338977" duration="867000" />
+      <workItem from="1578415338977" duration="1163000" />
+      <workItem from="1578417521035" duration="1198000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="942727000" />
+    <option name="totallyTimeSpent" value="944221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37509975" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.38148445" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -971,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="651" selection-start-line="651" selection-end-line="651" />
+        <state relative-caret-position="165">
+          <caret line="659" selection-start-line="659" selection-end-line="659" />
         </state>
       </provider>
     </entry>
