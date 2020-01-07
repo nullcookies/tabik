@@ -70,8 +70,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+            <state relative-caret-position="249">
+              <caret line="670" column="54" lean-forward="true" selection-start-line="670" selection-start-column="54" selection-end-line="670" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -107,7 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>today_</find>
       <find>sales</find>
       <find>trade</find>
       <find>stat_last_ten</find>
@@ -137,6 +136,7 @@
       <find>Все покупки</find>
       <find>user_trades</find>
       <find>finalize</find>
+      <find>is_opera</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -575,18 +575,19 @@
       <workItem from="1577106353063" duration="1906000" />
       <workItem from="1577116542349" duration="1245000" />
       <workItem from="1578219039952" duration="2047000" />
-      <workItem from="1578227176292" duration="98000" />
+      <workItem from="1578227176292" duration="699000" />
+      <workItem from="1578415338977" duration="650000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="941259000" />
+    <option name="totallyTimeSpent" value="942510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36871508" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37509975" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -971,8 +972,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        <state relative-caret-position="249">
+          <caret line="670" column="54" lean-forward="true" selection-start-line="670" selection-start-column="54" selection-end-line="670" selection-end-column="54" />
         </state>
       </provider>
     </entry>

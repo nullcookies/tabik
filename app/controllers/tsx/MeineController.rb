@@ -738,7 +738,7 @@ module TSX
       end
 
       def save_klads(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) && !hb_client.is_operator?(@tsx_bot)
         pics = @payload.text.split("\n")
         puts "uploading FILES 1"
         city = sget('meine_city')
