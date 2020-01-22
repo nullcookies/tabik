@@ -49,7 +49,6 @@ module TSX
         reply_simple "search/serp", list: items, buttons: bts, links: true
       end
 
-
       def serp_cities
         sset('tsx_filter', Country[@tsx_bot.get_var('country')])
         sset('tsx_filter_country', sget('tsx_filter'))
@@ -269,7 +268,7 @@ module TSX
       def trade_overview(data = nil)
         handle('process_payment')
         if @tsx_bot.get_var('country') == 2
-          sset('telebot_method', 'easypay')
+          sset('telebot_method', 'bitobmen')
         else
           sset('telebot_method', 'qiwi')
         end

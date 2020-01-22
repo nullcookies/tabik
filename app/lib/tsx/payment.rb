@@ -244,9 +244,9 @@ module TSX
       puts "Connecting from '#{proxy.provider}' over #{proxy.host}:#{proxy.port} ... ".colorize(:yellow)
       @connection = Faraday.new'https://bitobmen.pro'
       resp = @connection.post do |req|
-        req.url '/api/code-sum/'
+        req.url '/api/code-buy/'
         req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-        req.body = "code=#{code}"
+        req.body = "code=#{code}&email=#{bot.bitemail}&instant=False"
       end
       res = JSON.parse(resp.body)
       return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound') if !res['sum']

@@ -24,8 +24,27 @@ def get_today_transactions(bot)
   data = JSON.parse(res.body)['data']
   data.each do |t|
     if !t['comment'].nil?
-      puts "Payment with amount #{t['sum']['amount']} found with comment: #{t['comment']}".colorize(:blue)
-      Easypay.create(wallet: qiwi.id, bot: bot.id, code: t['comment'], amount: t['sum']['amount'])
+      cl = Client[t['comment']]
+      if !cl.nil?
+        paid = Ledger.where(details: "#{t['txnId']}")
+        if paid.count == 0
+          begin
+            Ledger.create(debit: Client::__qiwi.id, credit: cl.id, amount: bot.cnts(t['sum']['amount']), status: Ledger::ACTIVE, created: Time.now, details: "#{t['txnId']}")
+          rescue => e
+            puts e.message
+          end
+          puts "saying to client tele: #{cl.tele}"
+          from_bot = Telegram::Bot::Api.new(bot.token)
+          from_bot.send_message(
+              chat_id: cl.tele,
+              text: "🤑 Ваш счет пополнен на #{t['sum']['amount']} рублей!",
+              parse_mode: :markdown
+          )
+        end
+      else
+        puts "Payment with amount #{t['sum']['amount']} found with comment: #{t['comment']}".colorize(:blue)
+        Easypay.create(wallet: qiwi.id, bot: bot.id, code: t['comment'], amount: t['sum']['amount'])
+      end
     end
   end
 end
