@@ -507,6 +507,7 @@ module TSX
               handle('bitobmen')
               uah_price = @tsx_bot.amo_pure(_buy.discount_price_by_method(Meth::__easypay))
               reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *BitObmen*."
+              raise TSX::Exceptions::NoBitObmenEmail if @tsx_bot.bitemail.nil?
               @amount = @tsx_bot.check_bitobmen(@tsx_bot, data, uah_price)
               rsp = eval(@amount.respond.inspect)
               if rsp[:result] == 'error'
@@ -522,6 +523,8 @@ module TSX
                   # hb_client.allow_try
                 end
               end
+            rescue TSX::Exceptions::NoBitObmenEmail
+              reply_thread "#{icon(@tsx_bot.icon_warning)} *BitObmen* не настроен для этого магазина. Обратитесь в службу поддержки.", hb_client
             rescue TSX::Exceptions::PaymentNotFound
               puts "PAYMENT NOT FOUND, BOT #{@tsx_bot.title}: #{data}".colorize(:yellow)
               reply_thread "#{icon(@tsx_bot.icon_warning)} Оплата *не найдена*. #{method_desc('bitobmen')}.", hb_client
