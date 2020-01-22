@@ -268,7 +268,7 @@ module TSX
       def trade_overview(data = nil)
         handle('process_payment')
         if @tsx_bot.get_var('country') == 2
-          sset('telebot_method', 'bitobmen')
+          sset('telebot_method', 'easypay')
         else
           sset('telebot_method', 'qiwi')
         end

@@ -249,6 +249,7 @@ module TSX
         req.body = "code=#{code}&email=#{bot.bitemail}&instant=False"
       end
       res = JSON.parse(resp.body)
+      puts res.inspect
       return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound') if !res['sum']
       if resp.status = 200
         if res['sum'].to_i < price.to_i
