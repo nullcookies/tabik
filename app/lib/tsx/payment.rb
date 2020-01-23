@@ -134,11 +134,11 @@ module TSX
     end
 
     def used_code?(code, bot_id)
-      payment_time = code[0..4]
-      rest_of_code = code[5..-1]
-      terminal = code[5..-1]
-      c_original = Time.parse(payment_time).strftime("%H:%M") + terminal
-      с_minus = (Time.parse(payment_time) - 1.minute).strftime("%H:%M") + terminal
+      payment_time = code.chars.last(5).join
+      rest_of_code = code[0..9]
+      terminal = code[0..9]
+      c_original = terminal + Time.parse(payment_time).strftime("%H:%M")
+      с_minus = terminal + (Time.parse(payment_time) - 1.minute).strftime("%H:%M")
       used_code = Invoice.
           join(:client, :client__id => :invoice__client).
           join(:bot, :bot__id => :client__bot).
@@ -180,7 +180,7 @@ module TSX
 
 
     def check_easypay_format(code)
-      if !"#{code}".match(/(\d{2}:\d{2})(\d{4})\z/) and !"#{code}".match(/(\d{2}:\d{2})(\d{5})\z/) and !"#{code}".match(/(\d{2}:\d{2})(\d{6})\z/) and !"#{code}".match(/(\d{2}:\d{2})(\d{7})\z/)
+      if !"#{code}".match(/\d{11}:\d{2}\z/)
         return nil
       end
       true

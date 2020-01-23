@@ -23,6 +23,7 @@
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.17.3, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chartkick (v3.0.2, RVM: ruby-2.4.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="childprocess (v3.0.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cloudinary (v1.11.1, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coercible (v1.0.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="colorize (v0.8.1, RVM: ruby-2.4.3) [gem]" level="application" />
@@ -94,13 +95,16 @@
     <orderEntry type="library" scope="PROVIDED" name="rake-version (v1.0.1, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.10.3, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.0, RVM: ruby-2.4.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v1.6.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="require_all (v2.0.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rest-client (v2.0.2, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-hidden-service (v0.0.2, RVM: ruby-2.4.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubyzip (v2.0.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="russian (v0.6.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.3, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-listen (v4.0.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="scrypt (v3.0.6, RVM: ruby-2.4.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v3.142.7, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sentry-raven (v2.9.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sequel (v4.39.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sequel-pg-comment (v2.0.1, RVM: ruby-2.4.3) [gem]" level="application" />
@@ -133,6 +137,8 @@
     <orderEntry type="library" scope="PROVIDED" name="unicorn-worker-killer (v0.4.4, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="version (v1.1.1, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="virtus (v1.0.5, RVM: ruby-2.4.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="watir (v6.16.5, RVM: ruby-2.4.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="watir-scroll (v0.4.0, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="webrobots (v0.1.2, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="will_paginate (v3.1.7, RVM: ruby-2.4.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="yajl-ruby (v1.4.1, RVM: ruby-2.4.3) [gem]" level="application" />

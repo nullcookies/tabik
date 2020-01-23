@@ -58,6 +58,7 @@ gem 'ezcrypto'
 gem 'tor'
 gem 'chartkick'
 gem 'groupdate'
+gem 'watir'
 gem 'daemons'
 gem 'anti_captcha'
 gem 'thwait'
@@ -65,4 +66,5 @@ gem 'sinatra-captcha'
 gem 'public_suffix'
 gem 'stackprof', group: :development
 gem 'sibit'
+gem 'watir-scroll'
 gem "rake-version", "~> 1.0"

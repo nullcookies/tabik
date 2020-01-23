@@ -1,138 +1,61 @@
 require_relative './requires'
 require 'colorize'
+require 'watir'
 
 logger = CronLogger.new
 # DB.logger = logger
+Selenium::WebDriver::Firefox::Binary.path='/usr/bin/firefox'
+Selenium::WebDriver.logger.level = :debug
 
-def easypay_login(bot, login, password)
-  i = 0
-  num = 4
-  logged = false
-  while i < num  do
-    i += 1
-    puts "#{bot.title}:  Trying to solve reCaptcha #{i} try ..."
-    client = AntiCaptcha.new('397e590788cf7c2248374b889d395cbe')
-    options = {
-        website_key: '6LefhCUTAAAAAOQiMPYspmagWsoVyHyTBFyafCFb',
-        website_url: 'https://partners.easypay.ua/auth/signin'
-    }
-    begin
-      solution = client.decode_nocaptcha!(options)
-      resp = solution.g_recaptcha_response
-    rescue AntiCaptcha::Error => ex
-      puts ex.message
-      puts "#{bot.title}: AntiCaptcha timeout. Next try.".red
-      next
-    end
-    puts "#{bot.title}: Got AntiCaptcha endresponse: #{resp}".green
-    web = Mechanize.new
-    web.keep_alive = false
-    web.read_timeout = 10
-    web.open_timeout = 10
-    web.user_agent = "Mozilla/5.0 Gecko/20101203 Firefox/3.6.13"
-    proxy = Prox.get_active
-    web.agent.set_proxy(proxy.host, proxy.port, proxy.login, proxy.password)
-    puts "#{bot.title}: Retrieving main page".white
-    easy = web.get('https://partners.easypay.ua/auth/signin')
-    puts "Trying with proxy #{proxy.host}:#{proxy.host} #{proxy.login}/#{proxy.password}"
-    puts "#{bot.title}: Trying to login with #{login}/#{password}".white
-    begin
-      # exit
-      logged = easy.form do |f|
-        f.login = login.to_s
-        f.password = password.to_s
-        f.gresponse = resp
-      end.submit
-    rescue => e
-      puts "#{bot.title}: Not logged to Easypay.".colorize(:red)
-      puts e.message
-      puts e.backtrace.join("\t\n")
-      next
-    end
-    if logged.title != "EasyPay - Вхiд до системи" and logged.title != "EasyPay - Вход в систему"
-      puts "#{bot.title}: Logged to Easypay.".colorize(:green)
-      logged = true
-      return web
-    else
-      puts "#{bot.title}: Not logged with response. Next try.".colorize(:red)
-    end
-  end
-  false if !logged
-end
-
-def get_today_transactions(web, bot, wallet)
-  puts "#{bot.title}: Checking all payments for the current day".white
-  st = web.get("https://partners.easypay.ua/wallets/buildreport?walletId=#{wallet.wallet}&month=#{Date.today.month}&year=#{Date.today.year}")
-  puts st.inspect
-  tab = st.search(".//table[@class='table-layout']").children
-  puts "#{bot.title}: TAB COUNT: #{tab.count}"
-  Easypay.where(bot: bot.id).delete
-  tab.each do |d|
-    i = 1
-    to_match = ''
-    amount = ''
-    d.children.each do |td, td2|
-      #puts td.inspect
-      if i == 2
-        to_match << td.inner_text
-      end
-      if i == 6
-        amount = td.inner_text
-      end
-      if i == 10
-        to_match << td.inner_text
-      end
-      i = i + 1
-    end
-    puts to_match.red
-    matched = "#{to_match}".match(/.*(\d{2}:\d{2})\D*(\d+)/)
-    if matched
-      dat =  "#{to_match}".match(/(\d{2}.\d{2}.\d{4}).*/)
-      if Date.parse(dat.captures.first) < Date.today - 1.days
-        puts "TODAY IS FINISHED. NOT SAVING THE REST".red
-        return false
-      end
-      if !amount.include?(',00')
-        puts 'ONLINE TRANSFER'.colorize(:yellow)
-        am_in_code = amount.tr(',', '')
-        code = "#{matched.captures.first}#{am_in_code}"
-      else
-        code = "#{matched.captures.first}#{matched.captures.last}"
-      end
-      p = Easypay.where("bot = #{bot.id} and wallet = '#{wallet.id}' and  code = '#{code}' and amount = '#{amount}'")
-      if p.count == 0
-        puts "Adding payment #{amount} with code #{code}".colorize(:blue)
-        Easypay.create(wallet: wallet.id, bot: bot.id, code: code, amount: amount)
-      else
-        puts "Code #{code} already saved in database"
-      end
-    else
-      puts "NOT MATCHED".red
-    end
-  end
-end
-
-threads = []
 DB.fetch('select * from wallet where active = 1 or secondary = 1') do |wallet|
 
-  threads << Thread.new {
-    begin
-      bot = Bot[wallet[:bot]]
-      puts "Processing bot:  #{bot.title} / wallet: #{wallet[:wallet]}".colorize(:blue)
-      web = easypay_login(bot, wallet[:phone], wallet[:password])
-      if !web
-        puts "Was not logged #{bot.title}".colorize(:red)
-      else
-        get_today_transactions(web, bot, Wallet[wallet[:id]])
-      end
-    rescue => e
-      puts e.message
-    end
-  }
-end
+  bot = Bot[wallet[:bot]]
+  next if bot.checkeasy != 1
+  puts "Processing bot:  #{bot.title} / wallet: #{wallet[:wallet]}".colorize(:blue)
+  proxy = Prox.get_active
+  proxy_object = Selenium::WebDriver::Proxy.new(
+      http: "#{proxy.host}:#{proxy.port}",
+      ssl:  "#{proxy.host}:#{proxy.port}"
+  )
+  dir = "/code/wallets/#{bot.id}"
+  wallet_dir = "#{dir}/#{wallet[:keeper]}"
+  Dir.mkdir(dir) unless File.exists?(dir)
+  Dir.mkdir(wallet_dir) unless File.exists?(wallet_dir)
 
-ThreadsWait.all_waits(threads) do |t|
-  STDERR.puts "Thread #{t} has terminated."
+  profile = Selenium::WebDriver::Firefox::Profile.new
+  profile['browser.download.dir'] = dir
+  profile['browser.download.folderList'] = 2
+  profile['browser.helperApps.neverAsk.saveToDisk'] = "text/csv,application/zip,application/octet-stream,image/jpeg,application/vnd.ms-outlook,text/html,application/pdf"
+  profile['browser.helperApps.alwaysAsk.force'] = "false"
+
+  browser = Watir::Browser.new(
+      :firefox,
+      headless: true,
+      profile: profile,
+      proxy: proxy_object
+  )
+
+  browser.goto 'https://easypay.ua/'
+  puts "Going to EasyPay.ua"
+  sleep(15)
+  browser.button(:value => "Войти").click
+  browser.input(:id => 'sign-in-phone').send_keys('380999714391')
+  browser.input(:id => 'password').send_keys('ZzZ6085249')
+  browser.button(:class => ['button', 'relative']).click
+  puts "Logged in"
+  sleep(20)
+  browser.goto 'https://easypay.ua/profile/wallets'
+  puts "Went to wallets"
+  browser.button(:class => 'dots').click
+  browser.a(text: 'История').click
+  sleep(20)
+  browser.scroll.to [0, 200]
+  puts "Scrolled to the middle of the screen"
+  browser.span(:class => ['profile-history__filter-more', 'ng-star-inserted']).wait_until(&:present?).click
+  puts "Trying to save history"
+  sleep(50)
+  browser.close
+
 end
 
 DB.disconnect
