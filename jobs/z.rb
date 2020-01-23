@@ -7,36 +7,44 @@ logger = CronLogger.new
 Selenium::WebDriver::Firefox::Binary.path='/usr/bin/firefox'
 # Selenium::WebDriver.logger.level = :debug
 
-DB.fetch("select * from wallet where bot = #{ARGV[0]} and (active = 1 or secondary = 1)") do |wallet|
+DB.fetch("select * from wallet where (active = 1 or secondary = 1)") do |wallet|
 
   bot = Bot[wallet[:bot]]
   next if bot.checkeasy != 1
   puts "Processing bot:  #{bot.title} / wallet: #{wallet[:wallet]}".colorize(:blue)
   proxy = Prox.get_active
-  # proxy_object = Selenium::WebDriver::Proxy.new(
-  #     http: "#{proxy.host}:#{proxy.port}",
-  #     ssl:  "#{proxy.host}:#{proxy.port}"
-  # )
+  proxy_object = Selenium::WebDriver::Proxy.new(
+      http: "#{proxy.host}:#{proxy.port}",
+      ssl:  "#{proxy.host}:#{proxy.port}"
+  )
   browser = Watir::Browser.new(
       :firefox,
-      headless: false
+      headless: false,
+      proxy: proxy_object
   )
 
   browser.window.resize_to(800, 600)
 
   browser.goto 'https://easypay.ua/'
   puts "Trying to login with login/password: #{wallet[:phone]}/#{wallet[:password]}"
-  sleep(15)
+  sleep(10)
   browser.button(:value => "Войти").click
   browser.input(:id => 'sign-in-phone').send_keys(wallet[:phone])
   browser.input(:id => 'password').send_keys(wallet[:password])
   browser.button(:class => ['button', 'relative']).click
-  puts "Logged in"
-  sleep(10)
+  sleep(5)
   browser.goto 'https://easypay.ua/profile/wallets'
   puts "Went to wallets"
-  browser.button(:class => 'dots').wait_until(&:present?)
-  browser.button(:class => 'dots').click
+
+  begin
+    browser.button(:class => 'dots').wait_until(&:present?)
+    browser.button(:class => 'dots').click
+  rescue Watir::Wait::TimeoutError => e
+    puts "Can't wait for DOTS button in wallets"
+    puts "Most probably there are more than one keeper."
+    next
+  end
+
   if browser.a(text: 'История').present?
     browser.a(text: 'История').click
   elsif browser.a(text: 'Історія').present?
@@ -45,14 +53,19 @@ DB.fetch("select * from wallet where bot = #{ARGV[0]} and (active = 1 or seconda
     puts "PROBLEM WITH LOGIN".colorize(:red)
     next
   end
-  sleep(20)
-  3.times {
+  sleep(10)
+  2.times {
     browser.scroll.to :bottom
-    browser.div(:class => ['button', 'regular', 'expanded']).click
+    begin
+      browser.div(:class => ['button', 'regular', 'expanded']).click
+    rescue Watir::Exception::UnknownObjectException => e
+      puts "Most probably there are more than one keeper"
+      next
+    end
     sleep(5)
   }
-  puts "Deleting old records"
-  Easypay.where(bot: bot.id).delete
+  # puts "Deleting old records"
+  # Easypay.where(bot: bot.id).delete
   puts "Saving payments to database"
   cnt = 0
   browser.table.rows.each do |row|
