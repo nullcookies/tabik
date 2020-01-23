@@ -135,8 +135,8 @@ module TSX
 
     def used_code?(code, bot_id)
       payment_time = code.chars.last(5).join
-      rest_of_code = code[0..9]
-      terminal = code[0..9]
+      rest_of_code = code[0..8]
+      terminal = code[0..8]
       c_original = terminal + Time.parse(payment_time).strftime("%H:%M")
       с_minus = terminal + (Time.parse(payment_time) - 1.minute).strftime("%H:%M")
       used_code = Invoice.
