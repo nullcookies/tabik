@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,16 +27,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="953" selection-start-line="952" selection-end-line="953" />
+            <state relative-caret-position="523">
+              <caret line="1034" column="3" lean-forward="true" selection-start-line="1034" selection-start-column="3" selection-end-line="1034" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="339">
@@ -103,8 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>admin_set_prices</find>
-      <find>product_prices</find>
       <find>reply_logo filename, 'welcome/welcome', links: false, sh: hb_client.shop?, support_line: @tsx_bot.support_line</find>
       <find>create_trade</find>
       <find>logo</find>
@@ -125,7 +123,6 @@
       <find>say</find>
       <find>chief</find>
       <find>check_ea</find>
-      <find>use_code</find>
       <find>format</find>
       <find>view_wal</find>
       <find>is_oper</find>
@@ -133,6 +130,9 @@
       <find>add_cash</find>
       <find>show_user</find>
       <find>take_</find>
+      <find>/use_code</find>
+      <find>use_code</find>
+      <find>wallets</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -200,8 +200,8 @@
         <option value="$PROJECT_DIR$/app/views/tsx/welcome/payments.rb" />
         <option value="$PROJECT_DIR$/jobs/z.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/admin/view_wallet.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" />
       </list>
     </option>
   </component>
@@ -623,18 +623,19 @@
       <workItem from="1579795184464" duration="1435000" />
       <workItem from="1579796993168" duration="1089000" />
       <workItem from="1579855596074" duration="2318000" />
-      <workItem from="1579858088140" duration="430000" />
+      <workItem from="1579858088140" duration="1630000" />
+      <workItem from="1579867393087" duration="848000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="999987000" />
+    <option name="totallyTimeSpent" value="1002035000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.43974462" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.44772545" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1008,17 +1009,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="953" selection-start-line="952" selection-end-line="953" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
           <caret line="239" selection-start-line="239" selection-end-line="239" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="1034" column="3" lean-forward="true" selection-start-line="1034" selection-start-column="3" selection-end-line="1034" selection-end-column="3" />
         </state>
       </provider>
     </entry>
