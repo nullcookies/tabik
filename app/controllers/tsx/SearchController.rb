@@ -229,7 +229,7 @@ module TSX
       end
 
       def take_free
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         botrec('Администратор взял клад', _buy.id)
         just_take(_buy)
         _trade.delete
@@ -238,7 +238,7 @@ module TSX
       end
 
       def view_free
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         botrec('Администратор посмотрел клад', _buy.id)
         just_take(_buy)
         start

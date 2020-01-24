@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,15 +13,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobs/z.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-122">
-              <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin/wallets.haml">
           <provider selected="true" editor-type-id="text-editor" />
@@ -35,11 +27,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="963" column="48" selection-start-line="963" selection-start-column="48" selection-end-line="963" selection-end-column="48" />
+            <state relative-caret-position="124">
+              <caret line="953" selection-start-line="952" selection-end-line="953" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="239" selection-start-line="239" selection-end-line="239" />
             </state>
           </provider>
         </entry>
@@ -102,7 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bots_wel</find>
       <find>admin_set_prices</find>
       <find>product_prices</find>
       <find>reply_logo filename, 'welcome/welcome', links: false, sh: hb_client.shop?, support_line: @tsx_bot.support_line</find>
@@ -132,6 +132,7 @@
       <find>view_wallet</find>
       <find>add_cash</find>
       <find>show_user</find>
+      <find>take_</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -192,7 +193,6 @@
         <option value="$PROJECT_DIR$/app/views/tsx/search/confirm.rb" />
         <option value="$PROJECT_DIR$/app/lib/exceptions.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/search/trade.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/jobs/parse_payments.rb" />
         <option value="$PROJECT_DIR$/jobs/easypay_wallets_new.rb" />
@@ -201,6 +201,7 @@
         <option value="$PROJECT_DIR$/jobs/z.rb" />
         <option value="$PROJECT_DIR$/app/views/tsx/admin/view_wallet.rb" />
         <option value="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/tsx/SearchController.rb" />
       </list>
     </option>
   </component>
@@ -227,7 +228,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -354,6 +354,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -621,18 +622,19 @@
       <workItem from="1579792199208" duration="1783000" />
       <workItem from="1579795184464" duration="1435000" />
       <workItem from="1579796993168" duration="1089000" />
-      <workItem from="1579855596074" duration="1489000" />
+      <workItem from="1579855596074" duration="2318000" />
+      <workItem from="1579858088140" duration="430000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="998728000" />
+    <option name="totallyTimeSpent" value="999987000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.43256184" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.43974462" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -933,13 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5430">
-          <caret line="362" column="42" selection-start-line="362" selection-start-column="42" selection-end-line="362" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/tsx/payment.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2730">
@@ -951,6 +946,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="201" selection-start-line="2" selection-start-column="201" selection-end-line="2" selection-end-column="201" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/z.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/wallets.haml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tsx/admin/view_wallet.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -996,27 +1008,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/z.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-122">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/wallets.haml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tsx/admin/view_wallet.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="963" column="48" selection-start-line="963" selection-start-column="48" selection-end-line="963" selection-end-column="48" />
+        <state relative-caret-position="124">
+          <caret line="953" selection-start-line="952" selection-end-line="953" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tsx/SearchController.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="239" selection-start-line="239" selection-end-line="239" />
         </state>
       </provider>
     </entry>
