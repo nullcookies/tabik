@@ -515,8 +515,8 @@ module TSX
       def view_wallet(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         wallet = Wallet[data]
-        if !hb_client.is_operator?(@tsx_bot)
-          pass = "*******"
+        if hb_client.is_operator?(@tsx_bot)
+          pass = "скрыто"
         else
           pass = wallet.password
         end
