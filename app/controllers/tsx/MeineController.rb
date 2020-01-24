@@ -518,7 +518,7 @@ module TSX
         if !hb_client.is_operator?(@tsx_bot)
           pass = "*******"
         else
-          pass = wallet.pasword
+          pass = wallet.password
         end
         sset('meine_wallet', wallet)
         reply_update 'admin/view_wallet', wallet: wallet, pass: pass

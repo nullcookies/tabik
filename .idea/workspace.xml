@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tsx/MeineController.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tsx/admin/view_wallet.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tsx/admin/view_wallet.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobs/update_proxies.rb" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/update_proxies.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobs/z.rb" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/z.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="520" selection-start-line="520" selection-end-line="520" />
+            <state relative-caret-position="225">
+              <caret line="519" column="12" lean-forward="true" selection-start-line="519" selection-start-column="12" selection-end-line="519" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -625,12 +621,12 @@
       <workItem from="1579792199208" duration="1783000" />
       <workItem from="1579795184464" duration="1435000" />
       <workItem from="1579796993168" duration="1089000" />
-      <workItem from="1579855596074" duration="397000" />
+      <workItem from="1579855596074" duration="826000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="997636000" />
+    <option name="totallyTimeSpent" value="998065000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -1019,8 +1015,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tsx/MeineController.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="520" selection-start-line="520" selection-end-line="520" />
+        <state relative-caret-position="225">
+          <caret line="519" column="12" lean-forward="true" selection-start-line="519" selection-start-column="12" selection-end-line="519" selection-end-column="12" />
         </state>
       </provider>
     </entry>
