@@ -1,0 +1,31 @@
+sudo apt update
+sudo apt install git
+mkdir /code
+cd /code
+mkdir logs
+chmod 777 logs
+chmod 777 /code
+cd /code
+sudo apt install gpg
+sudo apt install vim
+gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+sudo apt install curl
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
+source /usr/local/rvm/scripts/rvm
+rvm install 2.4.3
+git clone https://github.com/nickolas98/tabik.git
+cd /code/tabik
+sudo apt-get install postgresql-client libpq5 libpq-dev
+gem install pg
+bundle
+sudo apt install firefox
+cd /code
+wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
+tar -zxf geckodriver-v0.26.0-linux64.tar.gz
+mv geckodriver /usr/local/bin
+---> add IP address of the server to proxy whitelist
+rvm cron setup
+crontab -e
+---> add this to crontab
+*/20 * * * * cd /code/tabik/jobs && ruby z2.rb 744,712,747,786,737,736,713,722,738,718 >> /code/logs/easypay.log 2>&1
+

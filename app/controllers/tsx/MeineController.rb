@@ -513,10 +513,15 @@ module TSX
       end
 
       def view_wallet(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         wallet = Wallet[data]
+        if !hb_client.is_operator?(@tsx_bot)
+          pass = "*******"
+        else
+          pass = wallet.pasword
+        end
         sset('meine_wallet', wallet)
-        reply_update 'admin/view_wallet', wallet: wallet
+        reply_update 'admin/view_wallet', wallet: wallet, pass: pass
       end
 
       def view_qiwi_wallet(data = nil)
@@ -817,7 +822,7 @@ module TSX
       end
 
       def bot_announce(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         an = Announce.find(bot: @tsx_bot.id)
         if an.nil?
           enter_announce
@@ -827,7 +832,7 @@ module TSX
       end
 
       def bot_cashback(data = nil)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         handle('bot_cashback')
         if !data
           reply_message "#{icon('pencil2')} Сколько возвращать на баланс покупателю после покупки, *в процентах*. Вводите только цифру."
@@ -933,19 +938,19 @@ module TSX
       end
 
       def add_to_admins
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         @tsx_bot.add_operator(sget('admin_edit_client'), Client::HB_ROLE_ADMIN)
         show_user
       end
 
       def del_from_operators
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         Team.find(client: sget('admin_edit_client').id).delete
         show_user
       end
 
       def del_from_admins
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         Team.find(client: sget('admin_edit_client').id).delete
         show_user
       end
@@ -968,27 +973,27 @@ module TSX
       end
 
       def unban
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         sget('admin_edit_client').update(banned: 0)
         sset('admin_edit_client', Client[sget('admin_edit_client').id])
         show_user
       end
 
       def ban
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         sget('admin_edit_client').update(banned: 1)
         sset('admin_edit_client', Client[sget('admin_edit_client').id])
         show_user
       end
 
       def admin_add_cash
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         handle('do_add_cash')
         reply_message "#{icon('pencil2')} Введите сумму в гривнах. Максимальная сумма *1000грн.*"
       end
 
       def do_add_cash(data)
-        not_permitted if !hb_client.is_admin?(@tsx_bot)
+        not_permitted if !hb_client.is_admin?(@tsx_bot) and !hb_client.is_operator?(@tsx_bot)
         raise TSXException.new("#{icon('warning')} Максимальная сумма пополнения 1000грн.") if data.to_i > 1000
         cl = sget('admin_edit_client')
         cents = @tsx_bot.cnts(data.to_i)

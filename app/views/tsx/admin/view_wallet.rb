@@ -1,7 +1,7 @@
 Номер кошелька *#{@wallet.keeper}*
 Номер внутреннего кошелька *#{@wallet.wallet}*
 Номер телефона *#{@wallet.phone}*
-Пароль *#{@wallet.password}*
+Пароль *#{@pass}*
 Статус *#{@wallet.active == 1 ? icon('large_blue_circle') : icon('white_circle') } #{@wallet.active == 1 ? 'Активен' : 'Неактивен'}*
 Дополнительный? *#{@wallet.secondary == 1 ? icon('electric_plug') : icon('no_entry_sign') } #{@wallet.secondary == 1 ? 'Да' : 'Нет'}*
 ****

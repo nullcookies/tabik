@@ -7,7 +7,7 @@ logger = CronLogger.new
 Selenium::WebDriver::Firefox::Binary.path='/usr/bin/firefox'
 # Selenium::WebDriver.logger.level = :debug
 
-DB.fetch("select * from wallet where (active = 1 or secondary = 1)") do |wallet|
+DB.fetch("select * from wallet where bot in (#{ARGV[0]}) and (active = 1 or secondary = 1)") do |wallet|
 
   bot = Bot[wallet[:bot]]
   next if bot.checkeasy != 1
