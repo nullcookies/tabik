@@ -354,7 +354,7 @@ module TSX
         return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')
       elsif resp == 500
         return ResponseEasy.new('error', 'TSX::Exceptions::OldCode')
-      elsif resp = 600
+      elsif resp == 600
         puts "EASYPAY TIMEOUT".colorize(:red)
         return ResponseEasy.new('error', 'TSX::Exceptions::Timeout')
       else
