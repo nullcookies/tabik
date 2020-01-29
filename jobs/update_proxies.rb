@@ -31,6 +31,5 @@ proxies.each do |proxy_string|
   logger.say("Proxy #{proxy.first}:#{proxy.last} added to proxy pool")
 end
 
-Prox::flush
 DB.disconnect
 logger.noise "Finished."

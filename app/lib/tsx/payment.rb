@@ -317,7 +317,7 @@ module TSX
       }
       prox = Prox.get_active
       begin
-        response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
+        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
           http.request(request)
         end
       rescue Rack::Timeout::RequestTimeoutException
