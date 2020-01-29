@@ -358,7 +358,7 @@ module TSX
           reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *Easypay*."
           begin
             raise TSX::Exceptions::NoPendingTrade if !hb_client.has_pending_trade?(@tsx_bot)
-            # raise TSX::Exceptions::NextTry if !hb_client.can_try?
+            raise TSX::Exceptions::NextTry if !hb_client.can_try?
             raise TSX::Exceptions::WrongFormat if @tsx_bot.check_easypay_format(data).nil?
             possible_codes = @tsx_bot.used_code?(data, @tsx_bot.id)
             handle('easypay')
@@ -386,15 +386,19 @@ module TSX
             botrec('[/CHECK]')
           rescue TSX::Exceptions::NextTry
             puts "PAYMENT TOO OFTEN, BOT #{@tsx_bot.title} #{data}".colorize(:yellow)
-            reply_thread "#{icon(@tsx_bot.icon_warning)} Вы не можете так часто проверять код. Попробуйте *через #{minut(hb_client.next_try_in)}*.", hb_client
+            hb_client.set_next_try(@tsx_bot)
+            reply_thread "#{icon(@tsx_bot.icon_warning)} Вы не можете так часто проверять код. Попробуйте, пожалуйста, *через #{minut(hb_client.next_try_in)}*.", hb_client
           rescue TSX::Exceptions::JustWait
             reply_thread "#{icon(@tsx_bot.icon_warning)} Пожалуйста попробуйте через 15 минут. Система обработки платежей на ремонте.", hb_client
           rescue TSX::Exceptions::OldCode
+            hb_client.set_next_try(@tsx_bot)
             reply_thread "#{icon(@tsx_bot.icon_warning)} *Вы не можете использовать код*, который старше *двух дней*. Пожалуйста, проводите Ваши платежи в тот же день.", hb_client
           rescue TSX::Exceptions::ProxyError
+            hb_client.set_next_try(@tsx_bot)
             code1.delete if !code1.nil?
             reply_thread "#{icon(@tsx_bot.icon_warning)} Произошла *ошибка соединения*. Сообшите об этом оператору, пожалуйста.", hb_client
           rescue TSX::Exceptions::Timeout
+            hb_client.set_next_try(@tsx_bot)
             code1.delete if !code1.nil?
             reply_thread "#{icon(@tsx_bot.icon_warning)} Произошла ошибка. *Попробуйте еще раз,* пожалуйста.", hb_client
           rescue TSX::Exceptions::PaymentNotFound
