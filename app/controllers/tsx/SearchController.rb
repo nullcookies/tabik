@@ -355,7 +355,7 @@ module TSX
           cancel_trade
         else
           botrec('[CHECK]')
-          reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *Easypay*. Если есть проблема с платежем пишите @pndsupport."
+          reply_message "#{icon(@tsx_bot.icon_wait)} Проверяем платеж *Easypay*. Если есть проблема с платежом пишите @pndsupport."
           begin
             raise TSX::Exceptions::NoPendingTrade if !hb_client.has_pending_trade?(@tsx_bot)
             raise TSX::Exceptions::NextTry if !hb_client.can_try?
