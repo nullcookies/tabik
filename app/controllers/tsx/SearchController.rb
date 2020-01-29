@@ -396,7 +396,7 @@ module TSX
           rescue TSX::Exceptions::ProxyError
             hb_client.set_next_try(@tsx_bot)
             code1.delete if !code1.nil?
-            reply_thread "#{icon(@tsx_bot.icon_warning)} Произошла *ошибка соединения*. Сообшите об этом оператору, пожалуйста.", hb_client
+            reply_thread "#{icon(@tsx_bot.icon_warning)} Произошла *ошибка соединения*. Пожалуйста, попробуйте провести код еще раз.", hb_client
           rescue TSX::Exceptions::Timeout
             hb_client.set_next_try(@tsx_bot)
             code1.delete if !code1.nil?
