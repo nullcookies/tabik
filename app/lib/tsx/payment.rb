@@ -315,12 +315,15 @@ module TSX
       req_options = {
           use_ssl: uri.scheme == "https",
       }
+      prox = Prox.get_active
       begin
-        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
           http.request(request)
         end
-      rescue Rack::Timeout::RequestTimeoutException => ex
+      rescue Rack::Timeout::RequestTimeoutException
         return 600
+      rescue
+        return 404
       end
       puts "RESPONSE FROM EASY #{response.code}"
       if response.code == '400'
@@ -360,6 +363,9 @@ module TSX
       elsif resp == 600
         puts "EASYPAY TIMEOUT".colorize(:red)
         return ResponseEasy.new('error', 'TSX::Exceptions::Timeout')
+      elsif resp == 404
+        puts "EASYPAY TIMEOUT".colorize(:red)
+        return ResponseEasy.new('error', 'TSX::Exceptions::ProxyError')
       elsif resp == 403
         puts "PDF ERROR".colorize(:red)
         return ResponseEasy.new('error', 'TSX::Exceptions::Timeout')

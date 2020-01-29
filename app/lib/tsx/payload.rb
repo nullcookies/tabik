@@ -122,7 +122,7 @@ module TSX
       begin
         Integer(clear_text)
         us_id = Client[clear_text]
-        puts "PAYLOAD #{@payload.text}"
+        # puts "PAYLOAD #{@payload.text}"
         if !us_id.nil? and @payload.text.include?('/')
           us_id
         else
@@ -150,7 +150,7 @@ module TSX
         cmd = @payload.text.split(' ').first
         if cmd == '/start' && "/#{ref}" != '/start'
           decoded = Base64.decode64(@payload.text.split(' ').last)
-          puts "DECODED: #{decoded}"
+          # puts "DECODED: #{decoded}"
           master = Client.find(tele: decoded, bot: @tsx_bot.id)
           if !master.nil?
             return master
@@ -180,7 +180,7 @@ module TSX
       end
 
       master = has_referal?
-      tem "GOT REF #{master.inspect}"
+      # tem "GOT REF #{master.inspect}"
       if master != false
         if master.id != hb_client.id
           blue "Adding hb_client: @#{hb_client.username} as referal to :@#{master.username}"
@@ -201,28 +201,28 @@ module TSX
       # not in hardcoded handlers list
       # and handler is NOT set
       if !handler?
-        tem "no message, no handler"
-        tem "replying with error"
+        # tem "no message, no handler"
+        # tem "replying with error"
         return ['no_command', nil]
       else
         # not in hardcoded handlers list
         # and handler is set
-        tem "handler is set."
+        # tem "handler is set."
         if message?
-          tem "processing message with variable"
-          tem "cmd: #{handler?}, var: #{clear_text}"
+          # tem "processing message with variable"
+          # tem "cmd: #{handler?}, var: #{clear_text}"
           return [handler?, clear_text]
         end
         if callback_query?
-          puts "processing callback_query with variable"
-          puts "cmd: #{handler?}, var: #{clear_data}"
+          # puts "processing callback_query with variable"
+          # puts "cmd: #{handler?}, var: #{clear_data}"
           if respond_to?(clear_data.to_sym)
             return [clear_data, nil]
           end
           return [handler?, clear_data]
         end
         if file?
-          puts "FILE!!!!!!!!!!!!"
+          # puts "FILE!!!!!!!!!!!!"
           return [handler?, file?]
         end
       end
