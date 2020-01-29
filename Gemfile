@@ -68,3 +68,4 @@ gem 'stackprof', group: :development
 gem 'sibit'
 gem 'watir-scroll'
 gem "rake-version", "~> 1.0"
+gem 'pdf-reader'

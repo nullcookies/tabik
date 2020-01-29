@@ -286,7 +286,7 @@ module TSX
         when 'bitobmen'
           "Пример `K7MYfRu8tE3Qdz`\r\nПодробнее /payments"
         when 'easypay'
-          "Пример `12:1399899`\r\nПодробнее /payments"
+          "Пример `123456789200`\r\nПодробнее /payments"
       end
     end
 

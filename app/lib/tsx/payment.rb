@@ -1,6 +1,8 @@
 require 'socksify'
 require 'socksify/http'
 require 'btce'
+require 'net/http'
+require 'uri'
 
 module Btce
   class API
@@ -133,7 +135,7 @@ module TSX
       end
     end
 
-    def used_code?(code, bot_id)
+    def used_code2?(code, bot_id)
       payment_time = code.chars.last(5).join
       rest_of_code = code[0..8]
       terminal = code[0..8]
@@ -153,6 +155,19 @@ module TSX
       # puts ex.message.colorize(:yellow)
       # puts ex.backtrace.join("\n\t").colorize(:yellow)
       raise TSX::Exceptions::WrongFormat
+    end
+
+    def used_code?(code, bot_id)
+      used_code = Invoice.
+          join(:client, :client__id => :invoice__client).
+          join(:bot, :bot__id => :client__bot).
+          where("(invoice.code like '%#{code[0, 9]}%') and (bot.id = #{bot_id})")
+      # puts used_code.inspect.colorize(:yellow)
+      if used_code.count == 0
+        return code
+      else
+        raise TSX::Exceptions::UsedCode
+      end
     end
 
     def used_qiwi_code?(code, bot_id)
@@ -180,7 +195,7 @@ module TSX
 
 
     def check_easypay_format(code)
-      if !"#{code}".match(/\d{11}:\d{2}\z/)
+      if code.length < 10
         return nil
       end
       true
@@ -261,7 +276,7 @@ module TSX
     end
 
 
-    def check_easy_payment(bot, codes, price)
+    def check_easy_payment2(bot, codes, price)
       wallet = Wallet.find(bot: bot.id, active: 1)
       puts "CHECKING PAYMENT FOR ACTIVE WALLET: #{wallet.keeper}"
       puts codes.inspect.colorize(:red)
@@ -271,6 +286,72 @@ module TSX
         return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')
       else
         amm = payments.first.amount
+        puts "AMOUNT FOUND #{amm}"
+        puts "PRICE #{price}"
+        amt = amm.to_f.round.to_i
+        if amt.to_i < price.to_i
+          return ResponseEasy.new('error', 'TSX::Exceptions::NotEnoughAmount', nil, amt)
+        else
+          return ResponseEasy.new('success', nil, nil, amt)
+        end
+      end
+    end
+
+    def check_transaction(code)
+      txn = code[0, 9]
+      amount = code[9..-1]
+      uri = URI.parse("https://api.easypay.ua/api/payment/getReceipt?receiptId=#{txn}&amount=#{amount}&contentType=application/pdf")
+      puts uri
+      request = Net::HTTP::Get.new(uri)
+      request.content_type = "application/json; charset=UTF-8"
+      request["Pageid"] = "74757f61-2df1-4beb-ab71-c6a63daf7431"
+      request["Locale"] = "ua"
+      request["User-Agent"] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"
+      request["Accept"] = "application/pdf"
+      request["Referer"] = "https://easypay.ua/ua/contacts"
+      request["Appid"] = "452a5b05-9058-4b17-be0b-a7d472e54f37"
+      request["Partnerkey"] = "easypay-v2"
+      request["Googleclientid"] = "GA1.2.805737796.1571072043"
+      req_options = {
+          use_ssl: uri.scheme == "https",
+      }
+      response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        http.request(request)
+      end
+      puts "RESPONSE FROM EASY #{response.code}"
+      if response.code == '400'
+        return 400
+      else
+        txn_file = "/code/tabs/txn/#{Time.now.to_i}.pdf"
+        File.open(txn_file, 'w') { |file| file.write(response.body) }
+        require 'pdf-reader'
+        reader = PDF::Reader.new(txn_file)
+        reader.pages.each do |page|
+          matched = "#{page.text}".match(/Дата: (\d{2}.\d{2}.\d{4})/)
+          if matched
+            txin_date = Date.parse(matched.captures.first)
+            if txin_date < Date.today - 1.day
+              File.delete(txn_file) if File.exist?(txn_file)
+              return 500
+            end
+          end
+        end
+        File.delete(txn_file) if File.exist?(txn_file)
+        200
+      end
+    end
+
+    def check_easy_payment(codes, price)
+      puts "Checking transaction against Easypay ... ".colorize(:blue)
+      puts "CODE: #{codes}".colorize(:blue)
+      resp = check_transaction(codes)
+      if resp == 400
+        puts "No such transaction".colorize(:yellow)
+        return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')
+      elsif resp == 500
+        return ResponseEasy.new('error', 'TSX::Exceptions::OldCode')
+      else
+        amm = codes[9..-1]
         puts "AMOUNT FOUND #{amm}"
         puts "PRICE #{price}"
         amt = amm.to_f.round.to_i

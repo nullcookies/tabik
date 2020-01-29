@@ -15,6 +15,9 @@ module TSX
     class PaymentNotFound < Exception
     end
 
+    class OldCode < Exception
+    end
+
     class NoBitObmenEmail < Exception
     end
 
