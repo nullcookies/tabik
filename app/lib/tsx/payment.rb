@@ -330,6 +330,7 @@ module TSX
         return 400
       elsif response.code == '403'
         puts response.body
+        Prox.flush
         return 403
       else
         txn_file = "#{Time.now.to_i}.pdf"
