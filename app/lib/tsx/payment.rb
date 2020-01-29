@@ -322,7 +322,7 @@ module TSX
       if response.code == '400'
         return 400
       else
-        txn_file = "/code/tabs/txn/#{Time.now.to_i}.pdf"
+        txn_file = "#{Time.now.to_i}.pdf"
         File.open(txn_file, 'w') { |file| file.write(response.body) }
         require 'pdf-reader'
         reader = PDF::Reader.new(txn_file)
