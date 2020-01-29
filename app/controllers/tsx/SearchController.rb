@@ -406,7 +406,7 @@ module TSX
             hb_client.set_next_try(@tsx_bot)
             puts e.message
             puts "BAD PAYMENT: USED CODE #{data}".colorize(:yellow)
-            reply_thread "#{icon(@tsx_bot.icon_warning)} *Код уже был использован.* Код пополнения Easypay должен иметь вид `00:0012345`. Если Вы уверены, что не использовали этот код, создайте запрос в службу поддержки.", hb_client
+            reply_thread "#{icon(@tsx_bot.icon_warning)} *Код уже был использован* в одном из ботов системы. Если Вы уверены, что это ошибка, обратитесь к оператору.", hb_client
             puts "USED CODE".colorize(:yellow)
           rescue TSX::Exceptions::WrongFormat
             puts "WRONG FORMAT".colorize(:yellow)
