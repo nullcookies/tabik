@@ -325,6 +325,9 @@ module TSX
       puts "RESPONSE FROM EASY #{response.code}"
       if response.code == '400'
         return 400
+      elsif response.code == '403'
+        puts response.body
+        return 403
       else
         txn_file = "#{Time.now.to_i}.pdf"
         File.open(txn_file, 'w') { |file| file.write(response.body) }
@@ -356,6 +359,9 @@ module TSX
         return ResponseEasy.new('error', 'TSX::Exceptions::OldCode')
       elsif resp == 600
         puts "EASYPAY TIMEOUT".colorize(:red)
+        return ResponseEasy.new('error', 'TSX::Exceptions::Timeout')
+      elsif resp == 403
+        puts "PDF ERROR".colorize(:red)
         return ResponseEasy.new('error', 'TSX::Exceptions::Timeout')
       else
         amm = codes[9..-1]
