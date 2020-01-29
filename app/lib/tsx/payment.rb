@@ -321,8 +321,10 @@ module TSX
           http.request(request)
         end
       rescue Rack::Timeout::RequestTimeoutException
+        Prox.flush
         return 600
       rescue
+        Prox.flush
         return 404
       end
       puts "RESPONSE FROM EASY #{response.code}"
