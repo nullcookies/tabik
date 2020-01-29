@@ -16,6 +16,7 @@ class Prox < Sequel::Model(:prox)
   end
 
   def self.flush
+    puts "Flushed proxy table".colorize(:yellow)
     Prox.select_all.update('status = random() * 1')
   end
 

@@ -316,6 +316,7 @@ module TSX
           use_ssl: uri.scheme == "https",
       }
       prox = Prox.get_active
+      puts "Using proxy: #{prox.host}:#{prox.port}...".colorize(:blue)
       begin
         response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
           http.request(request)
