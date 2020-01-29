@@ -391,6 +391,9 @@ module TSX
             reply_thread "#{icon(@tsx_bot.icon_warning)} Пожалуйста попробуйте через 15 минут. Система обработки платежей на ремонте.", hb_client
           rescue TSX::Exceptions::OldCode
             reply_thread "#{icon(@tsx_bot.icon_warning)} *Вы не можете использовать код*, который старше *двух дней*. Пожалуйста, проводите Ваши платежи в тот же день.", hb_client
+          rescue TSX::Exceptions::Timeout
+            code1.delete if !code1.nil?
+            reply_thread "#{icon(@tsx_bot.icon_warning)} Произошла ошибка. *Попробуйте еще раз,* пожалуйста.", hb_client
           rescue TSX::Exceptions::PaymentNotFound
             hb_client.set_next_try(@tsx_bot)
             code1.delete

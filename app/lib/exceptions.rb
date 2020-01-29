@@ -27,6 +27,9 @@ module TSX
     class ProxyError < Exception
     end
 
+    class Timeout < Exception
+    end
+
     class WrongEasyPass < Exception
     end
 

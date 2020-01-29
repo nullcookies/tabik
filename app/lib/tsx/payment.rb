@@ -315,8 +315,12 @@ module TSX
       req_options = {
           use_ssl: uri.scheme == "https",
       }
-      response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-        http.request(request)
+      begin
+        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+          http.request(request)
+        end
+      rescue Rack::Timeout::RequestTimeoutException => ex
+        return 600
       end
       puts "RESPONSE FROM EASY #{response.code}"
       if response.code == '400'
@@ -350,6 +354,9 @@ module TSX
         return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')
       elsif resp == 500
         return ResponseEasy.new('error', 'TSX::Exceptions::OldCode')
+      elsif resp = 600
+        puts "EASYPAY TIMEOUT".colorize(:red)
+        return ResponseEasy.new('error', 'TSX::Exceptions::Timeout')
       else
         amm = codes[9..-1]
         puts "AMOUNT FOUND #{amm}"
