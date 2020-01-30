@@ -34,7 +34,7 @@ module TSX
         if !data
           reply_message "#{icon('pencil2')} Введите код, который нужно проверить."
         else
-          @codes = TSX::Invoice.join(:client, :client__id => :invoice__client).where("code like '%#{data}%' and client.bot = #{@tsx_bot.id}")
+          @codes = TSX::Invoice.join(:client, :client__id => :invoice__client).where("code like '%#{data[0, 9]}%'")
           if @codes.count == 0
             reply_message "#{icon('no_entry_sign')} Ничего не найдено"
           else
