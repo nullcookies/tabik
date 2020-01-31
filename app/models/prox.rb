@@ -4,6 +4,7 @@ class Prox < Sequel::Model(:prox)
   OFFLINE = 0
 
   def self.get_active
+    Prox.flush
     prox = Prox.where(status: Prox::ONLINE).order(Sequel.desc(:checked)).first
     prox.checked = Time.now
     prox.save
