@@ -310,20 +310,21 @@ module TSX
       req_options = {
           use_ssl: uri.scheme == "https",
       }
+      retries = 0
       begin
-        retries ||= 0
         prox = Prox.get_active
         puts "Retry ##{retries} / Proxy: #{prox.host}:#{prox.port}...".colorize(:blue)
         response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
           http.request(request)
         end
-        if response.code == '403'
+        testing = 1
+        if response.code == '403' or testing = 1
           puts "Response: 403, Need to change IP".colorize(:red)
           raise
         end
       rescue
-        if (retries += 1) < 6
-          puts ex.message.colorize(:red)
+        retries += 1
+        if retries < 6
           Prox.flush
           retry
         else
