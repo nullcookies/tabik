@@ -318,9 +318,10 @@ module TSX
           http.request(request)
         end
         if response.code == '403'
-          raise Exception.new("Response: 403, Need to change IP. Error is 404")
+          puts "Response: 403, Need to change IP".colorize(:red)
+          raise
         end
-      rescue => ex
+      rescue
         if (retries += 1) < 6
           puts ex.message.colorize(:red)
           Prox.flush
