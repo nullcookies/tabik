@@ -310,26 +310,29 @@ module TSX
       req_options = {
           use_ssl: uri.scheme == "https",
       }
-      prox = Prox.get_active
-      puts "Using proxy: #{prox.host}:#{prox.port}...".colorize(:blue)
       begin
-        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        retries ||= 0
+        prox = Prox.get_active
+        puts "Retry ##{retries} / Proxy: #{prox.host}:#{prox.port}...".colorize(:blue)
+        response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
           http.request(request)
         end
-      rescue Rack::Timeout::RequestTimeoutException
-        Prox.flush
-        return 600
-      rescue
-        Prox.flush
-        return 404
+        if response.code == '403'
+          raise Exception.new("Response: 403, Need to change IP. Error is 404")
+        end
+      rescue => ex
+        if (retries += 1) < 6
+          puts ex.message.colorize(:red)
+          Prox.flush
+          retry
+        else
+          puts "Could not fetch transaction after #{retries} retries. Exiting."
+          return 404
+        end
       end
       puts "RESPONSE FROM EASY #{response.code}"
       if response.code == '400'
         return 400
-      elsif response.code == '403'
-        puts response.body
-        Prox.flush
-        return 403
       else
         txn_file = "#{Time.now.to_i}.pdf"
         File.open(txn_file, 'w') { |file| file.write(response.body) }
@@ -359,14 +362,8 @@ module TSX
         return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')
       elsif resp == 500
         return ResponseEasy.new('error', 'TSX::Exceptions::OldCode')
-      elsif resp == 600
-        puts "EASYPAY TIMEOUT".colorize(:red)
-        return ResponseEasy.new('error', 'TSX::Exceptions::Timeout')
       elsif resp == 404
         puts "EASYPAY TIMEOUT".colorize(:red)
-        return ResponseEasy.new('error', 'TSX::Exceptions::ProxyError')
-      elsif resp == 403
-        puts "PDF ERROR".colorize(:red)
         return ResponseEasy.new('error', 'TSX::Exceptions::Timeout')
       else
         amm = codes[9..-1]
