@@ -314,7 +314,7 @@ module TSX
       begin
         prox = Prox.get_active
         puts "Retry ##{retries} / Proxy: #{prox.host}:#{prox.port}...".colorize(:blue)
-        response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
+        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
           http.request(request)
         end
         testing = 0
@@ -325,7 +325,6 @@ module TSX
       rescue
         retries += 1
         if retries < 6
-          Prox.flush
           retry
         else
           puts "Could not fetch transaction after #{retries} retries. Exiting."
