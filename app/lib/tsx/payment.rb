@@ -317,7 +317,7 @@ module TSX
         response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
           http.request(request)
         end
-        testing = 1
+        testing = 0
         if response.code == '403' or testing = 1
           puts "Response: 403, Need to change IP".colorize(:red)
           raise
