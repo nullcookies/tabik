@@ -26,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/lib/tsx/payment.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="321" selection-start-line="319" selection-end-line="321" />
+            <state relative-caret-position="373">
+              <caret line="334" selection-start-line="334" selection-end-line="334" />
             </state>
           </provider>
         </entry>
@@ -234,6 +234,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -360,7 +361,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -654,18 +654,19 @@
       <workItem from="1580387135191" duration="601000" />
       <workItem from="1580475934460" duration="1696000" />
       <workItem from="1580477792378" duration="1843000" />
-      <workItem from="1580479812012" duration="1360000" />
+      <workItem from="1580479812012" duration="2189000" />
+      <workItem from="1580485748509" duration="207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1036369000" />
+    <option name="totallyTimeSpent" value="1037405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3200319" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3256185" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -994,6 +995,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/prox.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.4.3/lib/ruby/2.4.0/net/http.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8580">
@@ -1043,17 +1051,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/prox.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/tsx/payment.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="321" selection-start-line="319" selection-end-line="321" />
+        <state relative-caret-position="373">
+          <caret line="334" selection-start-line="334" selection-end-line="334" />
         </state>
       </provider>
     </entry>

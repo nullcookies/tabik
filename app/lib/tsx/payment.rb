@@ -314,7 +314,7 @@ module TSX
       begin
         prox = Prox.get_active
         puts "Retry ##{retries} / Proxy: #{prox.host}:#{prox.port}...".colorize(:blue)
-        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
           http.request(request)
         end
         # puts response.code
@@ -328,8 +328,14 @@ module TSX
         if retries < 6
           retry
         else
-          puts "Could not fetch transaction after #{retries} retries. Exiting."
-          return 404
+          puts "Tried #{retries} times with no success. Trying without proxy."
+          response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+            http.request(request)
+          end
+          if response.code == '403'
+            puts "Could not fetch transaction after #{retries} retries. Exiting."
+            return 404
+          end
         end
       end
       puts "RESPONSE FROM EASY #{response.code}"
