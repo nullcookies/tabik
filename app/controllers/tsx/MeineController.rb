@@ -50,7 +50,7 @@ module TSX
           reply_message "#{icon('pencil2')} Введите код, который нужно погасить"
         else
           code = data
-          raise TSXException.new('Неверный формат кода. Формат `12345678900:11`') if code.length < 11
+          raise TSXException.new('Неверный формат кода. Формат `123456789250.00`  или `123456789250`') if code.length < 11
           TSX::Invoice.create(code: "#{code[0, 9]}", bot: @tsx_bot.id, client: hb_client.id)
           reply_message "#{icon('information_source')} Код `#{code[0, 9]}` добавлены в использованные."
         end
