@@ -50,14 +50,9 @@ module TSX
           reply_message "#{icon('pencil2')} Введите код, который нужно погасить"
         else
           code = data
-          raise TSXException.new('Неверный формат кода. Формат `12345678900:11`') if code.match(/\d{11}:\d{2}\z/).nil?
-          payment_time = code.chars.last(5).join
-          terminal = code[0..8]
-          c_original = terminal + Time.parse(payment_time).strftime("%H:%M")
-          с_minus = terminal + (Time.parse(payment_time) - 1.minute).strftime("%H:%M")
-          TSX::Invoice.create(code: "#{c_original}", bot: @tsx_bot.id, client: hb_client.id)
-          TSX::Invoice.create(code: "#{с_minus}", bot: @tsx_bot.id, client: hb_client.id)
-          reply_message "#{icon('information_source')} Коды `#{c_original}` и `#{с_minus}` добавлены в использованные."
+          raise TSXException.new('Неверный формат кода. Формат `12345678900:11`') if code.length < 11
+          TSX::Invoice.create(code: "#{code[0, 9]}", bot: @tsx_bot.id, client: hb_client.id)
+          reply_message "#{icon('information_source')} Код `#{code[0, 9]}` добавлены в использованные."
         end
       end
 
