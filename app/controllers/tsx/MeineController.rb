@@ -52,7 +52,7 @@ module TSX
           code = data
           raise TSXException.new('Неверный формат кода. Формат `123456789250.00`  или `123456789250`') if code.length < 11
           TSX::Invoice.create(code: "#{code[0, 9]}", bot: @tsx_bot.id, client: hb_client.id)
-          reply_message "#{icon('information_source')} Код `#{code[0, 9]}` добавлены в использованные."
+          reply_message "#{icon('information_source')} Код `#{code[0, 9]}` добавлен в использованные."
         end
       end
 

@@ -325,7 +325,7 @@ module TSX
         end
       rescue
         retries += 1
-        if retries < 6
+        if retries < 10
           retry
         else
           puts "Tried #{retries} times with no success. Trying without proxy."
