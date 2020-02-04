@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c19c9c15-2f73-44f6-8aef-7f4b5ff78af3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/tsx/payment.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/tsx/payment.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jobs/update_proxies.rb" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/update_proxies.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/lib/tsx/payment.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="334" selection-start-line="334" selection-end-line="334" />
+            <state relative-caret-position="103">
+              <caret line="316" selection-start-line="316" selection-end-line="316" />
             </state>
           </provider>
         </entry>
@@ -655,18 +654,20 @@
       <workItem from="1580475934460" duration="1696000" />
       <workItem from="1580477792378" duration="1843000" />
       <workItem from="1580479812012" duration="2189000" />
-      <workItem from="1580485748509" duration="207000" />
+      <workItem from="1580485748509" duration="2041000" />
+      <workItem from="1580493289927" duration="615000" />
+      <workItem from="1580542567519" duration="1070000" />
+      <workItem from="1580554546062" duration="599000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1037405000" />
+    <option name="totallyTimeSpent" value="1041523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3256185" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3423783" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1053,8 +1054,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/tsx/payment.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="334" selection-start-line="334" selection-end-line="334" />
+        <state relative-caret-position="103">
+          <caret line="316" selection-start-line="316" selection-end-line="316" />
         </state>
       </provider>
     </entry>
