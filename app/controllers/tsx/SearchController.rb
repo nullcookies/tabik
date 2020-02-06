@@ -406,7 +406,7 @@ module TSX
             code1.delete
             # hb_client.set_next_try(@tsx_bot)
             puts "PAYMENT NOT FOUND, BOT #{@tsx_bot.title}: #{data}".colorize(:yellow)
-            reply_thread "#{icon(@tsx_bot.icon_warning)} *Оплата не найдена.* Скорее всего Вы неверно ввели код пополнения. Пример кода `785559236200` или `785559236120.11`.\n\nКод пополнения - это `ID операции` и `сумма платежа без комиссии` с Вашей квитанции без пробела.\n\nЕсли Вы уверены, что оплатили, попробуйте через пару минут. Также прочитайте /payments", hb_client
+            reply_thread "#{icon(@tsx_bot.icon_warning)} *Оплата не найдена.* Скорее всего Вы неверно ввели код пополнения. Пример кода `785559236200` или `785559236120.11`.\n\nКод пополнения - это `ID операции` и `сумма платежа без комиссии` с Вашей квитанции без пробела.\n\nТакже прочитайте /payments", hb_client
           rescue TSX::Exceptions::NotEnoughAmount => ex
             found_amount = ex.message.to_i
             puts "PAYMENT: NOT EMOUGH AMOUNT. FOUND JUST #{ex.message}".colorize(:red)
