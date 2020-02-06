@@ -55,8 +55,8 @@ class BotController < TSX::ApplicationController
   end
 
   post '/sklad/*' do
-    # [200, {}, ["----------------------- SUCCESS"]]
-    # # return
+    [200, {}, ["----------------------- SUCCESS"]]
+    return
     begin
       mess = ''
       token = params[:splat].first
