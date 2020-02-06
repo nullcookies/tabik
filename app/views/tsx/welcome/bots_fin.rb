@@ -7,8 +7,8 @@
 ****
 [
     [
-        button("#{icon('green_book')} Клады", 'bots_roznica'),
+        button("#{icon('camera')} Клады", 'bots_roznica'),
         # button("#{icon('books')} Опт", 'bots_opt'),
-        button("#{icon('euro')} Финансы", 'bots_fin')
+        button("#{icon('currency_exchange')} Финансы", 'bots_fin')
     ]
 ]
