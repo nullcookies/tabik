@@ -657,7 +657,7 @@ module TSX
 
     def bots_welcome
       lines = ""
-      lines << "*Остальные магазины*\nТоп остальных магазинов системы. Список формируется по колиечству продаж за вчера..\n\n"
+      lines << "*Остальные магазины*\nТоп остальных магазинов системы. Список формируется по колиечству продаж за вчера.\n\n"
       bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 2).order(Sequel.desc(:vars__today_sales)).offset(5)
       top = 1
       bots.each do |b|
