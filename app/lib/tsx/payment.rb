@@ -297,7 +297,7 @@ module TSX
       end
     end
 
-    def check_transaction(code)
+    def check_transaction(bot, code)
       txn = code[0, 9]
       amount = code[9..-1]
       uri = URI.parse("https://api.easypay.ua/api/payment/getReceipt?receiptId=#{txn}&amount=#{amount}&contentType=application/pdf")
@@ -355,16 +355,27 @@ module TSX
               return 500
             end
           end
+          matched_keeper = "#{page.text}".match(/Платник: (\d{8})/)
+          if !matched_keeper.nil?
+            payment_keeper = matched_keeper.captures.first
+            puts "Receipt keeper: #{payment_keeper}"
+            keepers = DB.fetch('select keeper from wallet where bot = ? and (active = 1 or secondary = 1)', bot.id).to_a
+            puts "Bot available keepers: #{keepers.inspect}"
+            if !keepers.include?(payment_keeper)
+              puts "This receipt has nothing to do with #{bot.title}".colorize(:red)
+              return 500
+            end
+          end
         end
         File.delete(txn_file) if File.exist?(txn_file)
         200
       end
     end
 
-    def check_easy_payment(codes, price)
+    def check_easy_payment(bot, codes, price)
       puts "Checking transaction against Easypay ... ".colorize(:blue)
       puts "CODE: #{codes}".colorize(:blue)
-      resp = check_transaction(codes)
+      resp = check_transaction(bot, codes)
       if resp == 400
         puts "No such transaction".colorize(:yellow)
         return ResponseEasy.new('error', 'TSX::Exceptions::PaymentNotFound')

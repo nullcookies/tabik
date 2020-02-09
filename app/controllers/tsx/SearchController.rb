@@ -367,7 +367,7 @@ module TSX
             # code2 = Invoice.create(code: possible_codes.last, client: hb_client.id)
             seller = Client[_trade.seller]
             seller_bot = Bot[_buy.bot]
-            uah_payment = @tsx_bot.check_easy_payment(possible_codes, uah_price)
+            uah_payment = @tsx_bot.check_easy_payment(@tsx_bot, possible_codes, uah_price)
             rsp = eval(uah_payment.respond.inspect)
             puts "response from Tor processing server: #{rsp}".colorize(:blue)
             if rsp[:result] == 'error'
