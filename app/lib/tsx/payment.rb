@@ -360,10 +360,16 @@ module TSX
             payment_keeper = matched_keeper.captures.first
             puts "Receipt keeper: #{payment_keeper}"
             keepers = DB.fetch('select keeper from wallet where bot = ? and (active = 1 or secondary = 1)', bot.id).to_a
-            puts "Bot available keepers: #{keepers.inspect}"
-            if !keepers.include?(payment_keeper)
+            keepers_a = []
+            keepers.each do |key, value|
+              keepers_a << value
+            end
+            puts "Bot available keepers: #{keepers_a.inspect}"
+            if !keepers_a.include?(payment_keeper)
               puts "This receipt has nothing to do with #{bot.title}".colorize(:red)
               return 500
+            else
+              puts "This receipt is in the right keeper".colorize(:green)
             end
           end
         end
