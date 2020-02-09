@@ -361,8 +361,8 @@ module TSX
             puts "Receipt keeper: #{payment_keeper}"
             keepers = DB.fetch('select keeper from wallet where bot = ? and (active = 1 or secondary = 1)', bot.id).to_a
             keepers_a = []
-            keepers.each do |key, value|
-              keepers_a << value
+            keepers.each do |key|
+              keepers_a << key[:keeper]
             end
             puts "Bot available keepers: #{keepers_a.inspect}"
             if !keepers_a.include?(payment_keeper)
