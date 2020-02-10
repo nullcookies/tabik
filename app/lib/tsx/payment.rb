@@ -314,7 +314,7 @@ module TSX
       begin
         prox = Prox.get_active
         puts "Retry ##{retries} / Proxy: #{prox.host}:#{prox.port}...".colorize(:blue)
-        response = Net::HTTP.start(uri.hostname, uri.port, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
+        response = Net::HTTP.start(uri.hostname, uri.port, {:open_timeout => 10, :read_timeout => 10}, prox.host, prox.port, prox.login, prox.password, req_options) do |http|
           http.request(request)
         end
         # puts response.code
@@ -323,13 +323,14 @@ module TSX
           puts "Response: 403, Need to change IP".colorize(:red)
           raise
         end
-      rescue
+      rescue => ex
+        puts ex.message.colorize(:cyan)
         retries += 1
         if retries < 10
           retry
         else
           puts "Tried #{retries} times with no success. Trying without proxy."
-          response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+          response = Net::HTTP.start(uri.hostname, uri.port, {:open_timeout => 10, :read_timeout => 10}, req_options) do |http|
             http.request(request)
           end
           if response.code == '403'
