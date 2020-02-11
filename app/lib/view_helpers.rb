@@ -609,9 +609,8 @@ module TSX
     def main_top
       lines = ""
       users = DB.fetch('select count(distinct(username)) as cnt from client')
-      puts users.first.inspect
       bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 2).order(Sequel.desc(:vars__today_sales)).limit(5)
-      lines << "\n*Топ-5*\nЛучшие магазины нашей системы. Нам доверяют уже *#{ludey(users['cnt'])}*!\n\n"
+      lines << "\n*Топ-5*\nЛучшие магазины нашей системы. Нам доверяют уже *#{ludey(users.first[:cnt])}*!\n\n"
       top = 1
       bots.each do |b|
         case top
