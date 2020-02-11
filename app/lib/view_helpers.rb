@@ -608,6 +608,7 @@ module TSX
 
     def main_top
       lines = ""
+      # DB.fetch('select count(distinct(username)')
       bots = Bot.select_all(:bot).join(:vars, :vars__bot => :bot__id).where(listed: 1, :vars__country => 2).order(Sequel.desc(:vars__today_sales)).limit(5)
       lines << "\n*Топ-5*\nЛучшие магазины нашей системы. Рейтинг обновляется несколько раз в день автоматически.\n\n"
       top = 1
