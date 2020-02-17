@@ -375,7 +375,7 @@ module TSX
               ex = eval("#{rsp[:exception]}.new(#{rsp[:amount].to_s})")
               raise ex
             else
-              if hb_client.cashin(@tsx_bot.cnts(rsp[:amount].to_i), Client::__easypay, Meth::__easypay, Client::__tsx)
+              if hb_client.cashin(@tsx_bot.cnts(rsp[:amount].to_i), Client::__easypay, Meth::__easypay, Client::__tsx, "Пополнение через EasyPay. Код #{data}")
                 puts "PAYMENT ACCEPTED: #{data}".colorize(:blue)
                 botrec("Оплата клада #{_buy.id} зачислена. Код: ", "#{code1}")
                 reply_thread "#{icon(@tsx_bot.icon_success)} Оплата успешно зачислена.", hb_client
@@ -411,7 +411,7 @@ module TSX
             found_amount = ex.message.to_i
             puts "PAYMENT: NOT EMOUGH AMOUNT. FOUND JUST #{ex.message}".colorize(:red)
             reply_thread "#{icon(@tsx_bot.icon_warning)} *Суммы не хватает*, однако *#{@tsx_bot.amo(@tsx_bot.cnts(found_amount))}* зачислено Вам на баланс. Пополните бот необходимой суммой и нажмите *#{icon('dollar')} Оплатить с баланса* при покупке клада.", hb_client
-            hb_client.cashin(@tsx_bot.cnts(found_amount.to_i), Client::__easypay, Meth::__easypay, Client::__tsx)
+            hb_client.cashin(@tsx_bot.cnts(found_amount.to_i), Client::__easypay, Meth::__easypay, Client::__tsx, "Пополнение через EasyPay. Код #{data}")
           rescue TSX::Exceptions::UsedCode => e
             hb_client.set_next_try(@tsx_bot)
             puts e.message
