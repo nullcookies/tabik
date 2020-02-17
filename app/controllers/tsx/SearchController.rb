@@ -566,7 +566,7 @@ module TSX
 
       def redeem_voucher(data = nil)
         voucher = data
-        hb_client.cashin(voucher.amount, Client::__easypay, Meth::__easypay, Client::__tsx)
+        hb_client.cashin(voucher.amount, Client::__voucher, Meth::__easypay, Client::__tsx, "Ваучер обналичен #{hb_client.username}")
         reply_message "#{icon('moneybag')} *Поздравляем!* Вы обналичили ваучер на сумму *#{@tsx_bot.amo(voucher.amount)}* Эти деньги *зачислены Вам на баланс*. Вы можете их тратить. Приятных покупок!"
         voucher.delete
         start

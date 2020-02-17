@@ -243,6 +243,10 @@ class Client < Sequel::Model(:client)
     Client.find(username: '__easypay')
   end
 
+  def self.__voucher
+    Client.find(username: '__voucher')
+  end
+
   def self.__bitobmen
     Client.find(username: '__bitobmen')
   end
