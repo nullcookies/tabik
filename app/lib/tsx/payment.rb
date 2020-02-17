@@ -345,6 +345,7 @@ module TSX
       if response.code == '400'
         return 400
       else
+        puts "Checking against receipt".colorize(:red)
         txn_file = "#{Time.now.to_i}.pdf"
         File.open(txn_file, 'w') { |file| file.write(response.body) }
         require 'pdf-reader'
@@ -374,6 +375,9 @@ module TSX
             else
               puts "This receipt is in the right keeper".colorize(:green)
             end
+          else
+            puts "This receipt does not match wallet-to-wallet payment #{bot.title}".colorize(:red)
+            return 500
           end
         end
         File.delete(txn_file) if File.exist?(txn_file)
