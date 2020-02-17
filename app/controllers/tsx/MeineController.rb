@@ -996,7 +996,7 @@ module TSX
         raise TSXException.new("#{icon('warning')} Максимальная сумма пополнения 1000грн.") if data.to_i > 1000
         cl = sget('admin_edit_client')
         cents = @tsx_bot.cnts(data.to_i)
-        cl.cashin(cents, Client::__cash, Meth::__debt, hb_client)
+        cl.cashin(cents, Client::__cash, Meth::__debt, hb_client, "Пополнение счета оператором")
         reply_message "Сумма *#{data}грн.* зачилена на счет клиенту /#{cl.id}"
         # unhandle
       end
