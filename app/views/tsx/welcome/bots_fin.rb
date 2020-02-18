@@ -3,6 +3,7 @@
 
 🔸 [TransferChange](http://t.me/tchange24) Обнал EasyPay/BTC
 🔸 [Obnaluah](http://t.me/obnaluah) Обмен Easypay Globalmoney Qiwi Exmo Btc
+
 #{icon('grey_exclamation')} Присоединяйтесь в [ЧОП](https://t.me/joinchat/OcmDBFSMrpIAEBCJzW1Mww). Размещайте там любые объявления один раз в день бесплатно.
 ****
 [
