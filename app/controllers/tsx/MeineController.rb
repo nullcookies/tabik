@@ -401,7 +401,7 @@ module TSX
           reply_message "#{icon('pencil2')} Введите *номер кошелька*, который будут видеть покупатели."
         else
           sset('meine_keeper', data)
-          enter_wallet
+          save_wallet
         end
       end
 
@@ -441,14 +441,22 @@ module TSX
       def save_wallet(data = nil)
         not_permitted if !hb_client.is_admin?(@tsx_bot)
         unhandle
+        # Wallet.create(
+        #   bot: @tsx_bot.id,
+        #   active: 0,
+        #   keeper: sget('meine_keeper'),
+        #   wallet: sget('meine_wallet'),
+        #   phone: sget('meine_phone'),
+        #   password: sget('meine_password'),
+        # )
         Wallet.create(
-          bot: @tsx_bot.id,
-          active: 0,
-          keeper: sget('meine_keeper'),
-          wallet: sget('meine_wallet'),
-          phone: sget('meine_phone'),
-          password: sget('meine_password'),
-        )
+            bot: @tsx_bot.id,
+            active: 0,
+            keeper: sget('meine_keeper'),
+            wallet: 'none',
+            phone: 'none',
+            password: 'none',
+            )
         admin_wallets
       end
 
