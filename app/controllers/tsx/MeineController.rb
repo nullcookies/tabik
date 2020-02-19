@@ -453,7 +453,7 @@ module TSX
             bot: @tsx_bot.id,
             active: 0,
             keeper: sget('meine_keeper'),
-            wallet: nil,
+            wallet: 0,
             phone: nil,
             password: nil,
             )
