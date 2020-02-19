@@ -1025,6 +1025,8 @@ module TSX
           i = Item[data.to_i]
           if i.nil?
             reply_message "#{icon('no_entry_sign')} Такого клада не существует"
+          elsif i.bot != @tsx_bot.id
+            reply_message "#{icon('no_entry_sign')} Упс. Это не ваш клад. Больше так не делайте."
           else
             not_permitted if i.bot != @tsx_bot.id
             reply_message i.photo
