@@ -453,9 +453,9 @@ module TSX
             bot: @tsx_bot.id,
             active: 0,
             keeper: sget('meine_keeper'),
-            wallet: 'none',
-            phone: 'none',
-            password: 'none',
+            wallet: nil,
+            phone: nil,
+            password: nil,
             )
         admin_wallets
       end
